@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tunisie — Découvrez la Perle du Maghreb</title>
+  <link rel="icon" type="image/png" href="images/favicon.ico"/>
+
+  <!-- leaflet pour la carte interactive -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- les polices google fonts, jai trouvé ca sur youtube -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet"/>
+
+  <!-- mon fichier css -->
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+
+<!-- ===================== -->
+<!--      NAVIGATION       -->
+<!-- ===================== -->
+<nav>
+  <div class="logo">TU<span>N</span>ISIE</div>
+  <ul>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#cuisine">Cuisine</a></li>
+    <li><a href="#culture">Culture</a></li>
+    <li><a href="#carte">Carte</a></li>
+    <li><a href="#hymne">Hymne</a></li>
+  </ul>
+</nav>
+
+
+<!-- ===================== -->
+<!--      HERO             -->
+<!-- ===================== -->
+<section class="hero">
+  <div class="hero-pattern"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-symbol">☽</div>
+
+  <div class="hero-content fade-in visible">
+    <p class="hero-label">Afrique du Nord · Méditerranée</p>
+    <h1 class="hero-title">
+      Tunisie<br/>
+      <span>Éternelle</span>
+    </h1>
+    <p class="hero-sub">Là où l'Afrique rencontre la Méditerranée</p>
+    <a href="#destinations" class="hero-btn">Explorer</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Défiler</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ========================== -->
+<!--   LES CHIFFRES IMPORTANTS  -->
+<!-- ========================== -->
+<div class="facts">
+  <div class="fact-item fade-in">
+    <div class="fact-number">3000</div>
+    <div class="fact-label">ans d'histoire</div>
+  </div>
+  <div class="fact-item fade-in">
+    <div class="fact-number">1300</div>
+    <div class="fact-label">km de côtes</div>
+  </div>
+  <div class="fact-item fade-in">
+    <div class="fact-number">8</div>
+    <div class="fact-label">sites UNESCO</div>
+  </div>
+  <div class="fact-item fade-in">
+    <div class="fact-number">12M</div>
+    <div class="fact-label">habitants</div>
+  </div>
+</div>
+
+
+<!-- ======================== -->
+<!--   SECTION DESTINATIONS   -->
+<!-- ======================== -->
+<section class="destinations" id="destinations">
+
+  <div class="dest-header fade-in">
+    <div>
+      <p class="section-label">Destinations</p>
+      <h2 class="section-title">Les lieux<br/>incontournables</h2>
+    </div>
+    <p class="section-desc" style="max-width: 280px; font-size: 15px;">
+      De la mer turquoise aux dunes dorées du Sahara, la Tunisie offre des paysages d'une diversité exceptionnelle.
+    </p>
+  </div>
+
+  <div class="dest-grid fade-in">
+
+    <!-- carte grande (2 lignes) -->
+    <div class="dest-card" onclick="ouvrirPopup('sidi-bou')" style="background-image: url('images/sidi-bou-said.webp'); background-size: cover; background-position: center;">
+      <div class="dest-card-deco">✦</div>
+      <div class="dest-card-info">
+        <p class="dest-card-name">Sidi Bou Saïd</p>
+        <p class="dest-card-tag">Village bleu et blanc · Patrimoine</p>
+      </div>
+    </div>
+
+    <div class="dest-card" onclick="ouvrirPopup('carthage')" style="background-image: url('images/carthage.webp'); background-size: cover; background-position: center;">
+      <div class="dest-card-deco">⬡</div>
+      <div class="dest-card-info">
+        <p class="dest-card-name">Carthage</p>
+        <p class="dest-card-tag">Antiquité · UNESCO</p>
+      </div>
+    </div>
+
+    <div class="dest-card" onclick="ouvrirPopup('sahara')" style="background-image: url('images/sahara.webp'); background-size: cover; background-position: center;">
+      <div class="dest-card-deco">☀</div>
+      <div class="dest-card-info">
+        <p class="dest-card-name">Sahara</p>
+        <p class="dest-card-tag">Désert · Aventure</p>
+      </div>
+    </div>
+
+    <div class="dest-card" onclick="ouvrirPopup('djerba')" style="background-image: url('images/djerba.webp'); background-size: cover; background-position: center;">
+      <div class="dest-card-deco">⚓</div>
+      <div class="dest-card-info">
+        <p class="dest-card-name">Djerba</p>
+        <p class="dest-card-tag">Île · Plages</p>
+      </div>
+    </div>
+
+    <div class="dest-card" onclick="ouvrirPopup('kairouan')" style="background-image: url('images/kairouan.webp'); background-size: cover; background-position: center;">
+      <div class="dest-card-deco">☽</div>
+      <div class="dest-card-info">
+        <p class="dest-card-name">Kairouan</p>
+        <p class="dest-card-tag">Ville sainte · Mosquée</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ==================== -->
+<!--   CITATION EN ROUGE  -->
+<!-- ==================== -->
+<div class="citation-section">
+  <p class="citation-text fade-in">
+    "Comment guérir de notre amour pour la Tunisie ?"
+  </p>
+  <p class="citation-author">Mahmoud Darwich — L'adieu à la Tunisie, 1994</p>
+</div>
+
+
+<!-- ===================== -->
+<!--   SECTION CUISINE     -->
+<!-- ===================== -->
+<section class="cuisine" id="cuisine">
+  <div class="cuisine-layout">
+
+    <div class="fade-in">
+      <p class="section-label">Gastronomie</p>
+      <h2 class="section-title">Une cuisine<br/>aux mille saveurs</h2>
+      <p class="section-desc">
+        La cuisine tunisienne est un mariage audacieux d'épices, d'herbes aromatiques et de produits frais de la Méditerranée. Relevée, généreuse et authentique.
+      </p>
+      <br/>
+      <p style="font-size: 15px; color: #777; line-height: 1.8;">
+        Le harissa, cette pâte de piment rouge légendaire, se retrouve partout — elle est l'âme de la cuisine tunisienne. Associée à l'huile d'olive locale, aux olives, au thon et aux épices berbères, elle crée des saveurs uniques au monde.
+      </p>
+    </div>
+
+    <div class="plats-grid fade-in">
+      <div class="plat-card">
+        <div class="plat-photo" style="background-image: url('images/lablabi.webp');"></div>
+        <div class="plat-texte">
+          <p class="plat-nom">Lablabi</p>
+          <p class="plat-desc">Soupe de pois chiches au thon, harissa et épices</p>
+        </div>
+      </div>
+      <div class="plat-card">
+        <div class="plat-photo" style="background-image: url('images/couscous.webp');"></div>
+        <div class="plat-texte">
+          <p class="plat-nom">Couscous à l'agneau</p>
+          <p class="plat-desc">Le plat emblématique du vendredi, mijoté avec légumes et pois chiches</p>
+        </div>
+      </div>
+      <div class="plat-card">
+        <div class="plat-photo" style="background-image: url('images/macaroni.webp');"></div>
+        <div class="plat-texte">
+          <p class="plat-nom">Macaroni tunisien</p>
+          <p class="plat-desc">Pâtes en sauce tomate épicée avec viande et légumes</p>
+        </div>
+      </div>
+      <div class="plat-card">
+        <div class="plat-photo" style="background-image: url('images/molokhia.webp');"></div>
+        <div class="plat-texte">
+          <p class="plat-nom">Molokhia</p>
+          <p class="plat-desc">Ragoût de corète potagère mijotée à la viande, servi en tajine</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== -->
+<!--   SECTION CULTURE     -->
+<!-- ===================== -->
+<section class="culture" id="culture">
+
+  <p class="section-label">Culture & Identité</p>
+  <h2 class="section-title culture-title">L'âme tunisienne</h2>
+
+  <div class="culture-list">
+    <div class="culture-item fade-in">
+      <div class="culture-num">01</div>
+      <h3 class="culture-item-title">La médina</h3>
+      <p class="culture-item-text">Les médinas de Tunis, Sfax et Sousse sont des labyrinthes vivants classés UNESCO. Souks, artisans, parfums d'épices — un voyage dans le temps.</p>
+    </div>
+    <div class="culture-item fade-in">
+      <div class="culture-num">02</div>
+      <h3 class="culture-item-title">La mosaïque</h3>
+      <p class="culture-item-text">Le musée du Bardo abrite la plus grande collection de mosaïques romaines au monde. Carthage a laissé un héritage artistique exceptionnel.</p>
+    </div>
+    <div class="culture-item fade-in">
+      <div class="culture-num">03</div>
+      <h3 class="culture-item-title">La musique</h3>
+      <p class="culture-item-text">La Malouf, musique andalouse héritée du Moyen Âge, côtoie le raï moderne. Chaque région a sa propre tradition musicale et ses rythmes.</p>
+    </div>
+    <div class="culture-item fade-in">
+      <div class="culture-num">04</div>
+      <h3 class="culture-item-title">L'artisanat</h3>
+      <p class="culture-item-text">Tapis berbères de Kairouan, poteries de Nabeul, broderies de Tunis — un savoir-faire transmis de génération en génération depuis des siècles.</p>
+    </div>
+    <div class="culture-item fade-in">
+      <div class="culture-num">05</div>
+      <h3 class="culture-item-title">Le thé à la menthe</h3>
+      <p class="culture-item-text">Boire un thé en Tunisie est un rituel social. On le sert brûlant, sucré, avec des pignons de pin. Refuser est impoli — l'hospitalité est sacrée.</p>
+    </div>
+    <div class="culture-item fade-in">
+      <div class="culture-num">06</div>
+      <h3 class="culture-item-title">Les fêtes</h3>
+      <p class="culture-item-text">Du festival de Carthage à l'Aïd, les Tunisiens savent célébrer. Les rues s'animent, les familles se réunissent et la joie est communicative.</p>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ===================== -->
+<!--   SECTION CARTE       -->
+<!-- ===================== -->
+<section class="carte-section-new" id="carte">
+  <div class="carte-header fade-in">
+    <p class="section-label">Géographie</p>
+    <h2 class="section-title">Carte de la Tunisie</h2>
+    <p class="section-desc">Cliquez sur une ville pour découvrir ses informations.</p>
+  </div>
+  <div id="map"></div>
+</section>
+<!-- ========================== -->
+<!--   SECTION PERSONNAGES      -->
+<!-- ========================== -->
+<section class="personnages-section" id="personnages">
+
+  <div class="fade-in">
+    <p class="section-label">Figures Historiques</p>
+    <h2 class="section-title">Ceux qui ont marqué<br/>la Tunisie</h2>
+  </div>
+
+  <!-- le carousel -->
+  <div class="carousel-wrap fade-in">
+
+    <!-- bouton gauche -->
+    <button class="carousel-btn gauche" onclick="slideCarousel(-1)">&#8592;</button>
+
+    <!-- la piste qui défile -->
+    <div class="carousel-fenetre">
+      <div class="carousel-piste" id="carousel-piste">
+
+        <!-- Ibn Khaldoun -->
+        <div class="perso-card">
+          <div class="perso-img-wrap">
+            <img src="images/personnages/ibn-khaldoun.jpg" alt="Ibn Khaldoun"/>
+            <div class="perso-epoque">1332 — 1406</div>
+          </div>
+          <div class="perso-info">
+            <p class="perso-domaine">Philosophie · Histoire · Sociologie</p>
+            <h3 class="perso-nom">Ibn Khaldoun</h3>
+            <p class="perso-desc">
+              Né à Tunis en 1332, Ibn Khaldoun est considéré comme le père de la sociologie et de l'historiographie moderne. Son œuvre majeure, la Muqaddima, a révolutionné la façon d'analyser l'histoire et les sociétés humaines. Un génie en avance de plusieurs siècles sur son temps.
+            </p>
+            <div class="perso-citation">
+              "L'histoire est une science qui nous fait connaître la société humaine."
+            </div>
+          </div>
+        </div>
+
+        <!-- Abou el Kacem Chebbi -->
+        <div class="perso-card">
+          <div class="perso-img-wrap">
+            <img src="images/personnages/chebbi.jpg" alt="Abou el Kacem Chebbi"/>
+            <div class="perso-epoque">1909 — 1934</div>
+          </div>
+          <div class="perso-info">
+            <p class="perso-domaine">Poésie · Littérature</p>
+            <h3 class="perso-nom">Abou el Kacem Chebbi</h3>
+            <p class="perso-desc">
+              Poète romantique tunisien mort à seulement 25 ans, Chebbi est la voix lyrique de la Tunisie. Son vers "Si un jour le peuple aspire à vivre, le destin se doit de répondre" est devenu l'hymne des révolutions arabes. Ses poèmes sont inscrits dans l'hymne national tunisien.
+            </p>
+            <div class="perso-citation">
+              "إذا الشعب يوما أراد الحياة — فلا بد أن يستجيب القدر"
+            </div>
+          </div>
+        </div>
+
+        <!-- Wahida Bechikh -->
+        <div class="perso-card">
+          <div class="perso-img-wrap">
+            <img src="images/personnages/wahida-bechikh.jpg" alt="Wahida Bechikh"/>
+            <div class="perso-epoque">1900 — 1968</div>
+          </div>
+          <div class="perso-info">
+            <p class="perso-domaine">Art · Musique · Cinéma</p>
+            <h3 class="perso-nom">Wahida Bechikh</h3>
+            <p class="perso-desc">
+              Pionnière du théâtre et de la musique tunisienne, Wahida Bechikh a brisé les barrières sociales de son époque pour monter sur scène à une époque où c'était impensable pour une femme. Elle est considérée comme l'une des premières artistes tunisiennes de la scène moderne.
+            </p>
+            <div class="perso-citation">
+              "L'art est le seul langage universel qui traverse toutes les frontières."
+            </div>
+          </div>
+        </div>
+
+        <!-- Tahar Haddad -->
+        <div class="perso-card">
+          <div class="perso-img-wrap">
+            <img src="images/personnages/tahar-haddad.jpg" alt="Tahar Haddad"/>
+            <div class="perso-epoque">1899 — 1935</div>
+          </div>
+          <div class="perso-info">
+            <p class="perso-domaine">Droit · Réforme sociale · Féminisme</p>
+            <h3 class="perso-nom">Tahar Haddad</h3>
+            <p class="perso-desc">
+              Réformateur social visionnaire, Tahar Haddad a publié en 1930 "Notre femme dans la charia et la société", un ouvrage révolutionnaire qui défendait l'émancipation de la femme tunisienne. Rejeté par ses contemporains, il est aujourd'hui célébré comme un héros national.
+            </p>
+            <div class="perso-citation">
+              "La femme est la moitié de la société, et qui néglige la moitié néglige le tout."
+            </div>
+          </div>
+        </div>
+
+        <!-- Farhat Hached -->
+        <div class="perso-card">
+          <div class="perso-img-wrap">
+            <img src="images/personnages/farhat-hached.jpg" alt="Farhat Hached"/>
+            <div class="perso-epoque">1914 — 1952</div>
+          </div>
+          <div class="perso-info">
+            <p class="perso-domaine">Syndicalisme · Résistance · Indépendance</p>
+            <h3 class="perso-nom">Farhat Hached</h3>
+            <p class="perso-desc">
+              Fondateur de l'Union Générale Tunisienne du Travail (UGTT), Farhat Hached a consacré sa vie à la lutte pour l'indépendance tunisienne et les droits des travailleurs. Assassiné en 1952 par l'organisation coloniale "La Main Rouge", il est devenu un martyr et un symbole de la résistance nationale.
+            </p>
+            <div class="perso-citation">
+              "Un peuple qui ne se bat pas pour sa liberté ne mérite pas de vivre libre."
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- bouton droite -->
+    <button class="carousel-btn droite" onclick="slideCarousel(1)">&#8594;</button>
+
+  </div>
+
+  <!-- les petits points de navigation -->
+  <div class="carousel-dots" id="carousel-dots">
+    <span class="dot actif" onclick="allerA(0)"></span>
+    <span class="dot" onclick="allerA(1)"></span>
+    <span class="dot" onclick="allerA(2)"></span>
+    <span class="dot" onclick="allerA(3)"></span>
+    <span class="dot" onclick="allerA(4)"></span>
+  </div>
+
+</section>
+<!-- ===================== -->
+<!--   SECTION HYMNE       -->
+<!-- ===================== -->
+<section class="hymne-section" id="hymne">
+  <div class="hymne-layout">
+
+    <!-- gauche : texte + player -->
+    <div class="fade-in">
+      <p class="section-label">Hymne National</p>
+      <h2 class="section-title">Humat Al Hima</h2>
+      <p class="section-desc">Composé en 1987, l'hymne national tunisien "Défenseurs de la Nation" est un chant de fierté et de résistance.</p>
+
+      <div class="hymne-player">
+        <audio id="hymne-audio" src="sons/hymne.mp3"></audio>
+        <button class="hymne-btn-play" id="hymne-btn" onclick="toggleHymne()">
+          <span id="hymne-icone">▶</span>
+          <span id="hymne-btn-texte">Écouter l'hymne</span>
+        </button>
+        <button class="hymne-btn-lyrics" onclick="ouvrirLyrics()">
+          ♪ Voir les paroles
+        </button>
+        <div class="hymne-progress-wrap">
+          <div class="hymne-progress-bar">
+            <div class="hymne-progress-fill" id="hymne-progress"></div>
+          </div>
+          <span class="hymne-time" id="hymne-time">0:00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- droite : drapeau gif -->
+    <div class="hymne-drapeau fade-in">
+      <img src="images/drapeau.gif" alt="Drapeau de la Tunisie"/>
+    </div>
+
+  </div>
+</section>
+<!-- ===================== -->
+<!--   SECTION DEVISE      -->
+<!-- ===================== -->
+<section class="devise-section">
+  <div class="devise-layout fade-in">
+
+    <div class="devise-armoiries">
+      <img src="images/armoiries.png" alt="Armoiries de la Tunisie"/>
+    </div>
+
+    <div class="devise-texte">
+      <p class="section-label">Devise Nationale</p>
+      <h2 class="section-title">Liberté · Ordre · Justice</h2>
+      <p class="devise-sous-titre">حرية، نظام، عدالة</p>
+
+      <div class="devise-valeurs">
+        <div class="devise-valeur">
+          <div class="devise-valeur-num">I</div>
+          <div>
+            <h3 class="devise-valeur-titre">Liberté</h3>
+            <p class="devise-valeur-desc">La Tunisie, berceau du Printemps arabe en 2011, a inscrit la liberté au cœur de son identité nationale et de sa constitution.</p>
+          </div>
+        </div>
+        <div class="devise-valeur">
+          <div class="devise-valeur-num">II</div>
+          <div>
+            <h3 class="devise-valeur-titre">Ordre</h3>
+            <p class="devise-valeur-desc">Un État de droit fondé sur des institutions solides, garant de la stabilité et de la cohésion du peuple tunisien.</p>
+          </div>
+        </div>
+        <div class="devise-valeur">
+          <div class="devise-valeur-num">III</div>
+          <div>
+            <h3 class="devise-valeur-titre">Justice</h3>
+            <p class="devise-valeur-desc">Représentée par la balance sur les armoiries, la justice est un pilier fondamental de la société tunisienne depuis l'Antiquité.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+<!-- petite barre drapeau -->
+<div class="flag-stripe"></div>
+
+
+<!-- ============= -->
+<!--    FOOTER     -->
+<!-- ============= -->
+<footer>
+  <div class="footer-logo">TU<span>N</span>ISIE</div>
+  <p>La Perle du Maghreb — Bienvenue en Tunisie</p>
+  <p style="margin-top: 20px; font-size: 11px; opacity: 0.4;">Site réalisé avec Amour · 2026</p>
+</footer>
+
+
+<!-- ======================== -->
+<!--   POPUP DESTINATIONS     -->
+<!-- ======================== -->
+<div class="popup-overlay" id="popup-overlay" onclick="fermerPopup()">
+  <div class="popup-box" onclick="event.stopPropagation()">
+    <button class="popup-fermer" onclick="fermerPopup()">✕</button>
+    <div class="popup-img" id="popup-img">
+      <img id="popup-img-tag" src="" alt="photo du lieu"/>
+    </div>
+    <div class="popup-contenu">
+      <p class="popup-label" id="popup-label"></p>
+      <h2 class="popup-titre" id="popup-titre"></h2>
+      <p class="popup-desc" id="popup-desc"></p>
+      <div class="popup-infos">
+        <div class="popup-info-item">
+          <span class="popup-info-label">Meilleure saison</span>
+          <span class="popup-info-val" id="popup-saison"></span>
+        </div>
+        <div class="popup-info-item">
+          <span class="popup-info-label">À voir</span>
+          <span class="popup-info-val" id="popup-avoir"></span>
+        </div>
+        <div class="popup-info-item">
+          <span class="popup-info-label">Durée conseillée</span>
+          <span class="popup-info-val" id="popup-duree"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================== -->
+<!--   POPUP LYRICS           -->
+<!-- ======================== -->
+<div class="lyrics-overlay" id="lyrics-overlay" onclick="fermerLyrics()">
+  <div class="lyrics-box" onclick="event.stopPropagation()">
+    <button class="lyrics-fermer" onclick="fermerLyrics()">✕</button>
+    <h3 class="lyrics-titre">Humat Al Hima — Paroles</h3>
+    <div class="lyrics-contenu">
+
+      <div class="lyrics-bloc">
+        <p class="lyrics-refrain">— Refrain —</p>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Ḥumât al Ḥimâ yâ ḥumât al Ḥimâ</span><span class="lyrics-trad">Ô Défenseurs de la Nation !</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Halummou halummou li majdi al zaman</span><span class="lyrics-trad">Donnons ses lettres de gloire à notre temps !</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Laqad ṣarakhat fî eurouqinâ al dimâ</span><span class="lyrics-trad">Dans nos veines, le sang a tonné :</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Namoutu namoutu oua yaḥyâ l'ouaṭan</span><span class="lyrics-trad">« Mourons, Mourons pour que vive la Patrie ! »</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Li tadoui al samâouâtu bi raedihâ</span><span class="lyrics-trad">Que le tonnerre résonne dans les cieux</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Li tarmi al ṣaouâeiqu nîrânahâ</span><span class="lyrics-trad">Et que les éclairs libèrent leurs flammes !</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Ilâ eizzi Tounis ilâ majdihâ</span><span class="lyrics-trad">Pour la gloire et la grandeur de la Tunisie !</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Rijâl al bilâdi oua chubbânahâ</span><span class="lyrics-trad">Les hommes et les jeunes du Pays !</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Fa lâ eâcha fî Tounis man khânahâ</span><span class="lyrics-trad">Que ne vive point en Tunisie quiconque la trahit.</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Oua lâ eâcha man laisa min jundihâ</span><span class="lyrics-trad">Que ne vive point qui ne sert pas dans ses rangs !</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Namoutu oua naḥyâ ealâ eahdihâ</span><span class="lyrics-trad">Nous vivons et mourons pour l'engagement,</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Ḥayât al kirâmi oua maut l'eiẓâm</span><span class="lyrics-trad">La vie des Augustes ou la mort des Grands !</span></div>
+      </div>
+
+      <div class="lyrics-bloc">
+        <p class="lyrics-refrain">— Couplet 2 —</p>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Oua rithnâ al saouâeida bain l'umam</span><span class="lyrics-trad">Parmi les pays, nous avons hérité de la vaillance :</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Ṣukhouran ṣukhouran kahazâ al binâ</span><span class="lyrics-trad">Des rocs aussi durs que cette construction !</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Saouâeidu yahtazzu fauqahâ l'ealam</span><span class="lyrics-trad">Des membres qui tiennent l'étendard de la nation !</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Nubâhî bihi oua yubâhî binâ</span><span class="lyrics-trad">Le drapeau est notre fierté et nous sommes la sienne.</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Oua fîhâ kafâ li l'eulâ oua al himam</span><span class="lyrics-trad">Nos bras nous propulseront au faîte de la grandeur,</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Oua fîhâ ḍamânun li naili al munâ</span><span class="lyrics-trad">Et seront les garants qui exauceront nos vœux !</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Oua fîhâ li aedaï Tounis niqam</span><span class="lyrics-trad">Ils se vengeront des ennemis de la Tunisie,</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Oua fîhâ li man sâlamounâ al salâm</span><span class="lyrics-trad">Et étreindront ceux qui nous voulaient la paix.</span></div>
+      </div>
+
+      <div class="lyrics-bloc">
+        <p class="lyrics-refrain">— Couplet 3 —</p>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Idhâ al chaebu yauman arâda al ḥayâh</span><span class="lyrics-trad">Lorsqu'un jour, le peuple aspire à vivre,</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Fa lâ budda an yastajîb al qadar</span><span class="lyrics-trad">Le destin se doit de répondre !</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Oua lâ budda li al laili an yanjalî</span><span class="lyrics-trad">Les ténèbres se dissiperont !</span></div>
+        <div class="lyrics-ligne"><span class="lyrics-pronon">Oua lâ budda li al qaidi an yankasir</span><span class="lyrics-trad">Et les chaînes se briseront !</span></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================== -->
+<!--   POPUP CARTE (VILLES)   -->
+<!-- ======================== -->
+<div class="ville-overlay" id="ville-overlay" onclick="fermerVille()">
+  <div class="ville-box" onclick="event.stopPropagation()">
+    <button class="ville-fermer" onclick="fermerVille()">✕</button>
+    <div class="ville-img-wrap">
+      <img id="ville-img" src="" alt="photo de la ville"/>
+    </div>
+    <div class="ville-contenu">
+      <p class="ville-region" id="ville-region"></p>
+      <h2 class="ville-nom" id="ville-nom"></h2>
+      <p class="ville-desc" id="ville-desc"></p>
+      <div class="ville-infos">
+        <div class="ville-info-item">
+          <span class="ville-info-label">Population</span>
+          <span class="ville-info-val" id="ville-pop"></span>
+        </div>
+        <div class="ville-info-item">
+          <span class="ville-info-label">Région</span>
+          <span class="ville-info-val" id="ville-reg"></span>
+        </div>
+        <div class="ville-info-item">
+          <span class="ville-info-label">À voir</span>
+          <span class="ville-info-val" id="ville-voir"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================== -->
+<!--   JAVASCRIPT             -->
+<!-- ======================== -->
+<script>
+// =====================
+// CAROUSEL PERSONNAGES
+// =====================
+let indexCarousel = 0;
+const totalCartes = 5; // nombre de personnages
+
+function slideCarousel(direction) {
+  indexCarousel += direction;
+
+  // boucle infinie : si on depasse la fin on revient au debut
+  if (indexCarousel < 0) indexCarousel = totalCartes - 1;
+  if (indexCarousel >= totalCartes) indexCarousel = 0;
+
+  allerA(indexCarousel);
+}
+
+function allerA(index) {
+  indexCarousel = index;
+  const piste = document.getElementById('carousel-piste');
+
+  // on déplace la piste avec translateX
+  piste.style.transform = `translateX(-${index * 100}%)`;
+
+  // on met à jour les petits points
+  document.querySelectorAll('.dot').forEach(function(dot, i) {
+    dot.classList.toggle('actif', i === index);
+  });
+}
+  // =====================
+  // CARTE LEAFLET
+  // =====================
+  const map = L.map('map', {
+    center: [33.8, 9.5],
+    zoom: 6,
+    zoomControl: true,
+    scrollWheelZoom: false
+  });
+
+  L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+    attribution: '© Stadia Maps © OpenStreetMap',
+    maxZoom: 18
+  }).addTo(map);
+
+  const marqueurRouge = L.divIcon({
+    className: '',
+    html: '<div class="marqueur-ville"></div>',
+    iconSize: [14, 14],
+    iconAnchor: [7, 7]
+  });
+
+  const marqueurCapitale = L.divIcon({
+    className: '',
+    html: '<div class="marqueur-ville capitale"></div>',
+    iconSize: [18, 18],
+    iconAnchor: [9, 9]
+  });
+
+  // les 24 gouvernorats de tunisie
+  const villes = [
+    {
+      nom: 'Tunis', lat: 36.8190, lng: 10.1658,
+      region: 'Nord — Capitale',
+      desc: 'Capitale et plus grande ville de Tunisie, Tunis est le centre politique, économique et culturel du pays. Sa médina millénaire est classée au patrimoine mondial de l\'UNESCO.',
+      pop: '2,7 millions (Grand Tunis)', reg: 'Gouvernorat de Tunis',
+      voir: 'Médina, Bardo, Avenue Bourguiba',
+      image: 'images/villes/tunis.jpg', capitale: true
+    },
+    {
+      nom: 'Sfax', lat: 34.7406, lng: 10.7603,
+      region: 'Centre-Est',
+      desc: 'Deuxième ville de Tunisie, Sfax est un grand centre industriel et commercial. Elle est réputée pour sa médina bien préservée et son port actif sur la Méditerranée.',
+      pop: '955 000 habitants', reg: 'Gouvernorat de Sfax',
+      voir: 'Médina, Musée de Sfax, Kerkennah',
+      image: 'images/villes/sfax.webp', capitale: false
+    },
+    {
+      nom: 'Sousse', lat: 35.8245, lng: 10.6346,
+      region: 'Centre-Est',
+      desc: 'Surnommée "la Perle du Sahel", Sousse est une ville touristique majeure avec une magnifique médina et une belle corniche.',
+      pop: '674 000 habitants', reg: 'Gouvernorat de Sousse',
+      voir: 'Médina UNESCO, Ribat, Port El Kantaoui',
+      image: 'images/villes/sousse.jpg', capitale: false
+    },
+    {
+      nom: 'Kairouan', lat: 35.6781, lng: 10.0969,
+      region: 'Centre',
+      desc: 'Quatrième ville sainte de l\'Islam, Kairouan abrite la Grande Mosquée Okba, l\'une des plus anciennes mosquées au monde.',
+      pop: '186 000 habitants', reg: 'Gouvernorat de Kairouan',
+      voir: 'Grande Mosquée, Médina, Bassin des Aghlabides',
+      image: 'images/villes/kairouan.webp', capitale: false
+    },
+    {
+      nom: 'Bizerte', lat: 37.2746, lng: 9.8739,
+      region: 'Nord',
+      desc: 'Ville portuaire au nord du pays, Bizerte possède un lac magnifique et un vieux port pittoresque avec des traces de toutes les civilisations.',
+      pop: '142 000 habitants', reg: 'Gouvernorat de Bizerte',
+      voir: 'Vieux port, Fort espagnol, Lac de Bizerte',
+      image: 'images/villes/bizerte.jpg', capitale: false
+    },
+    {
+      nom: 'Gabès', lat: 33.8814, lng: 10.0982,
+      region: 'Sud-Est',
+      desc: 'Gabès est unique en Méditerranée : c\'est la seule oasis maritime au monde. Ses palmiers poussent jusqu\'au bord de la mer.',
+      pop: '152 000 habitants', reg: 'Gouvernorat de Gabès',
+      voir: 'Oasis, Chenini Gabès, Marché aux poissons',
+      image: 'images/villes/gabes.jpg', capitale: false
+    },
+    {
+      nom: 'Nabeul', lat: 36.4513, lng: 10.7357,
+      region: 'Cap Bon',
+      desc: 'Capitale de la céramique et de la poterie tunisienne, Nabeul est réputée pour son marché coloré et ses artisans.',
+      pop: '92 000 habitants', reg: 'Gouvernorat de Nabeul',
+      voir: 'Marché artisanal, Poteries, Plages du Cap Bon',
+      image: 'images/villes/nabeul.jpg', capitale: false
+    },
+    {
+      nom: 'Hammamet', lat: 36.4000, lng: 10.6167,
+      region: 'Cap Bon',
+      desc: 'Station balnéaire emblématique de la Tunisie, Hammamet attire des millions de touristes chaque année avec ses plages de sable blanc.',
+      pop: '87 000 habitants', reg: 'Gouvernorat de Nabeul',
+      voir: 'Médina, Casbah, Plages, Yasmine Hammamet',
+      image: 'images/villes/hammamet.jpeg', capitale: false
+    },
+    {
+      nom: 'Monastir', lat: 35.7643, lng: 10.8113,
+      region: 'Centre-Est',
+      desc: 'Ville natale de Habib Bourguiba, premier président de la Tunisie, Monastir est connue pour son magnifique Ribat du VIIIe siècle.',
+      pop: '93 000 habitants', reg: 'Gouvernorat de Monastir',
+      voir: 'Ribat, Mausolée Bourguiba, Médina',
+      image: 'images/villes/monastir.jpg', capitale: false
+    },
+    {
+      nom: 'Djerba', lat: 33.8075, lng: 10.8451,
+      region: 'Sud-Est — Île',
+      desc: 'La plus grande île d\'Afrique du Nord, Djerba est un paradis de plages blanches et d\'eau turquoise avec des villages berbères uniques.',
+      pop: '163 000 habitants', reg: 'Gouvernorat de Médenine',
+      voir: 'Houmt Souk, El Ghriba, Plages, Musée',
+      image: 'images/villes/djerba.jpg', capitale: false
+    },
+    {
+      nom: 'Douz', lat: 33.4581, lng: 9.0267,
+      region: 'Sud — Sahara',
+      desc: 'Surnommée "la porte du Sahara", Douz est le point de départ idéal pour les excursions dans le désert. Son festival du Sahara est mondialement connu.',
+      pop: '35 000 habitants', reg: 'Gouvernorat de Kébili',
+      voir: 'Dunes de sable, Festival du Sahara, Chameaux',
+      image: 'images/villes/douz.webp', capitale: false
+    },
+    {
+      nom: 'Tozeur', lat: 33.9197, lng: 8.1335,
+      region: 'Sud-Ouest',
+      desc: 'Ville aux briques de terre jaunes caractéristiques, Tozeur est la capitale du tourisme saharien avec ses palmeraies et son chott mythique.',
+      pop: '45 000 habitants', reg: 'Gouvernorat de Tozeur',
+      voir: 'Médina, Palmeraie, Chott el Jerid, Nefta',
+      image: 'images/villes/tozeur.jpg', capitale: false
+    },
+    {
+      nom: 'Gafsa', lat: 34.4250, lng: 8.7842,
+      region: 'Centre-Ouest',
+      desc: 'L\'une des plus anciennes villes du monde avec plus de 10 000 ans d\'histoire. Centre de l\'industrie du phosphate tunisien.',
+      pop: '112 000 habitants', reg: 'Gouvernorat de Gafsa',
+      voir: 'Piscines romaines, Casbah, Musée archéologique',
+      image: 'images/villes/gafsa.webp', capitale: false
+    },
+    {
+      nom: 'Kasserine', lat: 35.1676, lng: 8.8365,
+      region: 'Centre-Ouest',
+      desc: 'Ville carrefour proche du parc national de Chambi, point culminant de la Tunisie à 1544 mètres d\'altitude.',
+      pop: '90 000 habitants', reg: 'Gouvernorat de Kasserine',
+      voir: 'Djebel Chambi, Sites romains, Forêts de pins',
+      image: 'images/villes/kasserine.jpg', capitale: false
+    },
+    {
+      nom: 'Médenine', lat: 33.3547, lng: 10.5053,
+      region: 'Sud-Est',
+      desc: 'Médenine est célèbre pour ses Ksour, greniers à étages berbères traditionnels. Certains ont servi de décor pour le film Star Wars !',
+      pop: '75 000 habitants', reg: 'Gouvernorat de Médenine',
+      voir: 'Ksour berbères, Matmata, Marché berbère',
+      image: 'images/villes/medenine.webp', capitale: false
+    },
+    {
+      nom: 'Sidi Bou Saïd', lat: 36.8689, lng: 10.2281,
+      region: 'Nord',
+      desc: 'Village perché sur une falaise dominant le golfe de Tunis, célèbre pour ses maisons blanches aux portes et fenêtres bleues.',
+      pop: '7 000 habitants', reg: 'Gouvernorat de Ben Arous',
+      voir: 'Ruelles bleues, Café des Nattes, Coucher de soleil',
+      image: 'images/sidi-bou-said.webp', capitale: false
+    },
+    {
+      nom: 'Carthage', lat: 36.8525, lng: 10.3233,
+      region: 'Nord',
+      desc: 'Ancienne cité punique fondée au IXe siècle avant J.-C. Ses ruines classées UNESCO racontent 3000 ans d\'histoire.',
+      pop: '21 000 habitants', reg: 'Gouvernorat de Ben Arous',
+      voir: 'Thermes d\'Antonin, Colline de Byrsa, Musée',
+      image: 'images/carthage.webp', capitale: false
+    },
+    {
+      nom: 'Le Kef', lat: 36.1675, lng: 8.7147,
+      region: 'Nord-Ouest',
+      desc: 'Ville historique perchée sur un piton rocheux. Sa kasbah ottomane et ses nombreux monuments en font un musée à ciel ouvert.',
+      pop: '47 000 habitants', reg: 'Gouvernorat du Kef',
+      voir: 'Kasbah, Basilique byzantine, Musée régional',
+      image: 'images/villes/lekef.jpg', capitale: false
+    },
+    {
+      nom: 'Mahdia', lat: 35.5047, lng: 11.0622,
+      region: 'Centre-Est',
+      desc: 'Ancienne capitale fatimide du Xe siècle, Mahdia est une ville côtière charmante avec une presqu\'île magnifique et un port de pêche animé.',
+      pop: '55 000 habitants', reg: 'Gouvernorat de Mahdia',
+      voir: 'Médina, Skifa el Kahla, Port de pêche, Plages',
+      image: 'images/villes/mahdia.jpg', capitale: false
+    },
+    {
+      nom: 'Zaghouan', lat: 36.4029, lng: 10.1427,
+      region: 'Nord',
+      desc: 'Ville connue pour son temple des eaux romain qui alimentait Carthage via un aqueduc de 132 km, l\'un des plus longs du monde antique.',
+      pop: '17 000 habitants', reg: 'Gouvernorat de Zaghouan',
+      voir: 'Temple des Eaux, Aqueduc romain, Djebel Zaghouan',
+      image: 'images/villes/zaghouan.jpg', capitale: false
+    },
+    {
+      nom: 'Jendouba', lat: 36.5012, lng: 8.7802,
+      region: 'Nord-Ouest',
+      desc: 'Ville du nord-ouest proche des sites archéologiques de Bulla Regia et du parc national de Feija, dernière forêt de chênes-lièges de Tunisie.',
+      pop: '45 000 habitants', reg: 'Gouvernorat de Jendouba',
+      voir: 'Bulla Regia, Parc de Feija, Aïn Draham',
+      image: 'images/villes/jendouba.jpg', capitale: false
+    },
+    {
+      nom: 'Siliana', lat: 36.0847, lng: 9.3708,
+      region: 'Nord-Ouest',
+      desc: 'Gouvernorat agricole au cœur de la Tunisie du nord, entouré de montagnes et de forêts. Proche du site romain de Dougga classé UNESCO.',
+      pop: '30 000 habitants', reg: 'Gouvernorat de Siliana',
+      voir: 'Dougga, Forêts, Paysages de montagne',
+      image: 'images/villes/siliana.jpg', capitale: false
+    },
+    {
+      nom: 'Béja', lat: 36.7256, lng: 9.1817,
+      region: 'Nord-Ouest',
+      desc: 'Surnommée "le grenier à blé de la Tunisie", Béja est une ville agricole riche entourée de plaines fertiles et de collines verdoyantes.',
+      pop: '58 000 habitants', reg: 'Gouvernorat de Béja',
+      voir: 'Médina, Casbah, Plaines verdoyantes',
+      image: 'images/villes/beja.jpg', capitale: false
+    },
+    {
+      nom: 'Tataouine', lat: 32.9211, lng: 10.4511,
+      region: 'Extrême-Sud',
+      desc: 'Ville du grand sud tunisien, porte d\'entrée vers les ksour et les paysages lunaires du désert. Elle a inspiré le nom de la planète Tatooine dans Star Wars !',
+      pop: '60 000 habitants', reg: 'Gouvernorat de Tataouine',
+      voir: 'Ksar Ouled Soltane, Chenini, Désert, Ksour',
+      image: 'images/villes/tataouine.webp', capitale: false
+    }
+  ];
+
+  // on place les marqueurs sur la carte
+  villes.forEach(function(ville) {
+    const icone = ville.capitale ? marqueurCapitale : marqueurRouge;
+    const marqueur = L.marker([ville.lat, ville.lng], { icon: icone }).addTo(map);
+    marqueur.on('click', function() { ouvrirVille(ville); });
+    marqueur.bindTooltip(ville.nom, {
+      permanent: false,
+      direction: 'top',
+      className: 'tooltip-ville'
+    });
+  });
+
+  function ouvrirVille(ville) {
+    document.getElementById('ville-nom').textContent    = ville.nom;
+    document.getElementById('ville-region').textContent = ville.region;
+    document.getElementById('ville-desc').textContent   = ville.desc;
+    document.getElementById('ville-pop').textContent    = ville.pop;
+    document.getElementById('ville-reg').textContent    = ville.reg;
+    document.getElementById('ville-voir').textContent   = ville.voir;
+    document.getElementById('ville-img').src            = ville.image;
+    document.getElementById('ville-overlay').classList.add('actif');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function fermerVille() {
+    document.getElementById('ville-overlay').classList.remove('actif');
+    document.body.style.overflow = '';
+  }
+
+
+  // =====================
+  // HYMNE
+  // =====================
+  const audio = document.getElementById('hymne-audio');
+  const icone = document.getElementById('hymne-icone');
+  const btnTexte = document.getElementById('hymne-btn-texte');
+  const progress = document.getElementById('hymne-progress');
+  const timeDisplay = document.getElementById('hymne-time');
+
+  function toggleHymne() {
+    if (audio.paused) {
+      audio.play();
+      icone.textContent = '⏸';
+      btnTexte.textContent = 'Pause';
+    } else {
+      audio.pause();
+      icone.textContent = '▶';
+      btnTexte.textContent = 'Écouter l\'hymne';
+    }
+  }
+
+  audio.addEventListener('timeupdate', function() {
+    const pourcent = (audio.currentTime / audio.duration) * 100;
+    progress.style.width = pourcent + '%';
+    const min = Math.floor(audio.currentTime / 60);
+    const sec = Math.floor(audio.currentTime % 60);
+    timeDisplay.textContent = min + ':' + (sec < 10 ? '0' : '') + sec;
+  });
+
+  audio.addEventListener('ended', function() {
+    icone.textContent = '▶';
+    btnTexte.textContent = 'Réécouter';
+    progress.style.width = '0%';
+  });
+
+  function ouvrirLyrics() {
+    document.getElementById('lyrics-overlay').classList.add('actif');
+  }
+
+  function fermerLyrics() {
+    document.getElementById('lyrics-overlay').classList.remove('actif');
+  }
+
+
+  // =====================
+  // POPUP DESTINATIONS
+  // =====================
+  const lieux = {
+    'sidi-bou': {
+      label: 'Village · Patrimoine', titre: 'Sidi Bou Saïd',
+      desc: 'Village perché sur une falaise dominant le golfe de Tunis, Sidi Bou Saïd est célèbre pour ses maisons blanches aux portes et fenêtres bleues.',
+      image: 'images/sidi-bou-said.webp', image2: 'images/sidi-bou-said2.webp',
+      saison: 'Avril — Juin', avoir: 'Café des Nattes, ruelles bleues, coucher de soleil', duree: '1 journée'
+    },
+    'carthage': {
+      label: 'Antiquité · UNESCO', titre: 'Carthage',
+      desc: 'Ancienne cité punique fondée au IXe siècle avant J.-C., Carthage fut l\'une des plus grandes villes du monde antique.',
+      image: 'images/carthage.webp', image2: 'images/carthage2.webp',
+      saison: 'Mars — Mai', avoir: 'Thermes d\'Antonin, Colline de Byrsa, Musée', duree: '1 journée'
+    },
+    'sahara': {
+      label: 'Désert · Aventure', titre: 'Sahara Tunisien',
+      desc: 'Le sud tunisien offre des paysages désertiques à couper le souffle : dunes de sable dorées, oasis verdoyantes et villages berbères.',
+      image: 'images/sahara.webp', image2: 'images/sahara2.webp',
+      saison: 'Octobre — Février', avoir: 'Dunes de Douz, Ksar Ghilane, ciel étoilé', duree: '2 à 3 jours'
+    },
+    'djerba': {
+      label: 'Île · Plages', titre: 'Djerba',
+      desc: 'La plus grande île d\'Afrique du Nord, Djerba est un paradis de sable blanc et d\'eau turquoise.',
+      image: 'images/djerba.webp', image2: 'images/djerba2.webp',
+      saison: 'Mai — Octobre', avoir: 'Houmt Souk, plage de Sidi Mahrez, musée du patrimoine', duree: '3 à 5 jours'
+    },
+    'kairouan': {
+      label: 'Ville sainte · Mosquée', titre: 'Kairouan',
+      desc: 'Quatrième ville sainte de l\'Islam, Kairouan abrite la Grande Mosquée Okba, l\'une des plus anciennes et importantes mosquées au monde.',
+      image: 'images/kairouan.webp', image2: 'images/kairouan2.webp',
+      saison: 'Toute l\'année', avoir: 'Grande Mosquée, Bassin des Aghlabides, médina', duree: '1 à 2 jours'
+    }
+  };
+
+  function ouvrirPopup(id) {
+    const lieu = lieux[id];
+    document.getElementById('popup-label').textContent  = lieu.label;
+    document.getElementById('popup-titre').textContent  = lieu.titre;
+    document.getElementById('popup-desc').textContent   = lieu.desc;
+    document.getElementById('popup-saison').textContent = lieu.saison;
+    document.getElementById('popup-avoir').textContent  = lieu.avoir;
+    document.getElementById('popup-duree').textContent  = lieu.duree;
+    document.getElementById('popup-img-tag').src        = lieu.image2;
+    document.getElementById('popup-img').style.backgroundImage = `url('${lieu.image}')`;
+    document.getElementById('popup-overlay').classList.add('actif');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function fermerPopup() {
+    document.getElementById('popup-overlay').classList.remove('actif');
+    document.body.style.overflow = '';
+  }
+
+
+  // =====================
+  // FERMER AVEC ECHAP
+  // =====================
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      fermerPopup();
+      fermerVille();
+      fermerLyrics();
+    }
+  });
+
+
+  // =====================
+  // ANIMATIONS SCROLL
+  // =====================
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+</script>
+</body>
+</html>
