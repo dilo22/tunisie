@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Culture Tunisienne — Traditions, Arts & Identité</title>
+  <link rel="icon" type="image/png" href="images/favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+
+    /* ======================== */
+    /* HERO                     */
+    /* ======================== */
+    .culture-hero {
+      background: var(--nuit);
+      padding: 160px 60px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .culture-hero::before {
+      content: 'ثقافة';
+      position: absolute;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 280px;
+      color: rgba(255,255,255,0.02);
+      right: 0;
+      bottom: -40px;
+      line-height: 1;
+    }
+
+    /* motif géométrique berbère en fond */
+    .culture-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        60deg, transparent, transparent 30px,
+        rgba(193,18,31,0.03) 30px, rgba(193,18,31,0.03) 31px
+      ), repeating-linear-gradient(
+        -60deg, transparent, transparent 30px,
+        rgba(212,160,23,0.03) 30px, rgba(212,160,23,0.03) 31px
+      );
+    }
+
+    .culture-hero-contenu {
+      max-width: 680px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .culture-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 6vw, 68px);
+      color: var(--blanc);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .culture-hero h1 span { color: var(--rouge); font-style: italic; }
+
+    .culture-hero p {
+      font-size: 17px;
+      color: rgba(248,245,239,0.6);
+      line-height: 1.8;
+      max-width: 520px;
+    }
+
+    /* ======================== */
+    /* NAV INTERNE              */
+    /* ======================== */
+    .nav-interne {
+      background: white;
+      padding: 0 60px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      position: sticky;
+      top: 60px;
+      z-index: 100;
+    }
+
+    .nav-interne a {
+      text-decoration: none;
+      color: #888;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 20px 24px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-interne a:hover {
+      color: var(--rouge);
+      border-bottom-color: var(--rouge);
+    }
+
+    /* ======================== */
+    /* INTRO IDENTITE           */
+    /* ======================== */
+    .identite-section {
+      background: var(--blanc);
+      padding: 100px 60px;
+    }
+
+    .identite-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .identite-texte p {
+      font-size: 16px;
+      line-height: 1.9;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .identite-pilliers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .pillier {
+      background: var(--nuit);
+      padding: 24px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillier::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      width: 100%;
+      background: var(--rouge);
+    }
+
+    .pillier-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: rgba(255,255,255,0.06);
+      line-height: 1;
+      margin-bottom: -8px;
+    }
+
+    .pillier-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--blanc);
+      margin-bottom: 8px;
+    }
+
+    .pillier-desc {
+      font-size: 12px;
+      color: rgba(248,245,239,0.45);
+      line-height: 1.6;
+    }
+
+    /* ======================== */
+    /* SECTION MUSIQUE          */
+    /* ======================== */
+    .musique-section {
+      background: var(--nuit);
+      padding: 100px 60px;
+      position: relative;
+      overflow: hidden;
+      id: 'musique';
+    }
+
+    .musique-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .musique-titre { color: var(--blanc) !important; }
+
+    .musique-texte p {
+      font-size: 16px;
+      line-height: 1.9;
+      color: rgba(248,245,239,0.65);
+      margin-bottom: 20px;
+    }
+
+    /* les genres musicaux */
+    .genres-liste {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .genre-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      align-items: start;
+    }
+
+    .genre-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: var(--or);
+    }
+
+    .genre-desc {
+      font-size: 14px;
+      color: rgba(248,245,239,0.5);
+      line-height: 1.7;
+    }
+
+    /* instruments en sidebar */
+    .instruments-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .instrument {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .instrument-emoji {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .instrument-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: var(--blanc);
+      margin-bottom: 4px;
+    }
+
+    .instrument-desc {
+      font-size: 12px;
+      color: rgba(248,245,239,0.4);
+      line-height: 1.5;
+    }
+
+    /* ======================== */
+    /* SECTION ARTISANAT        */
+    /* ======================== */
+    .artisanat-section {
+      background: var(--sable);
+      padding: 100px 60px;
+    }
+
+    .artisanat-intro {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+    }
+
+    .artisanat-intro p {
+      font-size: 16px;
+      line-height: 1.9;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    /* les fiches artisanat */
+    .artisanat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .artisanat-card {
+      background: white;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .artisanat-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .artisanat-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      background: var(--sable-fonce);
+    }
+
+    .artisanat-body {
+      padding: 24px;
+    }
+
+    .artisanat-origine {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin-bottom: 8px;
+    }
+
+    .artisanat-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--nuit);
+      margin-bottom: 10px;
+    }
+
+    .artisanat-desc {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.7;
+    }
+
+    /* ======================== */
+    /* SECTION CUISINE          */
+    /* ======================== */
+    .cuisine-culture-section {
+      background: var(--blanc);
+      padding: 100px 60px;
+    }
+
+    .cuisine-culture-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .cuisine-culture-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 60px;
+      align-items: center;
+    }
+
+    .cuisine-culture-intro p {
+      font-size: 16px;
+      line-height: 1.9;
+      color: #444;
+      margin-bottom: 16px;
+    }
+
+    /* les épices */
+    .epices-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 60px;
+    }
+
+    .epice-card {
+      background: var(--nuit);
+      padding: 24px 16px;
+      text-align: center;
+    }
+
+    .epice-emoji {
+      font-size: 36px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .epice-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: var(--blanc);
+      margin-bottom: 6px;
+    }
+
+    .epice-desc {
+      font-size: 12px;
+      color: rgba(248,245,239,0.45);
+      line-height: 1.5;
+    }
+
+    /* les plats en liste détaillée */
+    .plats-liste {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .plat-detail {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 20px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .plat-detail-img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 4px;
+      background: var(--sable);
+    }
+
+    .plat-detail-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--nuit);
+      margin-bottom: 6px;
+    }
+
+    .plat-detail-arabe {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 14px;
+      color: var(--rouge);
+      margin-bottom: 8px;
+    }
+
+    .plat-detail-desc {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    /* ======================== */
+    /* SECTION TRADITIONS       */
+    /* ======================== */
+    .traditions-section {
+      background: var(--nuit);
+      padding: 100px 60px;
+    }
+
+    .traditions-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .traditions-titre { color: var(--blanc) !important; }
+
+    .traditions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .tradition-card {
+      border-top: 1px solid rgba(212,160,23,0.3);
+      padding-top: 28px;
+    }
+
+    .tradition-icone {
+      font-size: 32px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .tradition-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--blanc);
+      margin-bottom: 12px;
+    }
+
+    .tradition-texte {
+      font-size: 14px;
+      color: rgba(248,245,239,0.55);
+      line-height: 1.8;
+    }
+
+    /* ======================== */
+    /* SECTION FETES            */
+    /* ======================== */
+    .fetes-section {
+      background: var(--rouge);
+      padding: 100px 60px;
+    }
+
+    .fetes-titre {
+      color: white !important;
+    }
+
+    .fetes-sous-titre {
+      color: rgba(255,255,255,0.7) !important;
+    }
+
+    .fetes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 50px;
+      max-width: 1100px;
+    }
+
+    .fete-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 28px 20px;
+      transition: background 0.3s;
+    }
+
+    .fete-card:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .fete-mois {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 10px;
+    }
+
+    .fete-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .fete-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+    }
+
+    /* ======================== */
+    /* SECTION LANGUE           */
+    /* ======================== */
+    .langue-section {
+      background: var(--sable);
+      padding: 100px 60px;
+    }
+
+    .langue-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .langue-texte p {
+      font-size: 16px;
+      line-height: 1.9;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    /* les mots tunisiens */
+    .mots-tunisiens {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .mot-ligne {
+      display: grid;
+      grid-template-columns: 140px 1fr 1fr;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      align-items: center;
+    }
+
+    .mot-tunisien {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--rouge);
+    }
+
+    .mot-arabe {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 16px;
+      color: var(--nuit);
+      text-align: right;
+    }
+
+    .mot-traduction {
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* ======================== */
+    /* RESPONSIVE               */
+    /* ======================== */
+    @media (max-width: 900px) {
+      .culture-hero { padding: 140px 20px 60px; }
+      .nav-interne { padding: 0 20px; }
+      .identite-section,
+      .musique-section,
+      .artisanat-section,
+      .cuisine-culture-section,
+      .traditions-section,
+      .fetes-section,
+      .langue-section { padding: 60px 20px; }
+
+      .identite-layout,
+      .musique-layout,
+      .artisanat-intro,
+      .cuisine-culture-intro,
+      .langue-layout { grid-template-columns: 1fr; gap: 40px; }
+
+      .artisanat-grid { grid-template-columns: 1fr 1fr; }
+      .traditions-grid { grid-template-columns: 1fr 1fr; }
+      .fetes-grid { grid-template-columns: 1fr 1fr; }
+      .epices-grid { grid-template-columns: 1fr 1fr; }
+      .plats-liste { grid-template-columns: 1fr; }
+      .identite-pilliers { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .artisanat-grid { grid-template-columns: 1fr; }
+      .traditions-grid { grid-template-columns: 1fr; }
+      .fetes-grid { grid-template-columns: 1fr; }
+      .mot-ligne { grid-template-columns: 1fr 1fr; }
+      .mot-arabe { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ============= -->
+<!--  NAVIGATION   -->
+<!-- ============= -->
+<nav>
+  <div class="logo">TU<span>N</span>ISIE</div>
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="histoire.html">Histoire</a></li>
+    <li><a href="villes.html">Villes</a></li>
+    <li><a href="culture.html" style="color: var(--or);">Culture</a></li>
+    <li><a href="tourisme.html">Tourisme</a></li>
+    <li><a href="nature.html">Nature</a></li>
+  </ul>
+</nav>
+
+<!-- ============= -->
+<!--  HERO         -->
+<!-- ============= -->
+<div class="culture-hero">
+  <div class="culture-hero-contenu fade-in visible">
+    <p class="section-label">Musique · Artisanat · Cuisine · Traditions</p>
+    <h1>L'âme de la<br/><span>Tunisie</span></h1>
+    <p>
+      La culture tunisienne est un tissu d'influences millénaires — berbère, phénicienne, romaine, arabe, andalouse, ottomane et méditerranéenne. Ce métissage unique a donné naissance à une identité riche, vivante et en perpétuelle évolution, où les traditions les plus anciennes cohabitent avec une modernité affirmée.
+    </p>
+  </div>
+</div>
+
+
+<!-- navigation interne -->
+<div class="nav-interne">
+  <a href="#identite">Identité</a>
+  <a href="#musique">Musique</a>
+  <a href="#artisanat">Artisanat</a>
+  <a href="#cuisine">Cuisine</a>
+  <a href="#traditions">Traditions</a>
+  <a href="#fetes">Fêtes</a>
+  <a href="#langue">Langue</a>
+</div>
+
+
+<!-- ======================== -->
+<!--  IDENTITÉ                -->
+<!-- ======================== -->
+<section class="identite-section" id="identite">
+  <div class="identite-layout fade-in">
+
+    <div class="identite-texte">
+      <p class="section-label">Identité</p>
+      <h2 class="section-title">Un carrefour<br/>de civilisations</h2>
+      <p>
+        L'identité tunisienne est profondément plurielle. Héritière des Berbères — premiers habitants de la région — elle s'est enrichie au fil des siècles de l'apport des Phéniciens, des Romains, des Arabes, des Andalous chassés d'Espagne, des Ottomans et des Français. Chaque civilisation a laissé sa marque dans la langue, la cuisine, l'architecture et les coutumes.
+      </p>
+      <p>
+        Ce qui distingue la Tunisie dans le monde arabe, c'est cette capacité à avoir synthétisé toutes ces influences sans perdre son âme propre. La femme tunisienne jouit de droits inégalés dans la région depuis 1956. La laïcité de l'État coexiste avec une pratique religieuse respectée. L'ouverture sur l'Europe voisine se conjugue avec un attachement profond aux racines arabes et berbères.
+      </p>
+      <p>
+        La langue elle-même reflète cet héritage : le dialecte tunisien — la darija — mélange naturellement l'arabe classique, le berbère, le turc, l'italien, le français et l'espagnol dans une musicalité unique qu'aucune autre langue du Maghreb ne possède.
+      </p>
+    </div>
+
+    <div class="identite-pilliers">
+      <div class="pillier">
+        <div class="pillier-num">01</div>
+        <h3 class="pillier-nom">Héritage berbère</h3>
+        <p class="pillier-desc">Le substrat originel — présent dans la langue, les motifs décoratifs, la musique stambali et l'architecture des ksour.</p>
+      </div>
+      <div class="pillier">
+        <div class="pillier-num">02</div>
+        <h3 class="pillier-nom">Tradition arabe</h3>
+        <p class="pillier-desc">La langue, la religion, la poésie, la calligraphie et la gastronomie épicée — héritage de 14 siècles d'arabisation.</p>
+      </div>
+      <div class="pillier">
+        <div class="pillier-num">03</div>
+        <h3 class="pillier-nom">Apport andalou</h3>
+        <p class="pillier-desc">La musique malouf, les jardins, la céramique fine et certains plats raffinés viennent des Arabes d'Espagne réfugiés en Tunisie.</p>
+      </div>
+      <div class="pillier">
+        <div class="pillier-num">04</div>
+        <h3 class="pillier-nom">Modernité méditerranéenne</h3>
+        <p class="pillier-desc">Ouverture, émancipation des femmes, laïcité d'État et dialogue des cultures — un modèle unique dans le monde arabe.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  MUSIQUE                 -->
+<!-- ======================== -->
+<section class="musique-section" id="musique">
+  <div class="musique-layout fade-in">
+
+    <div>
+      <p class="section-label">Musique</p>
+      <h2 class="section-title musique-titre">Des rythmes berbères<br/>au malouf andalou</h2>
+
+      <div class="musique-texte">
+        <p>
+          La musique tunisienne est d'une richesse extraordinaire, fruit de l'intersection de traditions musicales très différentes. Elle va des chants berbères ancestraux des populations rurales aux sophistications de la musique arabe classique, en passant par les rythmes africains du stambali et la polyphonie andalouse du malouf.
+        </p>
+        <p>
+          Le malouf — "ce qui est familier" en arabe — est sans doute la forme musicale la plus emblématique de la Tunisie. Héritière directe de la musique arabo-andalouse que les Maures d'Espagne apportèrent en fuyant la Reconquista au XVe siècle, elle est jouée sur des instruments à cordes et des percussions dans les médinas, les zaouias et les grandes cérémonies. L'État tunisien finance des conservatoires de malouf pour en assurer la transmission.
+        </p>
+      </div>
+
+      <div class="genres-liste">
+        <div class="genre-item">
+          <span class="genre-nom">Malouf</span>
+          <span class="genre-desc">Musique arabo-andalouse héritée des Maures d'Espagne. Sophistiquée, mélancolique, jouée lors des grandes occasions.</span>
+        </div>
+        <div class="genre-item">
+          <span class="genre-nom">Stambali</span>
+          <span class="genre-desc">Musique de transe d'origine africaine subsaharienne, pratiquée par les descendants d'esclaves. Rythmes puissants et chants rituels.</span>
+        </div>
+        <div class="genre-item">
+          <span class="genre-nom">Mezoued</span>
+          <span class="genre-desc">Musique populaire jouée à la cornemuse tunisienne. Festive, dansante, incontournable dans les mariages et fêtes populaires.</span>
+        </div>
+        <div class="genre-item">
+          <span class="genre-nom">Chants berbères</span>
+          <span class="genre-desc">Tradition orale des populations rurales du sud et du nord-ouest, transmise de génération en génération sans écriture.</span>
+        </div>
+        <div class="genre-item">
+          <span class="genre-nom">Musique moderne</span>
+          <span class="genre-desc">Scène pop et rap tunisien florissante depuis les années 2000. Des artistes comme Elyssa ou Balti ont une audience de plusieurs millions.</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p class="section-label" style="color: var(--or);">Instruments traditionnels</p>
+      <div class="instruments-grid">
+        <div class="instrument">
+          <span class="instrument-emoji">🪘</span>
+          <p class="instrument-nom">Darbouka</p>
+          <p class="instrument-desc">Tambour en céramique ou en métal, colonne vertébrale rythmique de la musique tunisienne</p>
+        </div>
+        <div class="instrument">
+          <span class="instrument-emoji">🎸</span>
+          <p class="instrument-nom">Oud</p>
+          <p class="instrument-desc">Luth arabe à cordes pincées, ancêtre de la guitare européenne, instrument mélodique principal</p>
+        </div>
+        <div class="instrument">
+          <span class="instrument-emoji">🪗</span>
+          <p class="instrument-nom">Mezoued</p>
+          <p class="instrument-desc">Cornemuse tunisienne faite en peau de chèvre, son emblématique des fêtes populaires</p>
+        </div>
+        <div class="instrument">
+          <span class="instrument-emoji">🎻</span>
+          <p class="instrument-nom">Rabab</p>
+          <p class="instrument-desc">Vièle à archet d'origine arabe, utilisée dans la musique classique et le malouf</p>
+        </div>
+        <div class="instrument">
+          <span class="instrument-emoji">🥁</span>
+          <p class="instrument-nom">Bendair</p>
+          <p class="instrument-desc">Grand tambour plat à cymbalettes intérieures, utilisé dans les cérémonies religieuses</p>
+        </div>
+        <div class="instrument">
+          <span class="instrument-emoji">🎶</span>
+          <p class="instrument-nom">Nay</p>
+          <p class="instrument-desc">Flûte de roseau, instrument méditatif aux sonorités mélancoliques et profondes</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  ARTISANAT               -->
+<!-- ======================== -->
+<section class="artisanat-section" id="artisanat">
+  <div class="artisanat-intro fade-in">
+    <div>
+      <p class="section-label">Artisanat</p>
+      <h2 class="section-title">Des mains qui<br/>perpétuent l'histoire</h2>
+    </div>
+    <div>
+      <p>L'artisanat tunisien est vivant et diversifié. Chaque région a ses spécialités transmises de père en fils depuis des siècles. Les souks des médinas sont encore peuplés d'artisans qui travaillent selon des techniques millénaires — tissage, poterie, broderie, dinanderie, maroquinerie — face aux clients qui regardent naître les objets sous leurs yeux.</p>
+      <p>Le gouvernement tunisien a mis en place l'ONAT — Office National de l'Artisanat — pour labelliser et protéger les productions artisanales authentiques face à la concurrence des produits industriels importés.</p>
+    </div>
+  </div>
+
+  <div class="artisanat-grid fade-in">
+
+    <div class="artisanat-card">
+      <img src="images/artisanat/tapis.jpg" alt="Tapis de Kairouan" class="artisanat-img"/>
+      <div class="artisanat-body">
+        <p class="artisanat-origine">Kairouan · Centre</p>
+        <h3 class="artisanat-nom">Tapis berbères</h3>
+        <p class="artisanat-desc">Les tapis de Kairouan sont réputés dans le monde entier pour la finesse de leur tissage et la richesse de leurs motifs géométriques. Noués à la main, ils peuvent nécessiter plusieurs mois de travail. Les motifs — triangles, losanges, étoiles — sont hérités de l'art berbère ancestral et chaque famille a ses propres dessins transmis de mère en fille.</p>
+      </div>
+    </div>
+
+    <div class="artisanat-card">
+      <img src="images/artisanat/ceramique.jpg" alt="Céramique de Nabeul" class="artisanat-img"/>
+      <div class="artisanat-body">
+        <p class="artisanat-origine">Nabeul · Cap Bon</p>
+        <h3 class="artisanat-nom">Céramique & poterie</h3>
+        <p class="artisanat-desc">Nabeul est la capitale incontestée de la céramique tunisienne. Ses ateliers produisent des poteries, carreaux et vaisselles décorés aux motifs géométriques et floraux dans des tons de bleu, vert et ocre caractéristiques. La tradition remonte à l'époque romaine — des ateliers de poterie antiques ont été découverts sous la ville moderne.</p>
+      </div>
+    </div>
+
+    <div class="artisanat-card">
+      <img src="images/artisanat/broderie.jpg" alt="Broderie tunisienne" class="artisanat-img"/>
+      <div class="artisanat-body">
+        <p class="artisanat-origine">Tunis · Monastir · Sfax</p>
+        <h3 class="artisanat-nom">Broderie traditionnelle</h3>
+        <p class="artisanat-desc">La broderie tunisienne est un art délicat qui orne les costumes traditionnels, les nappes et les coussins. Les techniques varient selon les régions : la broderie de Tunis utilise des fils de soie et d'or sur velours, celle de Monastir est réputée pour ses motifs floraux, celle de Sfax pour ses arabesques géométriques minutieuses.</p>
+      </div>
+    </div>
+
+    <div class="artisanat-card">
+      <img src="images/artisanat/chechia.jpg" alt="Chéchia tunisienne" class="artisanat-img"/>
+      <div class="artisanat-body">
+        <p class="artisanat-origine">Tunis · Médina</p>
+        <h3 class="artisanat-nom">La chéchia</h3>
+        <p class="artisanat-desc">La chéchia — ce bonnet rouge emblématique — est l'un des artisanats les plus anciens de Tunis. Fabriquée en laine feutrée et teinte au henné pour obtenir sa couleur rouge caractéristique, elle était autrefois portée par tous les hommes tunisiens. Le souk des chéchias dans la médina de Tunis est l'un des plus beaux du pays.</p>
+      </div>
+    </div>
+
+    <div class="artisanat-card">
+      <img src="images/artisanat/dinanderie.jpg" alt="Dinanderie tunisienne" class="artisanat-img"/>
+      <div class="artisanat-body">
+        <p class="artisanat-origine">Tunis · Sfax</p>
+        <h3 class="artisanat-nom">Dinanderie & cuivre</h3>
+        <p class="artisanat-desc">Les dinandiers tunisiens travaillent le cuivre, le laiton et l'argent avec des techniques héritées de l'artisanat ottoman. Plateaux, théières, lampes, chandeliers et portes ciselées sortent de leurs mains selon des procédés ancestraux. Le son caractéristique des marteaux sur le métal résonne encore dans les souks des médinas.</p>
+      </div>
+    </div>
+
+    <div class="artisanat-card">
+      <img src="images/artisanat/jasmin.jpg" alt="Jasmin tunisien" class="artisanat-img"/>
+      <div class="artisanat-body">
+        <p class="artisanat-origine">Tunis · Nabeul · Sfax</p>
+        <h3 class="artisanat-nom">Parfumerie & jasmin</h3>
+        <p class="artisanat-desc">Le jasmin est l'emblème floral de la Tunisie. Les vendeurs de jasmin parcourent les rues des villes avec leurs bouquets de fleurs blanches — tradition immuable depuis des siècles. Les parfumeurs tunisiens distillent l'essence de jasmin, de rose, de géranium et de néroli pour créer des eaux de fleurs et des parfums utilisés dans la cuisine et la beauté.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  CUISINE                 -->
+<!-- ======================== -->
+<section class="cuisine-culture-section" id="cuisine">
+  <div class="cuisine-culture-layout">
+
+    <div class="cuisine-culture-intro fade-in">
+      <div>
+        <p class="section-label">Gastronomie</p>
+        <h2 class="section-title">Une cuisine aux<br/>mille influences</h2>
+        <p>La cuisine tunisienne est l'une des plus relevées et des plus complexes du bassin méditerranéen. Contrairement à ses voisines marocaine et algérienne, elle se distingue par son usage intensif du piment rouge et de la harissa — cette pâte de piment fermenté qui accompagne presque tous les plats.</p>
+        <p>L'huile d'olive tunisienne, parmi les meilleures du monde, est la base de toute la cuisine. Le thon — pêché en abondance dans les eaux du golfe de Gabès — est utilisé dans des préparations inédites. Les influences successives des civilisations ont créé une palette gustative unique : les épices du monde arabe, les techniques culinaires andalouses, la pasta italienne réinterprétée, les saveurs africaines.</p>
+      </div>
+      <div>
+        <p style="font-size: 15px; color: #555; line-height: 1.8; font-style: italic; border-left: 3px solid var(--rouge); padding-left: 20px;">
+          "La harissa n'est pas une simple sauce piquante. C'est une philosophie de vie tunisienne : du caractère, de l'intensité, une présence affirmée. Un Tunisien sans harissa sur sa table se sent incomplet."
+        </p>
+        <p style="font-size: 13px; color: #aaa; margin-top: 10px; padding-left: 23px;">Chef tunisien contemporain</p>
+      </div>
+    </div>
+
+    <!-- les épices emblématiques -->
+    <div class="fade-in">
+      <p class="section-label" style="margin-bottom: 20px;">Les épices emblématiques</p>
+      <div class="epices-grid">
+        <div class="epice-card">
+          <span class="epice-emoji">🌶️</span>
+          <p class="epice-nom">Harissa</p>
+          <p class="epice-desc">La reine des condiments tunisiens — piment rouge, ail, cumin et huile d'olive fermentés ensemble</p>
+        </div>
+        <div class="epice-card">
+          <span class="epice-emoji">🟡</span>
+          <p class="epice-nom">Tabel</p>
+          <p class="epice-desc">Mélange d'épices tunisien à base de coriandre, carvi, piment et ail — base de nombreux plats</p>
+        </div>
+        <div class="epice-card">
+          <span class="epice-emoji">🫒</span>
+          <p class="epice-nom">Huile d'olive</p>
+          <p class="epice-desc">La Tunisie est le 3e exportateur mondial. L'huile est utilisée crue, en cuisson et même dans les pâtisseries</p>
+        </div>
+        <div class="epice-card">
+          <span class="epice-emoji">🌿</span>
+          <p class="epice-nom">Coriandre</p>
+          <p class="epice-desc">Fraîche ou en grains, elle parfume les soupes, les tajines et les grillades de poisson</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- les plats en détail -->
+    <div class="fade-in">
+      <p class="section-label" style="margin-bottom: 30px;">Les plats incontournables</p>
+      <div class="plats-liste">
+
+        <div class="plat-detail">
+          <img src="images/lablabi.webp" alt="Lablabi" class="plat-detail-img"/>
+          <div>
+            <h3 class="plat-detail-nom">Lablabi</h3>
+            <p class="plat-detail-arabe">لبلابي</p>
+            <p class="plat-detail-desc">Soupe populaire par excellence, le lablabi est à base de pois chiches dans un bouillon épicé, servi sur du pain rassis et garni de thon, d'œuf, d'olives, de câpres et d'une généreuse cuillère de harissa. Plat du peuple et du matin, on en trouve dans tous les gargotes de Tunisie.</p>
+          </div>
+        </div>
+
+        <div class="plat-detail">
+          <img src="images/couscous.webp" alt="Couscous" class="plat-detail-img"/>
+          <div>
+            <h3 class="plat-detail-nom">Couscous</h3>
+            <p class="plat-detail-arabe">كسكسي</p>
+            <p class="plat-detail-desc">Plat national par excellence, le couscous tunisien est préparé chaque vendredi en famille. La semoule est roulée à la main, cuite à la vapeur et accompagnée d'un ragoût de légumes et de viande, relevé d'une sauce rouge épicée. Chaque famille a sa propre recette jalousement gardée.</p>
+          </div>
+        </div>
+
+        <div class="plat-detail">
+          <img src="images/artisanat/brik.jpg" alt="Brik" class="plat-detail-img"/>
+          <div>
+            <h3 class="plat-detail-nom">Brik à l'œuf</h3>
+            <p class="plat-detail-arabe">بريك</p>
+            <p class="plat-detail-desc">Le brik est une feuille de pâte mince — la malsouka — farcie d'un œuf entier, de thon, de câpres et de persil, puis frite jusqu'à être croustillante. L'art de manger un brik sans faire couler le jaune d'œuf est un vrai défi ! Incontournable à Ramadan et dans les restaurants.</p>
+          </div>
+        </div>
+
+        <div class="plat-detail">
+          <img src="images/molokhia.webp" alt="Molokhia" class="plat-detail-img"/>
+          <div>
+            <h3 class="plat-detail-nom">Molokhia</h3>
+            <p class="plat-detail-arabe">ملوخية</p>
+            <p class="plat-detail-desc">Plat unique en son genre, la molokhia tunisienne utilise les feuilles séchées de la corète potagère — une plante aux feuilles vertes — mijotées longuement avec de la viande d'agneau ou de bœuf. La sauce devient noire et veloutée, d'une saveur profonde et unique. Chaque famille affirme avoir la meilleure recette.</p>
+          </div>
+        </div>
+
+        <div class="plat-detail">
+          <img src="images/macaroni.webp" alt="Macaroni tunisien" class="plat-detail-img"/>
+          <div>
+            <h3 class="plat-detail-nom">Macaroni tunisien</h3>
+            <p class="plat-detail-arabe">مكرونة</p>
+            <p class="plat-detail-desc">Héritage de l'influence italienne en Méditerranée, le macaroni tunisien est une réinterprétation locale des pâtes. Cuites dans une sauce tomate épicée avec de la viande et du piment, elles n'ont plus grand-chose à voir avec la version italienne — et c'est tant mieux. Un plat réconfortant du quotidien.</p>
+          </div>
+        </div>
+
+        <div class="plat-detail">
+          <img src="images/artisanat/makroudh.jpg" alt="Makroudh" class="plat-detail-img"/>
+          <div>
+            <h3 class="plat-detail-nom">Makroudh</h3>
+            <p class="plat-detail-arabe">مقروض</p>
+            <p class="plat-detail-desc">La pâtisserie emblématique de Kairouan — gâteaux de semoule fourrés aux dattes ou aux amandes, frits puis trempés dans le miel. D'origine berbère et arabe, le makroudh est vendu dans des boutiques spécialisées dans toute la Tunisie et s'est imposé comme l'ambassadeur de la douceur tunisienne.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  TRADITIONS              -->
+<!-- ======================== -->
+<section class="traditions-section" id="traditions">
+  <div class="traditions-layout">
+    <div class="fade-in">
+      <p class="section-label">Traditions</p>
+      <h2 class="section-title traditions-titre">Les rituels du<br/>quotidien tunisien</h2>
+    </div>
+
+    <div class="traditions-grid fade-in">
+
+      <div class="tradition-card">
+        <span class="tradition-icone">🍵</span>
+        <h3 class="tradition-nom">Le thé à la menthe</h3>
+        <p class="tradition-texte">Boire un thé en Tunisie est un rituel social codifié. Servi brûlant dans de petits verres, très sucré, avec des pignons de pin ou des amandes flottant à la surface. Le premier verre est "amer comme la vie", le deuxième "doux comme l'amour", le troisième "doux comme la mort". Refuser est une impolitesse grave.</p>
+      </div>
+
+      <div class="tradition-card">
+        <span class="tradition-icone">💍</span>
+        <h3 class="tradition-nom">Le mariage tunisien</h3>
+        <p class="tradition-texte">Les noces tunisiennes sont des événements de plusieurs jours. La nuit du henné — Laylat al-Henna — précède le mariage : les mains de la mariée sont décorées de motifs complexes. La fête elle-même dure jusqu'à l'aube, avec musique, danses, festins et la cérémonie du "hammam de la mariée".</p>
+      </div>
+
+      <div class="tradition-card">
+        <span class="tradition-icone">🤲</span>
+        <h3 class="tradition-nom">L'hospitalité</h3>
+        <p class="tradition-texte">L'hospitalité — la "diyafa" — est une valeur sacrée en Tunisie. Un invité ne part jamais sans avoir mangé, bu et reçu des cadeaux. La formule "ana fi dar rasulillah" — "je suis dans la maison du Prophète" — décrit l'idéal de l'hôte parfait. Refuser l'hospitalité est considéré comme une offense grave.</p>
+      </div>
+
+      <div class="tradition-card">
+        <span class="tradition-icone">🫶</span>
+        <h3 class="tradition-nom">La main de Fatma</h3>
+        <p class="tradition-texte">Le "khamsa" — la main de Fatma — est le symbole protecteur par excellence en Tunisie. Présent sur les portes, les bijoux, les voitures et les maisons, il protège contre le mauvais œil. On l'offre en cadeau lors des naissances, mariages et déménagements. Son usage transcende les religions — juifs, musulmans et chrétiens le portent.</p>
+      </div>
+
+      <div class="tradition-card">
+        <span class="tradition-icone">🌙</span>
+        <h3 class="tradition-nom">Ramadan</h3>
+        <p class="tradition-texte">Le Ramadan transforme la Tunisie entière. Les villes s'animent la nuit — restaurants bondés, cafés ouverts jusqu'à l'aube, marchés colorés. L'iftar — la rupture du jeûne au coucher du soleil — est un moment familial sacré. On mange traditionnellement la chorba (soupe) et le brik avant le plat principal. Les nuits de Ramadan sont festives et chaleureuses.</p>
+      </div>
+
+      <div class="tradition-card">
+        <span class="tradition-icone">🐑</span>
+        <h3 class="tradition-nom">Aïd el-Kébir</h3>
+        <p class="tradition-texte">La fête du sacrifice est l'événement familial le plus important de l'année. Chaque famille qui en a les moyens sacrifie un mouton — préparé selon un rituel précis — dont la viande est partagée entre la famille, les voisins et les pauvres. Les abords des villes se transforment en marchés à ciel ouvert où les moutons s'entassent des semaines à l'avance.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  FÊTES                   -->
+<!-- ======================== -->
+<section class="fetes-section" id="fetes">
+  <div class="fade-in">
+    <p class="section-label" style="color: rgba(255,255,255,0.6);">Festivals & Célébrations</p>
+    <h2 class="section-title fetes-titre">L'agenda festif<br/>de la Tunisie</h2>
+    <p class="section-desc fetes-sous-titre">Tout au long de l'année, la Tunisie célèbre.</p>
+
+    <div class="fetes-grid">
+
+      <div class="fete-card">
+        <p class="fete-mois">Mars — Avril</p>
+        <h3 class="fete-nom">Festival des Orangers</h3>
+        <p class="fete-desc">Nabeul se couvre de fleurs d'oranger et accueille un festival célébrant la récolte des agrumes du Cap Bon. Concerts, expositions artisanales et dégustation de produits locaux.</p>
+      </div>
+
+      <div class="fete-card">
+        <p class="fete-mois">Juillet — Août</p>
+        <h3 class="fete-nom">Festival de Carthage</h3>
+        <p class="fete-desc">Le plus grand festival culturel de Tunisie, organisé dans le théâtre antique de Carthage depuis 1963. Des artistes du monde entier se produisent sous les étoiles dans un cadre archéologique unique.</p>
+      </div>
+
+      <div class="fete-card">
+        <p class="fete-mois">Juillet</p>
+        <h3 class="fete-nom">Festival de Hammamet</h3>
+        <p class="fete-desc">Dans le théâtre en plein air de Hammamet, face à la mer, ce festival international de théâtre, danse et musique attire les plus grandes compagnies mondiales chaque été.</p>
+      </div>
+
+      <div class="fete-card">
+        <p class="fete-mois">Décembre</p>
+        <h3 class="fete-nom">Festival du Sahara</h3>
+        <p class="fete-desc">À Douz, aux portes du désert, ce festival célèbre la culture nomade et saharienne : courses de chameaux, fantasias, poésie bédouine, artisanat berbère et soirées sous les étoiles du désert.</p>
+      </div>
+
+      <div class="fete-card">
+        <p class="fete-mois">Mai</p>
+        <h3 class="fete-nom">Pèlerinage de la Ghriba</h3>
+        <p class="fete-desc">À Djerba, des milliers de pèlerins juifs du monde entier convergent vers la synagogue El Ghriba pour ce pèlerinage annuel, témoignage unique de la diversité religieuse millénaire de la Tunisie.</p>
+      </div>
+
+      <div class="fete-card">
+        <p class="fete-mois">Avril</p>
+        <h3 class="fete-nom">Festival de la Médina</h3>
+        <p class="fete-desc">Dans les ruelles de la médina de Tunis, ce festival transforme les palais et les cours en scènes de spectacle. Musique malouf, théâtre, expositions de calligraphie et d'art contemporain.</p>
+      </div>
+
+      <div class="fete-card">
+        <p class="fete-mois">Juin</p>
+        <h3 class="fete-nom">Festival de Dougga</h3>
+        <p class="fete-desc">Dans le théâtre romain du site archéologique de Dougga, des spectacles antiques sont rejoués dans leur décor d'origine. Une expérience unique mêlant archéologie et art vivant.</p>
+      </div>
+
+      <div class="fete-card">
+        <p class="fete-mois">Toute l'année</p>
+        <h3 class="fete-nom">Fêtes religieuses</h3>
+        <p class="fete-desc">Ramadan, Aïd el-Fitr, Aïd el-Kébir, Mouled (naissance du Prophète) — chaque fête religieuse donne lieu à des célébrations familiales intenses et à des préparations culinaires spécifiques.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  LANGUE                  -->
+<!-- ======================== -->
+<section class="langue-section" id="langue">
+  <div class="langue-layout fade-in">
+
+    <div>
+      <p class="section-label">Langue & Expression</p>
+      <h2 class="section-title">La darija — l'arabe<br/>tunisien</h2>
+      <div class="langue-texte">
+        <p>
+          La Tunisie est officiellement arabophone, mais la réalité linguistique est bien plus complexe. Le tunisien — ou darija — est un dialecte arabe unique qui a absorbé des millénaires d'influences : du berbère des populations autochtones, du latin et de l'italien des commerçants méditerranéens, du turc de l'époque ottomane, du français du protectorat et même de l'espagnol des Andalous réfugiés.
+        </p>
+        <p>
+          La plupart des Tunisiens passent naturellement d'une langue à l'autre dans la même phrase — un phénomène appelé le "code switching". Il n'est pas rare d'entendre dans une conversation ordinaire de l'arabe dialectal mêlé de mots français, d'expressions italiennes et de tournures berbères.
+        </p>
+        <p>
+          Le français occupe une place particulière : langue de l'enseignement supérieur, des affaires et de la culture depuis le protectorat, il est parlé par la majorité des Tunisiens instruits et reste très présent dans les médias, la publicité et la vie professionnelle.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <p class="section-label" style="margin-bottom: 20px;">Quelques mots tunisiens</p>
+      <div class="mots-tunisiens">
+
+        <div class="mot-ligne">
+          <span class="mot-tunisien">Aslema</span>
+          <span class="mot-arabe">عسلامة</span>
+          <span class="mot-traduction">Bonjour / Salut (littéralement "la paix soit sur toi")</span>
+        </div>
+        <div class="mot-ligne">
+          <span class="mot-tunisien">Barsha</span>
+          <span class="mot-arabe">برشا</span>
+          <span class="mot-traduction">Beaucoup — "Barsha soukran" = merci beaucoup</span>
+        </div>
+        <div class="mot-ligne">
+          <span class="mot-tunisien">Yesser</span>
+          <span class="mot-arabe">ياسر</span>
+          <span class="mot-traduction">Facilement, sans problème — équivalent de "no problem"</span>
+        </div>
+        <div class="mot-ligne">
+          <span class="mot-tunisien">Mrioul</span>
+          <span class="mot-arabe">مريول</span>
+          <span class="mot-traduction">Blouse, tablier — vient de l'italien "grembiule"</span>
+        </div>
+        <div class="mot-ligne">
+          <span class="mot-tunisien">Brika</span>
+          <span class="mot-arabe">بريكة</span>
+          <span class="mot-traduction">Chaussures — vient du turc "pabuç"</span>
+        </div>
+        
+        <div class="mot-ligne">
+          <span class="mot-tunisien">Mabrouk</span>
+          <span class="mot-arabe">مبروك</span>
+          <span class="mot-traduction">Félicitations — utilisé pour toutes les bonnes nouvelles</span>
+        </div>
+        <div class="mot-ligne">
+          <span class="mot-tunisien">Inchallah</span>
+          <span class="mot-arabe">إن شاء الله</span>
+          <span class="mot-traduction">Si Dieu le veut — répond à toute promesse ou plan futur</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<div class="flag-stripe"></div>
+
+<footer>
+  <div class="footer-logo">TU<span>N</span>ISIE</div>
+  <p>La Perle du Maghreb — Bienvenue en Tunisie</p>
+  <p style="margin-top: 20px; font-size: 11px; opacity: 0.4;">Site réalisé avec Amour · 2026</p>
+</footer>
+
+
+<script>
+  // animations scroll
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // nav interne active selon la section visible
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-interne a');
+
+  window.addEventListener('scroll', function() {
+    let current = '';
+    sections.forEach(function(section) {
+      const top = section.offsetTop - 150;
+      if (window.scrollY >= top) current = section.getAttribute('id');
+    });
+    navLinks.forEach(function(link) {
+      link.style.color = '';
+      link.style.borderBottomColor = '';
+      if (link.getAttribute('href') === '#' + current) {
+        link.style.color = 'var(--rouge)';
+        link.style.borderBottomColor = 'var(--rouge)';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

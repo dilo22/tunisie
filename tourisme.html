@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tourisme en Tunisie — Guide du Voyageur</title>
+  <link rel="icon" type="image/png" href="images/favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+
+    /* ======================== */
+    /* HERO                     */
+    /* ======================== */
+    .tourisme-hero {
+      background: var(--nuit);
+      padding: 160px 60px 100px;
+      position: relative;
+      overflow: hidden;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+    }
+
+    /* motif de vagues en fond */
+    .tourisme-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          0deg, transparent, transparent 60px,
+          rgba(0,119,182,0.04) 60px, rgba(0,119,182,0.04) 61px
+        ),
+        repeating-linear-gradient(
+          90deg, transparent, transparent 60px,
+          rgba(193,18,31,0.03) 60px, rgba(193,18,31,0.03) 61px
+        );
+    }
+
+    /* grand nombre en filigrane */
+    .tourisme-hero::after {
+      content: '2026';
+      position: absolute;
+      font-family: 'Playfair Display', serif;
+      font-size: 280px;
+      color: rgba(255,255,255,0.02);
+      right: -20px;
+      bottom: -40px;
+      line-height: 1;
+    }
+
+    .tourisme-hero-contenu {
+      max-width: 680px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tourisme-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 7vw, 80px);
+      color: var(--blanc);
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    .tourisme-hero h1 span { color: var(--rouge); font-style: italic; }
+
+    .tourisme-hero-desc {
+      font-size: 17px;
+      color: rgba(248,245,239,0.6);
+      line-height: 1.8;
+      max-width: 500px;
+      margin-bottom: 40px;
+    }
+
+    /* les 3 stats rapides */
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+    }
+
+    .hero-stat-item {
+      border-left: 2px solid var(--rouge);
+      padding-left: 16px;
+    }
+
+    .hero-stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--or);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(248,245,239,0.4);
+    }
+
+    /* ======================== */
+    /* NAV INTERNE              */
+    /* ======================== */
+    .nav-tourisme {
+      background: white;
+      padding: 0 60px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      gap: 0;
+      position: sticky;
+      top: 60px;
+      z-index: 100;
+      overflow-x: auto;
+    }
+
+    .nav-tourisme a {
+      text-decoration: none;
+      color: #999;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 20px 28px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-tourisme a:hover {
+      color: var(--rouge);
+      border-bottom-color: var(--rouge);
+    }
+
+    /* ======================== */
+    /* SECTION VILLES           */
+    /* ======================== */
+    .villes-tourisme {
+      background: var(--blanc);
+      padding: 100px 60px;
+    }
+
+    .villes-tourisme-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .villes-tourisme-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 70px;
+    }
+
+    .villes-tourisme-intro p {
+      font-size: 16px;
+      line-height: 1.9;
+      color: #555;
+    }
+
+    /* les 3 cartes de villes principales */
+    .villes-principales-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .ville-principale-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      min-height: 420px;
+    }
+
+    .ville-principale-card:nth-child(2),
+    .ville-principale-card:nth-child(3) {
+      min-height: 200px;
+    }
+
+    /* photos simulées en dégradé */
+    .vp-tunis {
+      background: linear-gradient(160deg, #2a5298 0%, #6b8cda 30%, #c4a882 70%, #8b6914 100%);
+    }
+
+    .vp-sfax {
+      background: linear-gradient(135deg, #1a4a6b 0%, #2d7a9a 50%, #5ab0d0 100%);
+    }
+
+    .vp-sousse {
+      background: linear-gradient(145deg, #1565c0 0%, #42a5f5 40%, #f5f5dc 70%, #e0cfa0 100%);
+    }
+
+    /* overlay sombre */
+    .ville-principale-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,10,30,0.85) 0%, rgba(10,10,30,0.2) 60%, transparent 100%);
+      transition: opacity 0.4s;
+    }
+
+    .ville-principale-card:hover::after { opacity: 0.7; }
+
+    /* image réelle si disponible */
+    .ville-principale-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ville-principale-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      padding: 28px;
+    }
+
+    .ville-principale-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: white;
+      margin-bottom: 6px;
+    }
+
+    .ville-principale-card:first-child .ville-principale-nom {
+      font-size: 38px;
+    }
+
+    .ville-principale-tag {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 14px;
+    }
+
+    /* les highlights en bas de la carte */
+    .ville-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .ville-highlight {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      font-size: 11px;
+      padding: 4px 10px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* texte long sous les cartes */
+    .villes-descriptions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 50px;
+      padding-top: 50px;
+      border-top: 1px solid #eee;
+    }
+
+    .ville-desc-bloc h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--nuit);
+      margin-bottom: 16px;
+    }
+
+    .ville-desc-bloc p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+
+    .ville-infos-pratiques {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .info-ligne {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .info-ligne-label {
+      color: var(--rouge);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      min-width: 90px;
+      flex-shrink: 0;
+    }
+
+    .info-ligne-val {
+      color: #555;
+    }
+
+    /* ======================== */
+    /* SECTION SITES            */
+    /* ======================== */
+    .sites-section {
+      background: var(--nuit);
+      padding: 100px 60px;
+    }
+
+    .sites-section .section-title { color: var(--blanc); }
+    .sites-section .section-desc  { color: rgba(248,245,239,0.6); }
+
+    .sites-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .sites-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 50px;
+    }
+
+    .site-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+
+    .site-card:hover {
+      border-color: var(--rouge);
+      transform: translateY(-6px);
+    }
+
+    .site-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      background: rgba(255,255,255,0.05);
+      filter: grayscale(20%);
+      transition: filter 0.4s;
+    }
+
+    .site-card:hover .site-card-img { filter: grayscale(0%); }
+
+    .site-card-body {
+      padding: 26px;
+    }
+
+    .site-card-type {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin-bottom: 8px;
+    }
+
+    .site-card-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--blanc);
+      margin-bottom: 12px;
+    }
+
+    .site-card-desc {
+      font-size: 14px;
+      color: rgba(248,245,239,0.55);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    /* les infos pratiques du site */
+    .site-infos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .site-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .site-info-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(248,245,239,0.3);
+    }
+
+    .site-info-val {
+      font-size: 13px;
+      color: var(--or);
+    }
+
+    /* ======================== */
+    /* SECTION ACTIVITES        */
+    /* ======================== */
+    .activites-section {
+      background: var(--blanc);
+      padding: 100px 60px;
+    }
+
+    .activites-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* les 3 grandes activités */
+    .activites-big {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      margin-top: 60px;
+      border: 1px solid #eee;
+    }
+
+    .activite-big {
+      padding: 50px 40px;
+      border-right: 1px solid #eee;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .activite-big:last-child { border-right: none; }
+
+    .activite-big:hover { background: var(--sable); }
+
+    /* numéro en filigrane */
+    .activite-big-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 100px;
+      color: rgba(193,18,31,0.06);
+      line-height: 1;
+      margin-bottom: -20px;
+    }
+
+    .activite-big-icone {
+      font-size: 40px;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .activite-big-titre {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--nuit);
+      margin-bottom: 16px;
+    }
+
+    .activite-big-desc {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    /* les sous-activités */
+    .sous-activites {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .sous-activite {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .sous-activite:last-child { border-bottom: none; }
+
+    .sous-activite::before {
+      content: '→';
+      color: var(--rouge);
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ======================== */
+    /* SECTION CONSEILS         */
+    /* ======================== */
+    .conseils-section {
+      background: var(--sable);
+      padding: 100px 60px;
+    }
+
+    .conseils-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .conseils-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 50px;
+    }
+
+    .conseil-card {
+      background: white;
+      padding: 28px 22px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .conseil-card:hover { transform: translateY(-4px); }
+
+    .conseil-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--rouge);
+    }
+
+    .conseil-icone {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .conseil-titre {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--nuit);
+      margin-bottom: 10px;
+    }
+
+    .conseil-texte {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.7;
+    }
+
+    /* ======================== */
+    /* SECTION MEILLEURE SAISON */
+    /* ======================== */
+    .saisons-section {
+      background: var(--nuit);
+      padding: 100px 60px;
+    }
+
+    .saisons-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .saisons-section .section-title { color: var(--blanc); }
+
+    .saisons-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      margin-top: 50px;
+    }
+
+    .saison-item {
+      background: var(--nuit);
+      padding: 40px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .saison-item.recommandee {
+      background: rgba(193,18,31,0.12);
+      border: 1px solid rgba(193,18,31,0.3);
+    }
+
+    .saison-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--rouge);
+      color: white;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 8px;
+    }
+
+    .saison-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--blanc);
+      margin-bottom: 6px;
+    }
+
+    .saison-mois {
+      font-size: 12px;
+      color: var(--or);
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    .saison-temp {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--blanc);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .saison-desc {
+      font-size: 13px;
+      color: rgba(248,245,239,0.5);
+      line-height: 1.6;
+    }
+
+    /* ======================== */
+    /* SECTION BUDGET           */
+    /* ======================== */
+    .budget-section {
+      background: var(--blanc);
+      padding: 100px 60px;
+    }
+
+    .budget-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .budget-texte p {
+      font-size: 16px;
+      line-height: 1.9;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    .budget-categories {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .budget-ligne {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid #f0f0f0;
+      align-items: center;
+    }
+
+    .budget-categorie {
+      font-size: 15px;
+      color: var(--nuit);
+    }
+
+    .budget-fourchette {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: var(--rouge);
+      text-align: right;
+    }
+
+    .budget-note {
+      font-size: 11px;
+      color: #aaa;
+      text-align: right;
+    }
+
+    .budget-total {
+      background: var(--nuit);
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .budget-total-label {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(248,245,239,0.5);
+    }
+
+    .budget-total-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--or);
+    }
+
+    /* ======================== */
+    /* RESPONSIVE               */
+    /* ======================== */
+    @media (max-width: 900px) {
+      .tourisme-hero           { padding: 140px 20px 60px; min-height: auto; }
+      .nav-tourisme            { padding: 0 20px; }
+      .villes-tourisme,
+      .sites-section,
+      .activites-section,
+      .conseils-section,
+      .saisons-section,
+      .budget-section          { padding: 60px 20px; }
+      .villes-tourisme-intro   { grid-template-columns: 1fr; gap: 20px; }
+      .villes-principales-grid { grid-template-columns: 1fr; }
+      .ville-principale-card   { min-height: 260px !important; }
+      .villes-descriptions     { grid-template-columns: 1fr; }
+      .sites-grid              { grid-template-columns: 1fr; }
+      .activites-big           { grid-template-columns: 1fr; }
+      .activite-big            { border-right: none; border-bottom: 1px solid #eee; }
+      .conseils-grid           { grid-template-columns: 1fr 1fr; }
+      .saisons-grid            { grid-template-columns: 1fr 1fr; }
+      .budget-layout           { grid-template-columns: 1fr; }
+      .hero-stats              { flex-wrap: wrap; gap: 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .conseils-grid { grid-template-columns: 1fr; }
+      .saisons-grid  { grid-template-columns: 1fr 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ============= -->
+<!--  NAVIGATION   -->
+<!-- ============= -->
+
+<nav>
+  <div class="logo">TU<span>N</span>ISIE</div>
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="histoire.html">Histoire</a></li>
+    <li><a href="villes.html">Villes</a></li>
+    <li><a href="culture.html">Culture</a></li>
+    <li><a href="tourisme.html" style="color: var(--or);">Tourisme</a></li>
+    <li><a href="nature.html">Nature</a></li>
+  </ul>
+</nav>
+
+<!-- ============= -->
+<!--  HERO         -->
+<!-- ============= -->
+<div class="tourisme-hero">
+  <div class="tourisme-hero-contenu fade-in visible">
+    <p class="section-label">Guide du Voyageur · Tunisie</p>
+    <h1>Voyager en<br/><span>Tunisie</span></h1>
+    <p class="tourisme-hero-desc">
+      Un pays qui tient dans une valise mais qui contient des millénaires. Des plages de sable blanc aux dunes du Sahara, des médinas millénaires aux ruines romaines — la Tunisie est l'une des destinations les plus riches et les plus accessibles du bassin méditerranéen.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat-item">
+        <div class="hero-stat-val">163 610</div>
+        <div class="hero-stat-label">km² à explorer</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-val">8</div>
+        <div class="hero-stat-label">sites UNESCO</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-val">1 300</div>
+        <div class="hero-stat-label">km de côtes</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- navigation interne -->
+<div class="nav-tourisme">
+  <a href="#villes">Villes</a>
+  <a href="#sites">Sites touristiques</a>
+  <a href="#activites">Activités</a>
+  <a href="#conseils">Conseils pratiques</a>
+  <a href="#saisons">Meilleure saison</a>
+  <a href="#budget">Budget</a>
+</div>
+
+
+<!-- ======================== -->
+<!--  A — VILLES PRINCIPALES  -->
+<!-- ======================== -->
+<section class="villes-tourisme" id="villes">
+  <div class="villes-tourisme-layout">
+
+    <div class="villes-tourisme-intro fade-in">
+      <div>
+        <p class="section-label">A — Villes principales</p>
+        <h2 class="section-title">Les métropoles<br/>à ne pas manquer</h2>
+      </div>
+      <p>
+        La Tunisie possède plusieurs grandes villes qui méritent chacune une visite. Chacune a sa propre personnalité, son atmosphère et ses trésors cachés. Des souks animés de Tunis aux plages de Sousse en passant par la médina industrieuse de Sfax — chaque ville est une aventure en soi.
+      </p>
+    </div>
+
+    <!-- les 3 cartes visuelles -->
+    <div class="villes-principales-grid fade-in">
+
+      <!-- Tunis — grande carte -->
+      <div class="ville-principale-card vp-tunis">
+        <img src="images/villes/tunis.jpg" alt="Tunis"/>
+        <div class="ville-principale-info">
+          <p class="ville-principale-tag">Capitale · 2,7 millions d'habitants</p>
+          <h3 class="ville-principale-nom">Tunis</h3>
+          <div class="ville-highlights">
+            <span class="ville-highlight">Médina UNESCO</span>
+            <span class="ville-highlight">Musée du Bardo</span>
+            <span class="ville-highlight">Av. Bourguiba</span>
+            <span class="ville-highlight">Souks</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sfax -->
+      <div class="ville-principale-card vp-sfax">
+        <img src="images/villes/sfax.webp" alt="Sfax"/>
+        <div class="ville-principale-info">
+          <p class="ville-principale-tag">2e ville · Industrie</p>
+          <h3 class="ville-principale-nom">Sfax</h3>
+          <div class="ville-highlights">
+            <span class="ville-highlight">Médina</span>
+            <span class="ville-highlight">Kerkennah</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sousse -->
+      <div class="ville-principale-card vp-sousse">
+        <img src="images/villes/sousse.jpg" alt="Sousse"/>
+        <div class="ville-principale-info">
+          <p class="ville-principale-tag">Perle du Sahel · Tourisme</p>
+          <h3 class="ville-principale-nom">Sousse</h3>
+          <div class="ville-highlights">
+            <span class="ville-highlight">Ribat</span>
+            <span class="ville-highlight">Plages</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- descriptions longues -->
+    <div class="villes-descriptions fade-in">
+
+      <!-- TUNIS -->
+      <div class="ville-desc-bloc">
+        <h3>Tunis</h3>
+        <p>
+          Capitale de la Tunisie depuis le Xe siècle, Tunis est une ville à double visage : d'un côté la médina médiévale classée UNESCO — avec ses souks spécialisés, ses palais aghlabides et ses mosquées — de l'autre la ville moderne avec ses larges avenues haussmanniennes et ses cafés animés.
+        </p>
+        <p>
+          Le musée national du Bardo, installé dans un ancien palais bey, abrite l'une des plus belles collections de mosaïques romaines au monde. À quelques kilomètres, les ruines de Carthage et le village bleu-blanc de Sidi Bou Saïd complètent un séjour inoubliable.
+        </p>
+        <div class="ville-infos-pratiques">
+          <div class="info-ligne">
+            <span class="info-ligne-label">A voir</span>
+            <span class="info-ligne-val">Médina, Bardo, Carthage, Sidi Bou Saïd</span>
+          </div>
+          <div class="info-ligne">
+            <span class="info-ligne-label">Durée idéale</span>
+            <span class="info-ligne-val">3 à 5 jours</span>
+          </div>
+          <div class="info-ligne">
+            <span class="info-ligne-label">Meilleure saison</span>
+            <span class="info-ligne-val">Avril — Juin / Sept — Octobre</span>
+          </div>
+          <div class="info-ligne">
+            <span class="info-ligne-label">Transport</span>
+            <span class="info-ligne-val">Métro léger, taxis, TGM vers Carthage</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SFAX -->
+      <div class="ville-desc-bloc">
+        <h3>Sfax</h3>
+        <p>
+          Deuxième ville de Tunisie, Sfax est souvent négligée par les touristes qui ont tort. Sa médina, entourée de remparts du IXe siècle d'une conservation exceptionnelle, est l'une des plus authentiques du pays — sans les foules et la touristification de Tunis.
+        </p>
+        <p>
+          La ville est le coeur de la production d'huile d'olive tunisienne. Ses huiles extra-vierges, primées dans les concours internationaux, sont un souvenir parfait. Les îles Kerkennah, accessibles en ferry, offrent une escapade de plages sauvages et de pêche traditionnelle.
+        </p>
+        <div class="ville-infos-pratiques">
+          <div class="info-ligne">
+            <span class="info-ligne-label">A voir</span>
+            <span class="info-ligne-val">Médina, remparts, Kerkennah, marché central</span>
+          </div>
+          <div class="info-ligne">
+            <span class="info-ligne-label">Durée idéale</span>
+            <span class="info-ligne-val">1 à 2 jours</span>
+          </div>
+          <div class="info-ligne">
+            <span class="info-ligne-label">Meilleure saison</span>
+            <span class="info-ligne-val">Mars — Mai / Sept — Nov</span>
+          </div>
+          <div class="info-ligne">
+            <span class="info-ligne-label">Transport</span>
+            <span class="info-ligne-val">Train depuis Tunis (3h30), ferry vers Kerkennah</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOUSSE -->
+      <div class="ville-desc-bloc">
+        <h3>Sousse</h3>
+        <p>
+          Surnommée "la Perle du Sahel", Sousse est la grande destination balnéaire de la côte est tunisienne. Sa médina classée UNESCO, dominée par le Ribat — forteresse islamique du VIIIe siècle —, contraste avec les plages modernes et les complexes hôteliers de Port El Kantaoui.
+        </p>
+        <p>
+          Les catacombes de Sousse, parmi les plus importantes du monde chrétien après celles de Rome, s'étendent sur plus de 5 km de galeries souterraines. Le musée archéologique, installé dans la casbah, abrite une superbe collection de mosaïques romaines.
+        </p>
+        <div class="ville-infos-pratiques">
+          <div class="info-ligne">
+            <span class="info-ligne-label">A voir</span>
+            <span class="info-ligne-val">Ribat, catacombes, médina, Port El Kantaoui</span>
+          </div>
+          <div class="info-ligne">
+            <span class="info-ligne-label">Durée idéale</span>
+            <span class="info-ligne-val">2 à 3 jours</span>
+          </div>
+          <div class="info-ligne">
+            <span class="info-ligne-label">Meilleure saison</span>
+            <span class="info-ligne-val">Mai — Octobre pour les plages</span>
+          </div>
+          <div class="info-ligne">
+            <span class="info-ligne-label">Transport</span>
+            <span class="info-ligne-val">Train depuis Tunis (2h), location de voiture</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  B — SITES TOURISTIQUES  -->
+<!-- ======================== -->
+<section class="sites-section" id="sites">
+  <div class="sites-layout">
+
+    <div class="fade-in">
+      <p class="section-label">B — Sites touristiques</p>
+      <h2 class="section-title">Les incontournables</h2>
+      <p class="section-desc">
+        De l'île de Djerba aux ruines romaines de Dougga en passant par les dunes infinies du Sahara, la Tunisie concentre des merveilles extraordinaires sur un territoire compact.
+      </p>
+    </div>
+
+    <div class="sites-grid fade-in">
+
+      <!-- DJERBA -->
+      <div class="site-card">
+        <img src="images/villes/djerba.jpg" alt="Djerba" class="site-card-img"/>
+        <div class="site-card-body">
+          <p class="site-card-type">Île · Plages · Culture</p>
+          <h3 class="site-card-nom">Djerba</h3>
+          <p class="site-card-desc">
+            La plus grande île d'Afrique du Nord est un paradis de douceur et de diversité. Ses plages de sable blanc, ses villages aux maisons blanches et bleues, sa synagogue El Ghriba millénaire et son architecture berbère en font une destination unique au monde. L'île revendique aussi une tradition culinaire de la pêche du poulpe et des plats de la mer exceptionnels.
+          </p>
+          <div class="site-infos">
+            <div class="site-info">
+              <span class="site-info-label">Durée conseillée</span>
+              <span class="site-info-val">3 à 5 jours</span>
+            </div>
+            <div class="site-info">
+              <span class="site-info-label">Meilleure période</span>
+              <span class="site-info-val">Mai — Octobre</span>
+            </div>
+            <div class="site-info">
+              <span class="site-info-label">Accès</span>
+              <span class="site-info-val">Vol direct ou route</span>
+            </div>
+            <div class="site-info">
+              <span class="site-info-label">Classement</span>
+              <span class="site-info-val">UNESCO 2023</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DOUGGA -->
+      <div class="site-card">
+        <img src="images/villes/siliana.jpg" alt="Dougga" class="site-card-img"/>
+        <div class="site-card-body">
+          <p class="site-card-type">Archéologie · UNESCO · Romain</p>
+          <h3 class="site-card-nom">Dougga</h3>
+          <p class="site-card-desc">
+            Classée au patrimoine mondial de l'UNESCO depuis 1997, Dougga — ancienne Thugga — est l'un des sites archéologiques romains les mieux préservés d'Afrique. Son théâtre du IIe siècle, son capitole avec ses trois temples dédiés à Jupiter, Junon et Minerve, ses bains, ses mausolées puniques et ses ruelles pavées constituent un ensemble cohérent et saisissant. Le festival annuel de théâtre y est organisé chaque été dans le décor antique.
+          </p>
+          <div class="site-infos">
+            <div class="site-info">
+              <span class="site-info-label">Durée conseillée</span>
+              <span class="site-info-val">Demi-journée</span>
+            </div>
+            <div class="site-info">
+              <span class="site-info-label">Meilleure période</span>
+              <span class="site-info-val">Mars — Mai</span>
+            </div>
+            <div class="site-info">
+              <span class="site-info-label">Accès</span>
+              <span class="site-info-val">70 km de Tunis</span>
+            </div>
+            <div class="site-info">
+              <span class="site-info-label">Classement</span>
+              <span class="site-info-val">UNESCO 1997</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAHARA -->
+      <div class="site-card">
+        <img src="images/villes/douz.webp" alt="Désert du Sahara" class="site-card-img"/>
+        <div class="site-card-body">
+          <p class="site-card-type">Désert · Aventure · Nature</p>
+          <h3 class="site-card-nom">Désert du Sahara</h3>
+          <p class="site-card-desc">
+            Le sud tunisien offre l'une des portes d'entrée les plus accessibles du grand Sahara. De Douz — "la porte du Sahara" — partent des excursions inoubliables vers les dunes de sable doré, les oasis de Ksar Ghilane, les villages berbères troglodytes de Matmata et les immenses étendues du Chott el Jerid. La nuit dans le désert, sous un ciel étoilé sans pollution lumineuse, est une expérience transformatrice.
+          </p>
+          <div class="site-infos">
+            <div class="site-info">
+              <span class="site-info-label">Durée conseillée</span>
+              <span class="site-info-val">2 à 4 jours</span>
+            </div>
+            <div class="site-info">
+              <span class="site-info-label">Meilleure période</span>
+              <span class="site-info-val">Oct — Fév</span>
+            </div>
+            <div class="site-info">
+              <span class="site-info-label">Accès</span>
+              <span class="site-info-val">Douz, Tozeur, Tataouine</span>
+            </div>
+            <div class="site-info">
+              <span class="site-info-label">Type</span>
+              <span class="site-info-val">Circuit organisé</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  C — ACTIVITES           -->
+<!-- ======================== -->
+<section class="activites-section" id="activites">
+  <div class="activites-layout">
+
+    <div class="fade-in">
+      <p class="section-label">C — Activités</p>
+      <h2 class="section-title">Que faire en Tunisie ?</h2>
+      <p class="section-desc" style="margin-bottom: 0;">
+        La Tunisie offre une palette d'activités remarquablement diversifiée pour un pays aussi compact. En une semaine, il est possible de combiner plage, archéologie et aventure dans le désert.
+      </p>
+    </div>
+
+    <div class="activites-big fade-in">
+
+      <!-- PLAGES -->
+      <div class="activite-big">
+        <div class="activite-big-num">01</div>
+        <span class="activite-big-icone">🏖️</span>
+        <h3 class="activite-big-titre">Plages</h3>
+        <p class="activite-big-desc">
+          Avec 1 300 km de côtes méditerranéennes, la Tunisie offre une variété de plages extraordinaire. Des eaux cristallines de Djerba aux criques sauvages du Cap Bon, des plages familiales animées de Hammamet aux spots de kitesurf de Kerkennah — chaque profil de voyageur trouve sa plage idéale.
+        </p>
+        <div class="sous-activites">
+          <div class="sous-activite">Plages de Hammamet — sable fin, infrastructures touristiques</div>
+          <div class="sous-activite">Djerba — eau turquoise, plages préservées</div>
+          <div class="sous-activite">Cap Bon — criques sauvages et villages de pêcheurs</div>
+          <div class="sous-activite">Kerkennah — kitesurf et plongée dans les îles</div>
+          <div class="sous-activite">Gabès — l'unique oasis maritime de Méditerranée</div>
+          <div class="sous-activite">Mahdia — plages authentiques loin des foules</div>
+        </div>
+      </div>
+
+      <!-- VISITES HISTORIQUES -->
+      <div class="activite-big">
+        <div class="activite-big-num">02</div>
+        <span class="activite-big-icone">🏛️</span>
+        <h3 class="activite-big-titre">Visites historiques</h3>
+        <p class="activite-big-desc">
+          La Tunisie est l'un des pays au monde qui concentre le plus de richesses archéologiques sur un territoire aussi réduit. 8 sites sont classés au patrimoine mondial de l'UNESCO. Des ruines puniques de Carthage aux sites romains de Dougga, en passant par les médinas islamiques médiévales — chaque visite est un bond dans le temps.
+        </p>
+        <div class="sous-activites">
+          <div class="sous-activite">Carthage — ruines puniques et romaines, thermes d'Antonin</div>
+          <div class="sous-activite">Dougga — le site romain le mieux conservé d'Afrique</div>
+          <div class="sous-activite">Médina de Tunis — 700 monuments, souks millénaires</div>
+          <div class="sous-activite">Kairouan — Grande Mosquée, 4e ville sainte de l'Islam</div>
+          <div class="sous-activite">El Jem — amphithéâtre romain de 35 000 places</div>
+          <div class="sous-activite">Musée du Bardo — la plus grande collection de mosaïques romaines</div>
+        </div>
+      </div>
+
+      <!-- DESERT -->
+      <div class="activite-big">
+        <div class="activite-big-num">03</div>
+        <span class="activite-big-icone">🐪</span>
+        <h3 class="activite-big-titre">Excursions dans le désert</h3>
+        <p class="activite-big-desc">
+          Le sud tunisien est l'une des portes d'entrée les plus accessibles du Sahara. Des agences organisent des circuits de quelques jours qui combinent dunes, oasis, villages berbères et nuits sous les étoiles. Une expérience inoubliable que la proximité de la Tunisie avec l'Europe rend particulièrement accessible.
+        </p>
+        <div class="sous-activites">
+          <div class="sous-activite">Balade à dos de chameau au coucher du soleil</div>
+          <div class="sous-activite">Nuit sous les étoiles dans un campement berbère</div>
+          <div class="sous-activite">4x4 sur les dunes de Douz et Ksar Ghilane</div>
+          <div class="sous-activite">Visite des villages troglodytes de Matmata</div>
+          <div class="sous-activite">Traversée du Chott el Jerid en quad</div>
+          <div class="sous-activite">Découverte des ksour berbères de Tataouine</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  CONSEILS PRATIQUES      -->
+<!-- ======================== -->
+<section class="conseils-section" id="conseils">
+  <div class="conseils-layout">
+
+    <div class="fade-in">
+      <p class="section-label">Conseils pratiques</p>
+      <h2 class="section-title">Bien préparer<br/>son voyage</h2>
+    </div>
+
+    <div class="conseils-grid fade-in">
+
+      <div class="conseil-card">
+        <span class="conseil-icone">✈️</span>
+        <h3 class="conseil-titre">Comment y aller</h3>
+        <p class="conseil-texte">
+          De nombreuses compagnies desservent Tunis-Carthage depuis toute l'Europe. Des vols low-cost opèrent aussi vers Djerba-Zarzis et Monastir. Depuis Paris, le vol dure environ 2h30. La Tunisie est à 2h de Rome et 3h de Madrid.
+        </p>
+      </div>
+
+      <div class="conseil-card">
+        <span class="conseil-icone">🪪</span>
+        <h3 class="conseil-titre">Formalités</h3>
+        <p class="conseil-texte">
+          Les ressortissants européens et de nombreux pays n'ont pas besoin de visa pour un séjour touristique de moins de 3 mois. Un passeport valide suffit. Pour les Français, la carte d'identité nationale est acceptée.
+        </p>
+      </div>
+
+      <div class="conseil-card">
+        <span class="conseil-icone">💱</span>
+        <h3 class="conseil-titre">Monnaie</h3>
+        <p class="conseil-texte">
+          La monnaie est le Dinar Tunisien (TND). Les euros et dollars sont échangeables dans les banques et bureaux de change. Préférez retirer en dinars sur place — il est interdit d'exporter des dinars hors de Tunisie. Les cartes bancaires sont acceptées dans les grands hôtels et restaurants.
+        </p>
+      </div>
+
+      <div class="conseil-card">
+        <span class="conseil-icone">🚗</span>
+        <h3 class="conseil-titre">Se déplacer</h3>
+        <p class="conseil-texte">
+          La location de voiture est le moyen le plus flexible pour explorer le pays. Le réseau de louagés (taxis collectifs) est économique et couvre tout le pays. Le train relie les grandes villes du nord. Dans les villes, les taxis sont abordables et le métro léger de Tunis est pratique.
+        </p>
+      </div>
+
+      <div class="conseil-card">
+        <span class="conseil-icone">🌡️</span>
+        <h3 class="conseil-titre">Climat</h3>
+        <p class="conseil-texte">
+          La Tunisie a un climat méditerranéen au nord (étés chauds et secs, hivers doux) et désertique au sud. Évitez le mois de juillet-août dans les villes — les températures dépassent souvent 40°C dans le sud. Le printemps et l'automne sont les meilleures saisons pour visiter.
+        </p>
+      </div>
+
+      <div class="conseil-card">
+        <span class="conseil-icone">🕌</span>
+        <h3 class="conseil-titre">Coutumes</h3>
+        <p class="conseil-texte">
+          La Tunisie est un pays musulman modéré et accueillant. Dans les médinas et sites religieux, couvrez les épaules et les genoux. Pendant le Ramadan, évitez de manger et boire en public dans la journée. Les Tunisiens sont réputés pour leur hospitalité — acceptez toujours un thé offert.
+        </p>
+      </div>
+
+      <div class="conseil-card">
+        <span class="conseil-icone">🍽️</span>
+        <h3 class="conseil-titre">Cuisine</h3>
+        <p class="conseil-texte">
+          Ne manquez pas le lablabi au petit-déjeuner, le couscous du vendredi en famille, le brik à l'oeuf en entrée. Goûtez la harissa maison et les dattes du sud. L'eau du robinet n'est pas potable — préférez l'eau en bouteille. Le vin tunisien est de bonne qualité et accessible.
+        </p>
+      </div>
+
+      <div class="conseil-card">
+        <span class="conseil-icone">🛍️</span>
+        <h3 class="conseil-titre">Shopping</h3>
+        <p class="conseil-texte">
+          Rapportez de la harissa, de l'huile d'olive, des dattes, de la poterie de Nabeul, des tapis de Kairouan, de la chéchia de Tunis. Le marchandage est la norme dans les souks — commencez à la moitié du prix demandé. Les boutiques labellisées ONAT vendent de l'artisanat authentique à prix fixe.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  MEILLEURES SAISONS      -->
+<!-- ======================== -->
+<section class="saisons-section" id="saisons">
+  <div class="saisons-layout">
+
+    <div class="fade-in">
+      <p class="section-label">Quand partir ?</p>
+      <h2 class="section-title">La meilleure saison<br/>pour visiter la Tunisie</h2>
+    </div>
+
+    <div class="saisons-grid fade-in">
+
+      <div class="saison-item recommandee">
+        <div class="saison-badge">Idéal</div>
+        <p class="saison-nom">Printemps</p>
+        <p class="saison-mois">Mars — Mai</p>
+        <p class="saison-temp">22°C</p>
+        <p class="saison-desc">La meilleure saison. Températures douces, nature verdoyante, peu de touristes. Idéal pour les visites historiques et les randonnées.</p>
+      </div>
+
+      <div class="saison-item">
+        <p class="saison-nom">Été</p>
+        <p class="saison-mois">Juin — Août</p>
+        <p class="saison-temp">35°C</p>
+        <p class="saison-desc">Parfait pour les plages du nord. Évitez le sud — la chaleur dépasse 45°C dans le désert. Haute saison touristique, réservez à l'avance.</p>
+      </div>
+
+      <div class="saison-item recommandee">
+        <div class="saison-badge">Idéal</div>
+        <p class="saison-nom">Automne</p>
+        <p class="saison-mois">Sept — Nov</p>
+        <p class="saison-temp">24°C</p>
+        <p class="saison-desc">Excellente période. Mer encore chaude, températures agréables partout, foules réduites. La meilleure saison pour le désert du Sahara.</p>
+      </div>
+
+      <div class="saison-item">
+        <p class="saison-nom">Hiver</p>
+        <p class="saison-mois">Déc — Fév</p>
+        <p class="saison-temp">14°C</p>
+        <p class="saison-desc">Hiver doux au nord, frais dans le désert la nuit. Peu de touristes, prix bas. Idéal pour les visites culturelles de Tunis et Kairouan.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  BUDGET                  -->
+<!-- ======================== -->
+<section class="budget-section" id="budget">
+  <div class="budget-layout fade-in">
+
+    <div class="budget-texte">
+      <p class="section-label">Budget</p>
+      <h2 class="section-title">Combien prévoir<br/>pour la Tunisie ?</h2>
+      <p>
+        La Tunisie est l'une des destinations méditerranéennes les plus abordables. Le niveau de vie est nettement inférieur à celui de l'Europe, ce qui permet de voyager confortablement avec un budget modéré.
+      </p>
+      <p>
+        Les prix indiqués sont des fourchettes par personne et par jour, hors transport international. Ils varient selon la saison et la région — le nord et les zones touristiques sont légèrement plus chers que l'intérieur du pays.
+      </p>
+      <p>
+        Le dinar tunisien (TND) vaut environ 0,30€. Un repas dans un restaurant populaire coûte entre 5 et 15 TND — soit 1,5 à 4,5€ environ.
+      </p>
+    </div>
+
+    <div>
+      <div class="budget-categories">
+
+        <div class="budget-ligne">
+          <span class="budget-categorie">Hébergement</span>
+          <span class="budget-fourchette">15 — 80 €</span>
+          <span class="budget-note">hostel à hôtel 4*</span>
+        </div>
+
+        <div class="budget-ligne">
+          <span class="budget-categorie">Repas</span>
+          <span class="budget-fourchette">5 — 25 €</span>
+          <span class="budget-note">gargote à restaurant</span>
+        </div>
+
+        <div class="budget-ligne">
+          <span class="budget-categorie">Transports locaux</span>
+          <span class="budget-fourchette">3 — 20 €</span>
+          <span class="budget-note">louagés, taxis, train</span>
+        </div>
+
+        <div class="budget-ligne">
+          <span class="budget-categorie">Entrées sites</span>
+          <span class="budget-fourchette">2 — 10 €</span>
+          <span class="budget-note">musées et sites archéo</span>
+        </div>
+
+        <div class="budget-ligne">
+          <span class="budget-categorie">Excursion désert</span>
+          <span class="budget-fourchette">40 — 120 €</span>
+          <span class="budget-note">journée guidée</span>
+        </div>
+
+        <div class="budget-ligne">
+          <span class="budget-categorie">Shopping souvenirs</span>
+          <span class="budget-fourchette">10 — 50 €</span>
+          <span class="budget-note">selon achats</span>
+        </div>
+
+      </div>
+
+      <div class="budget-total">
+        <span class="budget-total-label">Budget journalier moyen</span>
+        <span class="budget-total-val">35 — 80 € / jour</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- barre drapeau -->
+<div class="flag-stripe"></div>
+
+<footer>
+  <div class="footer-logo">TU<span>N</span>ISIE</div>
+  <p>La Perle du Maghreb — Bienvenue en Tunisie</p>
+  <p style="margin-top: 20px; font-size: 11px; opacity: 0.4;">Site réalisé avec Amour · 2026</p>
+</footer>
+
+
+<script>
+  // animations scroll
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // nav interne active
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks  = document.querySelectorAll('.nav-tourisme a');
+
+  window.addEventListener('scroll', function() {
+    let current = '';
+    sections.forEach(function(section) {
+      if (window.scrollY >= section.offsetTop - 150) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(function(link) {
+      link.style.color = '';
+      link.style.borderBottomColor = '';
+      if (link.getAttribute('href') === '#' + current) {
+        link.style.color = 'var(--rouge)';
+        link.style.borderBottomColor = 'var(--rouge)';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

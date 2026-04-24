@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Villes de Tunisie — Découvrez chaque gouvernorat</title>
+  <link rel="icon" type="image/png" href="images/favicon.ico"/>
+
+  <!-- leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+
+    /* hero */
+    .villes-hero {
+      background: var(--nuit);
+      padding: 160px 60px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .villes-hero::before {
+      content: 'تونس';
+      position: absolute;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 260px;
+      color: rgba(255,255,255,0.02);
+      right: 40px;
+      bottom: -30px;
+      line-height: 1;
+    }
+
+    .villes-hero-contenu {
+      max-width: 680px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .villes-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 6vw, 68px);
+      color: var(--blanc);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .villes-hero h1 span { color: var(--rouge); font-style: italic; }
+
+    .villes-hero p {
+      font-size: 17px;
+      color: rgba(248,245,239,0.6);
+      line-height: 1.8;
+      max-width: 520px;
+    }
+
+    /* ======================== */
+    /* FILTRES PAR REGION       */
+    /* ======================== */
+    .filtres-section {
+      background: var(--blanc);
+      padding: 40px 60px;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 60px;
+      z-index: 100;
+    }
+
+    .filtres-wrap {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filtre-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-right: 10px;
+    }
+
+    .filtre-btn {
+      background: transparent;
+      border: 1px solid #ddd;
+      color: #555;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-family: 'Tajawal', sans-serif;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: all 0.2s;
+    }
+
+    .filtre-btn:hover,
+    .filtre-btn.actif {
+      background: var(--rouge);
+      border-color: var(--rouge);
+      color: white;
+    }
+
+    /* ======================== */
+    /* SECTION CARTE            */
+    /* ======================== */
+    .carte-section {
+      background: var(--blanc);
+      padding: 60px 60px 0;
+    }
+
+    .carte-section .section-label { margin-bottom: 8px; }
+    .carte-section .section-title { margin-bottom: 8px; }
+    .carte-section .section-desc { margin-bottom: 30px; }
+
+    #map-villes {
+      width: 100%;
+      height: 520px;
+      border-radius: 0;
+    }
+
+    /* ======================== */
+    /* GRILLE DES VILLES        */
+    /* ======================== */
+    .villes-section {
+      background: var(--blanc);
+      padding: 80px 60px;
+    }
+
+    .villes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    /* une fiche de ville */
+    .ville-fiche {
+      background: white;
+      border: 1px solid #eee;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .ville-fiche:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    /* la photo de la ville */
+    .ville-fiche-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      background: var(--sable); /* couleur si pas d'image */
+    }
+
+    .ville-fiche-body {
+      padding: 24px;
+    }
+
+    .ville-fiche-region {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin-bottom: 8px;
+    }
+
+    .ville-fiche-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--nuit);
+      margin-bottom: 10px;
+    }
+
+    .ville-fiche-desc {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    /* les petites stats en bas de la fiche */
+    .ville-fiche-stats {
+      display: flex;
+      gap: 0;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 16px;
+    }
+
+    .ville-stat {
+      flex: 1;
+      text-align: center;
+      border-right: 1px solid #f0f0f0;
+    }
+
+    .ville-stat:last-child { border-right: none; }
+
+    .ville-stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: var(--nuit);
+    }
+
+    .ville-stat-label {
+      font-size: 10px;
+      color: #aaa;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ville capitale = bordure rouge */
+    .ville-fiche.capitale {
+      border-top: 3px solid var(--rouge);
+    }
+
+    .ville-fiche.capitale .ville-fiche-nom::after {
+      content: ' ★';
+      color: var(--rouge);
+      font-size: 14px;
+    }
+
+    /* ville cachée par le filtre */
+    .ville-fiche.cachee {
+      display: none;
+    }
+
+    /* ======================== */
+    /* POPUP VILLE DETAIL       */
+    /* ======================== */
+    .detail-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .detail-overlay.actif {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .detail-box {
+      background: white;
+      width: 100%;
+      max-width: 720px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(24px);
+      transition: transform 0.3s;
+    }
+
+    .detail-overlay.actif .detail-box {
+      transform: translateY(0);
+    }
+
+    .detail-fermer {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 10;
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: white;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .detail-fermer:hover { background: var(--rouge); }
+
+    .detail-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .detail-contenu {
+      padding: 36px;
+    }
+
+    .detail-region {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin-bottom: 8px;
+    }
+
+    .detail-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--nuit);
+      margin-bottom: 6px;
+    }
+
+    .detail-arabe {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 22px;
+      color: rgba(0,0,0,0.25);
+      margin-bottom: 24px;
+    }
+
+    .detail-desc {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.9;
+      margin-bottom: 30px;
+    }
+
+    /* les infos en grille */
+    .detail-infos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #eee;
+      margin-bottom: 30px;
+    }
+
+    .detail-info-item {
+      background: white;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .detail-info-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 6px;
+    }
+
+    .detail-info-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--nuit);
+    }
+
+    /* section "à voir" */
+    .detail-voir-titre {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin-bottom: 14px;
+    }
+
+    .detail-voir-liste {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .detail-voir-tag {
+      background: var(--sable);
+      color: var(--nuit);
+      padding: 6px 14px;
+      font-size: 13px;
+      border-radius: 20px;
+    }
+
+    /* anecdote */
+    .detail-anecdote {
+      background: var(--nuit);
+      padding: 24px;
+      border-left: 3px solid var(--rouge);
+    }
+
+    .detail-anecdote-titre {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 10px;
+    }
+
+    .detail-anecdote p {
+      font-size: 14px;
+      color: rgba(248,245,239,0.7);
+      line-height: 1.7;
+    }
+
+    /* tooltip carte */
+    .tooltip-ville {
+      background: var(--nuit) !important;
+      color: white !important;
+      border: none !important;
+      border-radius: 4px !important;
+      font-family: 'Tajawal', sans-serif !important;
+      font-size: 13px !important;
+      padding: 4px 10px !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+    }
+
+    .tooltip-ville::before {
+      border-top-color: var(--nuit) !important;
+    }
+
+    .marqueur-ville {
+      width: 12px;
+      height: 12px;
+      background: var(--rouge);
+      border: 2px solid white;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+
+    .marqueur-ville.capitale {
+      width: 16px;
+      height: 16px;
+      border: 3px solid white;
+    }
+
+    /* responsive */
+    @media (max-width: 768px) {
+      .villes-hero { padding: 140px 20px 60px; }
+      .filtres-section { padding: 20px; }
+      .carte-section { padding: 40px 20px 0; }
+      .villes-section { padding: 60px 20px; }
+      .villes-grid { grid-template-columns: 1fr; }
+      .detail-infos { grid-template-columns: 1fr 1fr; }
+      .detail-contenu { padding: 20px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ============= -->
+<!--  NAVIGATION   -->
+<!-- ============= -->
+<nav>
+  <div class="logo">TU<span>N</span>ISIE</div>
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="histoire.html">Histoire</a></li>
+    <li><a href="villes.html"style="color: var(--or);">Villes</a></li>
+    <li><a href="culture.html">Culture</a></li>
+    <li><a href="tourisme.html">Tourisme</a></li>
+    <li><a href="nature.html">Nature</a></li>
+  </ul>
+</nav>
+
+
+<!-- ============= -->
+<!--  HERO         -->
+<!-- ============= -->
+<div class="villes-hero">
+  <div class="villes-hero-contenu fade-in visible">
+    <p class="section-label">24 Gouvernorats · Du Nord au Sahara</p>
+    <h1>Les villes<br/>de <span>Tunisie</span></h1>
+    <p>
+      De la côte méditerranéenne aux portes du Sahara, chaque ville tunisienne raconte une histoire unique. Métropoles animées, villages berbères perchés, oasis dorées ou stations balnéaires — la diversité est totale sur ce petit territoire de 163 000 km².
+    </p>
+  </div>
+</div>
+
+
+<!-- ======================== -->
+<!--  FILTRES PAR REGION      -->
+<!-- ======================== -->
+<div class="filtres-section">
+  <div class="filtres-wrap">
+    <span class="filtre-label">Filtrer :</span>
+    <button class="filtre-btn actif" onclick="filtrer('tout', this)">Toutes</button>
+    <button class="filtre-btn" onclick="filtrer('nord', this)">Nord</button>
+    <button class="filtre-btn" onclick="filtrer('centre', this)">Centre</button>
+    <button class="filtre-btn" onclick="filtrer('sud', this)">Sud</button>
+    <button class="filtre-btn" onclick="filtrer('cote', this)">Côtières</button>
+    <button class="filtre-btn" onclick="filtrer('interieur', this)">Intérieur</button>
+  </div>
+</div>
+
+
+<!-- ======================== -->
+<!--  CARTE INTERACTIVE       -->
+<!-- ======================== -->
+<section class="carte-section fade-in">
+  <p class="section-label">Géographie</p>
+  <h2 class="section-title">Carte interactive</h2>
+  <p class="section-desc">Cliquez sur un marqueur pour voir les infos de la ville.</p>
+  <div id="map-villes"></div>
+</section>
+
+
+<!-- ======================== -->
+<!--  GRILLE DES VILLES       -->
+<!-- ======================== -->
+<section class="villes-section">
+  <div class="fade-in">
+    <p class="section-label">Les 24 gouvernorats</p>
+    <h2 class="section-title">Toutes les villes</h2>
+    <p class="section-desc">Explorez chaque ville en détail — cliquez sur une fiche pour en savoir plus.</p>
+  </div>
+
+  <div class="villes-grid" id="villes-grid">
+    <!-- les fiches sont générées par JS -->
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  POPUP DETAIL VILLE      -->
+<!-- ======================== -->
+<div class="detail-overlay" id="detail-overlay" onclick="fermerDetail()">
+  <div class="detail-box" onclick="event.stopPropagation()">
+    <button class="detail-fermer" onclick="fermerDetail()">✕</button>
+    <img id="detail-img" src="" alt="" class="detail-img"/>
+    <div class="detail-contenu">
+      <p class="detail-region" id="detail-region"></p>
+      <h2 class="detail-nom" id="detail-nom"></h2>
+      <p class="detail-arabe" id="detail-arabe"></p>
+      <p class="detail-desc" id="detail-desc"></p>
+      <div class="detail-infos">
+        <div class="detail-info-item">
+          <div class="detail-info-label">Population</div>
+          <div class="detail-info-val" id="detail-pop"></div>
+        </div>
+        <div class="detail-info-item">
+          <div class="detail-info-label">Gouvernorat</div>
+          <div class="detail-info-val" id="detail-gov"></div>
+        </div>
+        <div class="detail-info-item">
+          <div class="detail-info-label">Région</div>
+          <div class="detail-info-val" id="detail-reg"></div>
+        </div>
+      </div>
+      <p class="detail-voir-titre">À ne pas manquer</p>
+      <div class="detail-voir-liste" id="detail-voir"></div>
+      <div class="detail-anecdote">
+        <p class="detail-anecdote-titre">Le saviez-vous ?</p>
+        <p id="detail-anecdote"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="flag-stripe"></div>
+
+<footer>
+  <div class="footer-logo">TU<span>N</span>ISIE</div>
+  <p>La Perle du Maghreb — Bienvenue en Tunisie</p>
+  <p style="margin-top: 20px; font-size: 11px; opacity: 0.4;">Site réalisé avec Amour · 2026</p>
+</footer>
+
+
+<script>
+
+  // ========================
+  // DONNÉES DES 24 VILLES
+  // ========================
+  const villes = [
+    {
+      nom: 'Tunis', arabe: 'تونس',
+      lat: 36.8190, lng: 10.1658,
+      region: 'Nord', zone: 'nord', cote: true,
+      desc: 'Capitale et plus grande ville de Tunisie, Tunis est le centre politique, économique et culturel du pays. Sa médina millénaire, classée au patrimoine mondial de l\'UNESCO en 1979, abrite plus de 700 monuments historiques dans un labyrinthe de ruelles blanches. La ville moderne, construite à l\'époque du protectorat français, étale ses larges avenues autour de l\'emblématique Avenue Bourguiba.',
+      pop: '2,7 millions', gov: 'Tunis', reg: 'Grand Tunis',
+      voir: ['Médina UNESCO', 'Musée du Bardo', 'Avenue Bourguiba', 'Souk des chéchias', 'Zitouna'],
+      anecdote: 'La médina de Tunis contient plus de 700 monuments historiques dont 200 mosquées, 70 palais et d\'innombrables maisons traditionnelles. Certaines de ses ruelles n\'ont pas changé depuis le Xe siècle.',
+      image: 'images/villes/tunis.jpg', capitale: true
+    },
+    {
+      nom: 'Sfax', arabe: 'صفاقس',
+      lat: 34.7406, lng: 10.7603,
+      region: 'Centre-Est', zone: 'centre', cote: true,
+      desc: 'Deuxième ville de Tunisie et première ville industrielle, Sfax est surnommée "la ville laborieuse". Sa médina, entourée de remparts du IXe siècle remarquablement bien conservés, est l\'une des plus authentiques du pays car moins touristifiée que celle de Tunis. La ville est le principal centre de production d\'huile d\'olive du pays et abrite un port commercial majeur.',
+      pop: '955 000', gov: 'Sfax', reg: 'Centre-Est',
+      voir: ['Médina et remparts', 'Musée régional', 'Îles Kerkennah', 'Grande Mosquée', 'Port commercial'],
+      anecdote: 'Les remparts de Sfax, construits au IXe siècle par les Aghlabides, sont parmi les mieux conservés du monde islamique. Ils font 2,5 km de long et sont toujours debout après plus de 1000 ans.',
+      image: 'images/villes/sfax.webp', capitale: false
+    },
+    {
+      nom: 'Sousse', arabe: 'سوسة',
+      lat: 35.8245, lng: 10.6346,
+      region: 'Centre-Est', zone: 'centre', cote: true,
+      desc: 'Surnommée "la Perle du Sahel", Sousse est l\'une des villes touristiques les plus importantes de Tunisie. Sa médina classée UNESCO, son Ribat du VIIIe siècle — une forteresse islamique unique — et sa belle corniche en font une destination de premier choix. La ville moderne offre une vie nocturne animée et de nombreuses plages.',
+      pop: '674 000', gov: 'Sousse', reg: 'Sahel',
+      voir: ['Médina UNESCO', 'Ribat', 'Musée archéologique', 'Port El Kantaoui', 'Catacombes'],
+      anecdote: 'Les catacombes de Sousse sont parmi les plus importantes du monde chrétien après celles de Rome. Elles s\'étendent sur plus de 5 km de galeries souterraines et contiennent les tombes de plus de 15 000 chrétiens des premiers siècles.',
+      image: 'images/villes/sousse.jpg', capitale: false
+    },
+    {
+      nom: 'Kairouan', arabe: 'القيروان',
+      lat: 35.6781, lng: 10.0969,
+      region: 'Centre', zone: 'centre', cote: false,
+      desc: 'Quatrième ville sainte de l\'Islam, Kairouan est une ville d\'une importance spirituelle et historique considérable. Fondée en 670 par le général arabe Oqba Ibn Nafi, elle fut pendant des siècles la capitale politique et religieuse du Maghreb. Sa Grande Mosquée, avec ses 414 colonnes provenant de sites antiques, est l\'une des plus belles du monde islamique.',
+      pop: '186 000', gov: 'Kairouan', reg: 'Centre',
+      voir: ['Grande Mosquée Okba', 'Médina UNESCO', 'Bassin des Aghlabides', 'Mosquée des trois portes', 'Zaouia de Sidi Sahbi'],
+      anecdote: 'Selon la tradition islamique, sept pèlerinages à Kairouan équivalent à un pèlerinage à La Mecque. La ville est aussi réputée pour ses makroudh — gâteaux de semoule fourrés aux dattes — considérés comme les meilleurs de Tunisie.',
+      image: 'images/villes/kairouan.webp', capitale: false
+    },
+    {
+      nom: 'Bizerte', arabe: 'بنزرت',
+      lat: 37.2746, lng: 9.8739,
+      region: 'Nord', zone: 'nord', cote: true,
+      desc: 'Ville la plus septentrionale de l\'Afrique, Bizerte est une cité portuaire d\'une beauté remarquable. Son lac intérieur, relié à la mer par un canal, crée un paysage unique. Son vieux port, encadré de maisons colorées et animé par les pêcheurs, est l\'un des plus pittoresques du pays. La ville fut le dernier bastion de la présence militaire française en Tunisie, evacuée en 1963.',
+      pop: '142 000', gov: 'Bizerte', reg: 'Nord',
+      voir: ['Vieux port', 'Fort espagnol', 'Lac de Bizerte', 'Kasbah', 'Cap Angela — point le plus au nord de l\'Afrique'],
+      anecdote: 'Le Cap Angela, à quelques kilomètres de Bizerte, est le point le plus septentrional du continent africain. C\'est aussi le point de l\'Afrique le plus proche de l\'Europe — seulement 137 km séparent Bizerte des côtes de Sicile.',
+      image: 'images/villes/bizerte.jpg', capitale: false
+    },
+    {
+      nom: 'Gabès', arabe: 'قابس',
+      lat: 33.8814, lng: 10.0982,
+      region: 'Sud-Est', zone: 'sud', cote: true,
+      desc: 'Gabès est une ville unique en son genre : c\'est la seule oasis maritime au monde, où des milliers de palmiers-dattiers poussent littéralement au bord de la mer Méditerranée. Cette anomalie géographique en fait un spectacle extraordinaire. La ville est aussi un centre industriel important, malheureusement touché par la pollution liée aux usines de phosphate.',
+      pop: '152 000', gov: 'Gabès', reg: 'Sud-Est',
+      voir: ['Oasis maritime', 'Chenini Gabès', 'Marché aux poissons', 'Zoo de Gabès', 'Jara et Menzel'],
+      anecdote: 'L\'oasis de Gabès compte plus de 300 000 palmiers-dattiers qui poussent à quelques mètres de la Méditerranée. Ce phénomène unique au monde est dû à la présence d\'une nappe phréatique d\'eau douce sous le littoral.',
+      image: 'images/villes/gabes.jpg', capitale: false
+    },
+    {
+      nom: 'Nabeul', arabe: 'نابل',
+      lat: 36.4513, lng: 10.7357,
+      region: 'Cap Bon', zone: 'nord', cote: true,
+      desc: 'Nabeul est la capitale artisanale de la Tunisie, réputée dans tout le pays pour sa céramique, ses poteries et ses parfums. Ses artisans perpétuent des traditions séculaires de décoration et de cuisson de la céramique. La ville est aussi connue pour sa production d\'oranges, de jasmin et de géranium dont les fleurs sont distillées pour parfumer les maisons et cuisines tunisiennes.',
+      pop: '92 000', gov: 'Nabeul', reg: 'Cap Bon',
+      voir: ['Marché artisanal du vendredi', 'Ateliers de poterie', 'Ruines de Neapolis', 'Plages du Cap Bon', 'Souk des parfums'],
+      anecdote: 'Nabeul produit chaque année des tonnes de fleurs de jasmin et de géranium utilisées dans la fabrication de parfums exportés dans le monde entier. La fleur d\'oranger de Nabeul est particulièrement réputée pour son eau de fleur d\'oranger utilisée en pâtisserie.',
+      image: 'images/villes/nabeul.jpg', capitale: false
+    },
+    {
+      nom: 'Hammamet', arabe: 'الحمامات',
+      lat: 36.4000, lng: 10.6167,
+      region: 'Cap Bon', zone: 'nord', cote: true,
+      desc: 'Hammamet est la station balnéaire par excellence de la Tunisie, pionnière du tourisme dans le pays depuis les années 1960. Ses plages de sable fin, ses eaux transparentes et son climat clément attirent des millions de visiteurs chaque année. La médina fortifiée et la casbah du XIVe siècle offrent un beau contraste avec les complexes hôteliers modernes de Yasmine Hammamet.',
+      pop: '87 000', gov: 'Nabeul', reg: 'Cap Bon',
+      voir: ['Médina fortifiée', 'Casbah', 'Plages', 'Yasmine Hammamet', 'Théâtre antique'],
+      anecdote: 'Hammamet fut l\'une des premières destinations balnéaires de la Méditerranée à attirer les artistes et intellectuels européens au début du XXe siècle. Le peintre Paul Klee et l\'écrivain André Gide y séjournèrent et furent éblouis par la lumière tunisienne.',
+      image: 'images/villes/hammamet.jpeg', capitale: false
+    },
+    {
+      nom: 'Monastir', arabe: 'المنستير',
+      lat: 35.7643, lng: 10.8113,
+      region: 'Centre-Est', zone: 'centre', cote: true,
+      desc: 'Ville natale de Habib Bourguiba, premier président de la République tunisienne, Monastir est une ville chargée d\'histoire et de fierté nationale. Son Ribat du VIIIe siècle, l\'un des plus anciens du monde islamique, domine la mer de ses hautes murailles. Le mausolée présidentiel, entouré de dômes dorés, est l\'un des édifices les plus majestueux de Tunisie.',
+      pop: '93 000', gov: 'Monastir', reg: 'Sahel',
+      voir: ['Ribat', 'Mausolée Bourguiba', 'Médina', 'Grande Mosquée', 'Musée du costume'],
+      anecdote: 'Le Ribat de Monastir, construit en 796, est l\'un des monuments islamiques les mieux conservés au monde. Il a servi de décor à plusieurs films célèbres, dont "La Vie de Brian" des Monty Python en 1979.',
+      image: 'images/villes/monastir.jpg', capitale: false
+    },
+    {
+      nom: 'Djerba', arabe: 'جربة',
+      lat: 33.8075, lng: 10.8451,
+      region: 'Sud-Est', zone: 'sud', cote: true,
+      desc: 'La plus grande île d\'Afrique du Nord, Djerba est un paradis de douceur et d\'authenticité. Son architecture blanche aux fenêtres bleues, ses plages de sable blanc immaculé et ses eaux turquoise en font une destination inoubliable. L\'île abrite aussi une communauté juive millénaire, gardienne de la synagogue El Ghriba — la plus ancienne d\'Afrique — qui accueille chaque année un pèlerinage international.',
+      pop: '163 000', gov: 'Médenine', reg: 'Sud-Est',
+      voir: ['Synagogue El Ghriba', 'Houmt Souk', 'Plage de Sidi Mahrez', 'Musée guellala', 'Fort Borj el Kebir'],
+      anecdote: 'La synagogue El Ghriba de Djerba, datant du VIe siècle avant J.-C., est la plus ancienne synagogue d\'Afrique et l\'une des plus vieilles du monde. Selon la légende, elle fut construite avec des pierres du Temple de Jérusalem apportées par des réfugiés après la destruction du temple en 586 av. J.-C.',
+      image: 'images/villes/djerba.jpg', capitale: false
+    },
+    {
+      nom: 'Douz', arabe: 'دوز',
+      lat: 33.4581, lng: 9.0267,
+      region: 'Sud', zone: 'sud', cote: false,
+      desc: 'Surnommée "la Porte du Sahara", Douz est le point de départ incontournable pour les excursions dans le désert tunisien. Ville oasis entourée de palmeraies verdoyantes, elle offre un contraste saisissant avec les immenses dunes de sable dorées qui s\'étendent à l\'infini vers le sud. Son marché hebdomadaire est l\'un des plus pittoresques de Tunisie.',
+      pop: '35 000', gov: 'Kébili', reg: 'Sud',
+      voir: ['Dunes de sable', 'Festival international du Sahara', 'Balade à dos de chameau', 'Palmeraie', 'Marché de Douz'],
+      anecdote: 'Le Festival international du Sahara de Douz, organisé chaque année en décembre, rassemble des milliers de visiteurs venus admirer les courses de chameaux, les fantasias, et les traditions des nomades du désert. C\'est l\'un des plus grands festivals de Tunisie.',
+      image: 'images/villes/douz.webp', capitale: false
+    },
+    {
+      nom: 'Tozeur', arabe: 'توزر',
+      lat: 33.9197, lng: 8.1335,
+      region: 'Sud-Ouest', zone: 'sud', cote: false,
+      desc: 'Tozeur est la capitale du tourisme saharien tunisien. Sa médina est unique : construite en briques de terre jaune ocre agencées en motifs géométriques berbères, elle crée une architecture qui semble sortie d\'un conte des Mille et Une Nuits. Ses palmeraies comptent plus de 400 000 palmiers-dattiers et ses oasis constituent de véritables édens au milieu du désert.',
+      pop: '45 000', gov: 'Tozeur', reg: 'Sud-Ouest',
+      voir: ['Médina en briques ocre', 'Palmeraie de 400 000 dattiers', 'Chott el Jerid', 'Nefta', 'Ong Jemel — décors Star Wars'],
+      anecdote: 'Les environs de Tozeur ont servi de décors à plusieurs films de la saga Star Wars : la planète Tatooine — dont le nom s\'inspire directement de la ville de Tataouine — a été tournée dans les déserts tunisiens. Les touristes peuvent visiter les décors originaux encore debout dans le désert.',
+      image: 'images/villes/tozeur.jpg', capitale: false
+    },
+    {
+      nom: 'Gafsa', arabe: 'قفصة',
+      lat: 34.4250, lng: 8.7842,
+      region: 'Centre-Ouest', zone: 'centre', cote: false,
+      desc: 'L\'une des plus anciennes villes habitées du monde, Gafsa a une histoire continue de plus de 10 000 ans. Des outils préhistoriques vieux de 12 000 ans y ont été découverts, donnant leur nom à la culture "capsienne" — du latin Capsa, ancien nom de Gafsa. La ville est aussi le centre de l\'industrie du phosphate tunisien, l\'une des plus importantes du monde.',
+      pop: '112 000', gov: 'Gafsa', reg: 'Centre-Ouest',
+      voir: ['Piscines romaines', 'Casbah ottomane', 'Musée archéologique', 'Jardins de Gafsa', 'Mines de phosphate'],
+      anecdote: 'Les piscines romaines de Gafsa, alimentées par des sources naturelles d\'eau chaude, sont utilisées depuis l\'Antiquité. Construites au Ier siècle après J.-C., elles sont encore en eau aujourd\'hui et les habitants de Gafsa s\'y baignent comme le faisaient les Romains il y a 2000 ans.',
+      image: 'images/villes/gafsa.webp', capitale: false
+    },
+    {
+      nom: 'Kasserine', arabe: 'القصرين',
+      lat: 35.1676, lng: 8.8365,
+      region: 'Centre-Ouest', zone: 'centre', cote: false,
+      desc: 'Ville carrefour au cœur de la Tunisie, Kasserine est entourée d\'un paysage montagneux d\'une grande beauté. Le Djebel Chambi, qui culmine à 1544 mètres, est le point le plus haut de la Tunisie et se trouve dans un parc national abritant une forêt de pins sylvestres unique en Afrique du Nord. Des sites romains remarquables ponctuent les environs.',
+      pop: '90 000', gov: 'Kasserine', reg: 'Centre-Ouest',
+      voir: ['Djebel Chambi', 'Parc national', 'Arc de triomphe de Sbeitla', 'Forêts de pins', 'Sites romains'],
+      anecdote: 'Sbeitla, à 35 km de Kasserine, abrite l\'un des forums romains les mieux conservés du monde. Ses trois temples capitolins dédiés à Jupiter, Junon et Minerve sont debout depuis le IIe siècle et constituent un spectacle archéologique extraordinaire.',
+      image: 'images/villes/kasserine.jpg', capitale: false
+    },
+    {
+      nom: 'Médenine', arabe: 'مدنين',
+      lat: 33.3547, lng: 10.5053,
+      region: 'Sud-Est', zone: 'sud', cote: false,
+      desc: 'Médenine est la capitale du sud-est tunisien et la porte d\'entrée vers l\'île de Djerba et les paysages lunaires du désert. Elle est célèbre pour ses Ksour — ces greniers à étages berbères en pisé qui servaient à stocker les récoltes et à protéger les trésors des familles nomades. La région de Médenine concentre certaines des architectures berbères les plus spectaculaires du pays.',
+      pop: '75 000', gov: 'Médenine', reg: 'Sud-Est',
+      voir: ['Ksour de Médenine', 'Ksar Ouled Soltane', 'Matmata (maisons troglodytes)', 'Chenini', 'Guermessa'],
+      anecdote: 'Les villages troglodytes de Matmata, dans les environs de Médenine, sont des habitations creusées dans la roche par les Berbères il y a plusieurs siècles. George Lucas y tourna des scènes de Star Wars en 1976 — l\'hôtel Sidi Driss de Matmata, qui servit de décor, accueille encore des fans du monde entier.',
+      image: 'images/villes/medenine.webp', capitale: false
+    },
+    {
+      nom: 'Sidi Bou Saïd', arabe: 'سيدي بو سعيد',
+      lat: 36.8689, lng: 10.2281,
+      region: 'Nord', zone: 'nord', cote: true,
+      desc: 'Perché sur une falaise à 130 mètres au-dessus du golfe de Tunis, Sidi Bou Saïd est sans doute le village le plus photographié de Tunisie et l\'un des plus beaux de Méditerranée. Ses maisons blanches aux portes et fenêtres bleu cobalt, ses ruelles pavées et ses terrasses fleuries de bougainvillées créent un tableau d\'une beauté irréelle. Le village fut classé et préservé en 1915 par le baron d\'Erlanger.',
+      pop: '7 000', gov: 'Ben Arous', reg: 'Grand Tunis',
+      voir: ['Café des Nattes', 'Café Sidi Chabaane', 'Ruelles bleues et blanches', 'Vue sur le golfe de Tunis', 'Centre culturel Ennejma Ezzahra'],
+      anecdote: 'Paul Klee, August Macke et Louis Moilliet visitèrent Sidi Bou Saïd en 1914 lors d\'un voyage en Tunisie qui transforma leur art. Klee écrivit dans son journal : "La couleur me possède. Je n\'ai pas besoin de la chercher. Elle me possède pour toujours." Cette révélation coloriste marqua le début du tournant décisif de sa carrière.',
+      image: 'images/sidi-bou-said.webp', capitale: false
+    },
+    {
+      nom: 'Carthage', arabe: 'قرطاج',
+      lat: 36.8525, lng: 10.3233,
+      region: 'Nord', zone: 'nord', cote: true,
+      desc: 'Carthage n\'est plus une ville à proprement parler mais un quartier résidentiel chic de la banlieue de Tunis, bâti sur les ruines de l\'antique cité punique. Ses vestiges — thermes, villas, temples, ports — disséminés sur les collines qui dominent la mer, sont classés au patrimoine mondial de l\'UNESCO. Le musée national de Carthage abrite des collections puniques et romaines de premier ordre.',
+      pop: '21 000', gov: 'Ben Arous', reg: 'Grand Tunis',
+      voir: ['Thermes d\'Antonin', 'Colline de Byrsa', 'Musée national', 'Ports puniques', 'Tophet — cimetière punique'],
+      anecdote: 'Les thermes d\'Antonin de Carthage, construits au IIe siècle sous l\'empereur Antonin le Pieux, étaient les plus grands bains romains d\'Afrique et les troisièmes du monde romain après ceux de Caracalla et de Dioclétien à Rome. Leur superficie dépassait les 3 hectares.',
+      image: 'images/carthage.webp', capitale: false
+    },
+    {
+      nom: 'Le Kef', arabe: 'الكاف',
+      lat: 36.1675, lng: 8.7147,
+      region: 'Nord-Ouest', zone: 'nord', cote: false,
+      desc: 'Le Kef — "le rocher" en arabe — est perché sur un piton rocheux à 780 mètres d\'altitude, dominant les plaines verdoyantes du nord-ouest tunisien. Ville de caractère, longtemps capitale régionale, elle conserve un centre historique authentique avec sa kasbah ottomane, ses mosquées, ses fontaines et ses ruelles préservées. L\'atmosphère y est plus intime et moins touristique que dans les grandes villes.',
+      pop: '47 000', gov: 'Le Kef', reg: 'Nord-Ouest',
+      voir: ['Kasbah ottomane', 'Basilique byzantine', 'Musée régional des arts et traditions', 'Dar El Kous', 'Fontaine Ras El Aïn'],
+      anecdote: 'Le Kef abrite une basilique byzantine du Ve siècle qui fut successivement église chrétienne, mosquée islamique, puis à nouveau utilisée à des fins religieuses. Ce palimpseste architectural illustre parfaitement les couches successives de civilisations qui ont traversé la Tunisie.',
+      image: 'images/villes/lekef.jpg', capitale: false
+    },
+    {
+      nom: 'Mahdia', arabe: 'المهدية',
+      lat: 35.5047, lng: 11.0622,
+      region: 'Centre-Est', zone: 'centre', cote: true,
+      desc: 'Fondée en 916 par le calife fatimide Al-Mahdi Billah, Mahdia fut la première capitale de la dynastie fatimide avant que celle-ci ne conquière l\'Égypte et ne fonde Le Caire. Construite sur une presqu\'île naturelle facile à défendre, elle conserve cette géographie particulière qui lui confère un charme unique. Sa médina, ses plages préservées et son port de pêche animé en font une destination authentique et moins fréquentée.',
+      pop: '55 000', gov: 'Mahdia', reg: 'Centre-Est',
+      voir: ['Skifa el Kahla — grande porte fatimide', 'Grande Mosquée', 'Port de pêche', 'Plages préservées', 'Borj el Kebir'],
+      anecdote: 'En 1907, des plongeurs découvrirent au large de Mahdia une épave romaine du Ier siècle avant J.-C. transportant une cargaison extraordinaire : des statues de bronze et de marbre, des colonnes, des candélabres — tout le mobilier d\'une maison aristocratique grecque. Cette épave de Mahdia est l\'une des plus importantes découvertes archéologiques sous-marines jamais réalisées.',
+      image: 'images/villes/mahdia.jpg', capitale: false
+    },
+    {
+      nom: 'Zaghouan', arabe: 'زغوان',
+      lat: 36.4029, lng: 10.1427,
+      region: 'Nord', zone: 'nord', cote: false,
+      desc: 'Nichée au pied du Djebel Zaghouan, qui culmine à 1295 mètres, la ville de Zaghouan est connue depuis l\'Antiquité pour ses sources d\'eau pure. Les Romains y construisirent le magnifique Temple des Eaux d\'où partait l\'aqueduc de Carthage — long de 132 kilomètres, l\'un des plus longs du monde antique. Aujourd\'hui, la ville produit la célèbre eau minérale Safia.',
+      pop: '17 000', gov: 'Zaghouan', reg: 'Nord',
+      voir: ['Temple des Eaux romain', 'Aqueduc romain', 'Djebel Zaghouan', 'Nymphée', 'Randonnées en montagne'],
+      anecdote: 'L\'aqueduc romain de Zaghouan à Carthage, construit au IIe siècle sous Hadrien, mesurait 132 km de long et transportait 32 millions de litres d\'eau par jour. C\'était l\'un des plus longs aqueducs du monde romain, et certaines de ses arches sont encore debout aujourd\'hui.',
+      image: 'images/villes/zaghouan.jpg', capitale: false
+    },
+    {
+      nom: 'Jendouba', arabe: 'جندوبة',
+      lat: 36.5012, lng: 8.7802,
+      region: 'Nord-Ouest', zone: 'nord', cote: false,
+      desc: 'Ville du nord-ouest tunisien, Jendouba est entourée de paysages de collines verdoyantes et de forêts de chênes-lièges. Elle est le point de départ idéal pour visiter les sites archéologiques romains parmi les mieux conservés au monde, dont Bulla Regia avec ses villas à mosaïques souterraines. Le parc national de Feija, dernière forêt de chênes-lièges de Tunisie, s\'étend sur ses hauteurs.',
+      pop: '45 000', gov: 'Jendouba', reg: 'Nord-Ouest',
+      voir: ['Bulla Regia — villas romaines souterraines', 'Chemtou — marbre antique', 'Parc national de Feija', 'Aïn Draham', 'Lac Ichkeul UNESCO'],
+      anecdote: 'Bulla Regia est le seul site romain au monde où les habitants construisaient leurs villas à moitié enterrées pour échapper à la chaleur estivale. Ces maisons souterraines, décorées de mosaïques extraordinaires, sont parmi les mieux conservées de toute l\'Afrique romaine.',
+      image: 'images/villes/jendouba.jpg', capitale: false
+    },
+    {
+      nom: 'Siliana', arabe: 'سليانة',
+      lat: 36.0847, lng: 9.3708,
+      region: 'Nord-Ouest', zone: 'nord', cote: false,
+      desc: 'Gouvernorat agricole au cœur de la Tunisie du nord, Siliana est une région de montagnes douces, de forêts et de plaines fertiles. À quelques kilomètres se trouve Dougga — ancienne Thugga —, l\'un des sites archéologiques romains les mieux préservés d\'Afrique, classé au patrimoine mondial de l\'UNESCO. Ses temples, théâtres et forums sont d\'une conservation exceptionnelle.',
+      pop: '30 000', gov: 'Siliana', reg: 'Nord-Ouest',
+      voir: ['Dougga UNESCO', 'Théâtre romain de Dougga', 'Forêts et montagne', 'Mausolée de Ateban', 'Temple de Saturne'],
+      anecdote: 'Le théâtre romain de Dougga, construit au IIe siècle, peut accueillir 3500 spectateurs et est l\'un des mieux conservés au monde. Il est encore utilisé aujourd\'hui pour le festival annuel des arts de la scène qui s\'y déroule chaque été depuis les années 1990.',
+      image: 'images/villes/siliana.jpg', capitale: false
+    },
+    {
+      nom: 'Béja', arabe: 'باجة',
+      lat: 36.7256, lng: 9.1817,
+      region: 'Nord-Ouest', zone: 'nord', cote: false,
+      desc: 'Surnommée "le grenier à blé de la Tunisie", Béja est une ville agricole prospère entourée de plaines fertiles où les céréales ont été cultivées depuis l\'Antiquité. La région fut l\'une des plus productives de l\'Empire romain, fournissant des quantités considérables de blé à Rome. La ville garde une atmosphère authentique et détendue, loin de l\'agitation touristique.',
+      pop: '58 000', gov: 'Béja', reg: 'Nord-Ouest',
+      voir: ['Médina historique', 'Casbah', 'Plaines verdoyantes', 'Musée régional', 'Vallée de la Medjerda'],
+      anecdote: 'La vallée de la Medjerda, qui traverse la région de Béja, est la seule rivière permanente de Tunisie — les autres cours d\'eau sont des oueds qui s\'assèchent en été. Elle fut l\'épine dorsale de l\'agriculture romaine en Afrique du Nord et reste aujourd\'hui la principale zone agricole du pays.',
+      image: 'images/villes/beja.jpg', capitale: false
+    },
+    {
+      nom: 'Tataouine', arabe: 'تطاوين',
+      lat: 32.9211, lng: 10.4511,
+      region: 'Extrême-Sud', zone: 'sud', cote: false,
+      desc: 'Capitale de l\'extrême-sud tunisien, Tataouine est la porte d\'entrée d\'un des paysages les plus spectaculaires et sauvages de Tunisie. Ses ksour perchés — greniers fortifiés berbères construits sur des pitons rocheux —, ses villages troglodytes et ses paysages lunaires de pierres et de sable en font une destination de trekking et d\'exploration unique. Son nom a inspiré George Lucas pour la planète Tatooine de Star Wars.',
+      pop: '60 000', gov: 'Tataouine', reg: 'Extrême-Sud',
+      voir: ['Ksar Ouled Soltane', 'Chenini perché', 'Douiret abandonné', 'Guermessa', 'Désert et ksour en étoile'],
+      anecdote: 'George Lucas visita la région de Tataouine en 1976 lors du repérage de Star Wars et fut tellement frappé par les paysages et l\'architecture berbère qu\'il nomma la planète désertique du film "Tatooine" — en référence directe à la ville tunisienne. Les décors originaux construits dans le désert tunisien sont encore partiellement visibles aujourd\'hui.',
+      image: 'images/villes/Tataouine.webp', capitale: false
+    }
+  ];
+
+
+  // ========================
+  // GÉNÉRATION DES FICHES
+  // ========================
+  function genererFiches() {
+    const grid = document.getElementById('villes-grid');
+    grid.innerHTML = '';
+
+    villes.forEach(function(ville) {
+      const fiche = document.createElement('div');
+      fiche.className = 'ville-fiche fade-in' + (ville.capitale ? ' capitale' : '');
+      fiche.dataset.zone = ville.zone;
+      fiche.dataset.cote = ville.cote;
+      fiche.onclick = function() { ouvrirDetail(ville); };
+
+      fiche.innerHTML = `
+        <img class="ville-fiche-img" src="${ville.image}" alt="${ville.nom}" onerror="this.style.background='var(--sable)'"/>
+        <div class="ville-fiche-body">
+          <p class="ville-fiche-region">${ville.region}</p>
+          <h3 class="ville-fiche-nom">${ville.nom}</h3>
+          <p class="ville-fiche-desc">${ville.desc.substring(0, 120)}...</p>
+          <div class="ville-fiche-stats">
+            <div class="ville-stat">
+              <div class="ville-stat-val">${ville.pop}</div>
+              <div class="ville-stat-label">Habitants</div>
+            </div>
+            <div class="ville-stat">
+              <div class="ville-stat-val">${ville.voir.length}</div>
+              <div class="ville-stat-label">Sites</div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      grid.appendChild(fiche);
+    });
+
+    // on réactive les animations
+    document.querySelectorAll('.ville-fiche.fade-in').forEach(function(el) {
+      observer.observe(el);
+    });
+  }
+
+
+  // ========================
+  // FILTRE PAR REGION
+  // ========================
+  function filtrer(zone, btn) {
+    // mettre à jour le bouton actif
+    document.querySelectorAll('.filtre-btn').forEach(function(b) {
+      b.classList.remove('actif');
+    });
+    btn.classList.add('actif');
+
+    // afficher / cacher les fiches
+    document.querySelectorAll('.ville-fiche').forEach(function(fiche) {
+      let afficher = false;
+
+      if (zone === 'tout') {
+        afficher = true;
+      } else if (zone === 'cote') {
+        afficher = fiche.dataset.cote === 'true';
+      } else if (zone === 'interieur') {
+        afficher = fiche.dataset.cote === 'false';
+      } else {
+        afficher = fiche.dataset.zone === zone;
+      }
+
+      fiche.classList.toggle('cachee', !afficher);
+    });
+  }
+
+
+  // ========================
+  // POPUP DÉTAIL
+  // ========================
+  function ouvrirDetail(ville) {
+    document.getElementById('detail-img').src       = ville.image;
+    document.getElementById('detail-region').textContent  = ville.region;
+    document.getElementById('detail-nom').textContent     = ville.nom;
+    document.getElementById('detail-arabe').textContent   = ville.arabe;
+    document.getElementById('detail-desc').textContent    = ville.desc;
+    document.getElementById('detail-pop').textContent     = ville.pop;
+    document.getElementById('detail-gov').textContent     = ville.gov;
+    document.getElementById('detail-reg').textContent     = ville.reg;
+    document.getElementById('detail-anecdote').textContent = ville.anecdote;
+
+    // les tags "à voir"
+    const voirEl = document.getElementById('detail-voir');
+    voirEl.innerHTML = '';
+    ville.voir.forEach(function(item) {
+      const tag = document.createElement('span');
+      tag.className = 'detail-voir-tag';
+      tag.textContent = item;
+      voirEl.appendChild(tag);
+    });
+
+    document.getElementById('detail-overlay').classList.add('actif');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function fermerDetail() {
+    document.getElementById('detail-overlay').classList.remove('actif');
+    document.body.style.overflow = '';
+  }
+
+
+  // ========================
+  // CARTE LEAFLET
+  // ========================
+  const map = L.map('map-villes', {
+    center: [33.8, 9.5],
+    zoom: 6,
+    zoomControl: true,
+    scrollWheelZoom: false
+  });
+
+  // OpenStreetMap — gratuit, sans clé API, marche partout
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors',
+    maxZoom: 18
+  }).addTo(map);
+
+  const marqueurRouge = L.divIcon({
+    className: '',
+    html: '<div class="marqueur-ville"></div>',
+    iconSize: [14, 14], iconAnchor: [7, 7]
+  });
+
+  const marqueurCapitale = L.divIcon({
+    className: '',
+    html: '<div class="marqueur-ville capitale"></div>',
+    iconSize: [18, 18], iconAnchor: [9, 9]
+  });
+
+  villes.forEach(function(ville) {
+    const icone = ville.capitale ? marqueurCapitale : marqueurRouge;
+    const marqueur = L.marker([ville.lat, ville.lng], { icon: icone }).addTo(map);
+    marqueur.on('click', function() { ouvrirDetail(ville); });
+    marqueur.bindTooltip(ville.nom, {
+      permanent: false, direction: 'top', className: 'tooltip-ville'
+    });
+  });
+
+
+  // ========================
+  // ANIMATIONS SCROLL
+  // ========================
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // fermer avec echap
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') fermerDetail();
+  });
+
+  // générer les fiches au chargement
+  genererFiches();
+
+</script>
+</body>
+</html>

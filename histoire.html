@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Histoire de la Tunisie — De Carthage à Aujourd'hui</title>
+  <link rel="icon" type="image/png" href="images/favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+
+    /* ======================== */
+    /* HERO                     */
+    /* ======================== */
+    .histoire-hero {
+      background: var(--nuit);
+      padding: 160px 60px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .histoire-hero::before {
+      content: '3000';
+      position: absolute;
+      font-family: 'Playfair Display', serif;
+      font-size: 300px;
+      color: rgba(255,255,255,0.02);
+      right: -20px;
+      bottom: -40px;
+      line-height: 1;
+    }
+
+    .histoire-hero-contenu {
+      max-width: 700px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .histoire-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 6vw, 72px);
+      color: var(--blanc);
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .histoire-hero h1 span {
+      color: var(--rouge);
+      font-style: italic;
+    }
+
+    .histoire-hero p {
+      font-size: 18px;
+      color: rgba(248,245,239,0.6);
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    /* ======================== */
+    /* FRISE CHRONOLOGIQUE      */
+    /* ======================== */
+    .frise-section {
+      background: var(--blanc);
+      padding: 80px 60px;
+      overflow-x: auto;
+    }
+
+    .frise-titre {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin-bottom: 50px;
+    }
+
+    .frise {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      min-width: 900px;
+      position: relative;
+    }
+
+    .frise::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--rouge), var(--or), var(--turquoise));
+    }
+
+    .frise-item {
+      flex: 1;
+      padding-top: 50px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .frise-item::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--rouge);
+      border: 3px solid var(--blanc);
+      box-shadow: 0 0 0 2px var(--rouge);
+      transition: transform 0.3s;
+      z-index: 2;
+    }
+
+    .frise-item:hover::before {
+      transform: translateX(-50%) scale(1.4);
+    }
+
+    .frise-item-date {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      color: var(--rouge);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .frise-item-nom {
+      font-size: 12px;
+      text-align: center;
+      color: var(--nuit);
+      letter-spacing: 0.5px;
+      line-height: 1.4;
+      padding: 0 8px;
+    }
+
+    /* ======================== */
+    /* EPOQUES                  */
+    /* ======================== */
+    .epoque {
+      padding: 100px 60px;
+    }
+
+    .epoque-clair  { background: var(--blanc); }
+    .epoque-sable  { background: var(--sable); }
+    .epoque-sombre { background: var(--nuit);  }
+
+    .epoque-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 80px;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .epoque-layout.inverse {
+      grid-template-columns: 380px 1fr;
+    }
+
+    .epoque-layout.inverse .epoque-lateral {
+      order: -1;
+    }
+
+    .epoque-header { margin-bottom: 40px; }
+
+    .epoque-numero {
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      line-height: 1;
+      color: rgba(193,18,31,0.08);
+      margin-bottom: -20px;
+    }
+
+    .epoque-sombre .epoque-numero {
+      color: rgba(212,160,23,0.1);
+    }
+
+    .epoque-periode {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin-bottom: 10px;
+    }
+
+    .epoque-titre {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      color: var(--nuit);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .epoque-sombre .epoque-titre { color: var(--blanc); }
+
+    .epoque-sous-titre {
+      font-size: 15px;
+      color: var(--rouge);
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+
+    .epoque-texte p {
+      font-size: 16px;
+      line-height: 1.9;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .epoque-sombre .epoque-texte p { color: rgba(248,245,239,0.65); }
+    .epoque-sable  .epoque-texte p { color: #555; }
+
+    /* ======================== */
+    /* ENCADRÉ PERSONNAGE CLÉ   */
+    /* ======================== */
+    .perso-cle {
+      background: rgba(193,18,31,0.05);
+      border-left: 3px solid var(--rouge);
+      padding: 24px;
+      margin-top: 36px;
+      margin-bottom: 36px;
+    }
+
+    .epoque-sombre .perso-cle {
+      background: rgba(255,255,255,0.04);
+    }
+
+    .epoque-sable .perso-cle {
+      background: rgba(193,18,31,0.04);
+    }
+
+    .perso-cle-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .perso-cle-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      border: 2px solid var(--rouge);
+      background: var(--sable);
+      flex-shrink: 0;
+    }
+
+    .perso-cle-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin-bottom: 4px;
+    }
+
+    .perso-cle-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--nuit);
+      margin-bottom: 2px;
+    }
+
+    .epoque-sombre .perso-cle-nom { color: var(--blanc); }
+
+    .perso-cle-dates {
+      font-size: 12px;
+      color: #aaa;
+      letter-spacing: 1px;
+    }
+
+    .perso-cle-desc {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .epoque-sombre .perso-cle-desc {
+      color: rgba(248,245,239,0.55);
+    }
+
+    /* ======================== */
+    /* DATES CLES               */
+    /* ======================== */
+    .dates-cles {
+      margin-top: 36px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding-top: 24px;
+    }
+
+    .epoque-sombre .dates-cles {
+      border-top-color: rgba(255,255,255,0.08);
+    }
+
+    .dates-cles-titre {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin-bottom: 16px;
+    }
+
+    .date-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 12px;
+      align-items: baseline;
+    }
+
+    .date-annee {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: var(--or);
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+
+    .date-event {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .epoque-sombre .date-event {
+      color: rgba(248,245,239,0.5);
+    }
+
+    /* ======================== */
+    /* LATERAL                  */
+    /* ======================== */
+    .epoque-lateral {
+      position: sticky;
+      top: 100px;
+    }
+
+    .lateral-carte {
+      background: var(--nuit);
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .epoque-sombre .lateral-carte {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .lateral-carte-titre {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 16px;
+    }
+
+    .lateral-carte p {
+      font-size: 13px;
+      color: rgba(248,245,239,0.6);
+      line-height: 1.7;
+    }
+
+    .lateral-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .lateral-citation {
+      border-left: 3px solid var(--rouge);
+      padding-left: 20px;
+      margin-top: 20px;
+    }
+
+    .lateral-citation p {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--or) !important;
+      line-height: 1.6;
+      margin-bottom: 8px !important;
+    }
+
+    .lateral-citation span {
+      font-size: 11px;
+      color: rgba(248,245,239,0.4) !important;
+      letter-spacing: 1px;
+    }
+
+    .lateral-chiffres {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.1);
+      margin-top: 20px;
+    }
+
+    .chiffre-item {
+      background: var(--nuit);
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .epoque-sombre .chiffre-item  { background: rgba(255,255,255,0.03); }
+    .epoque-clair  .lateral-chiffres { background: rgba(0,0,0,0.08); }
+    .epoque-clair  .chiffre-item  { background: var(--blanc); }
+    .epoque-sable  .lateral-chiffres { background: rgba(0,0,0,0.08); }
+    .epoque-sable  .chiffre-item  { background: var(--sable); }
+
+    .chiffre-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--rouge);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .chiffre-label {
+      font-size: 11px;
+      color: #888;
+      letter-spacing: 1px;
+    }
+
+    .epoque-sombre .chiffre-label { color: rgba(248,245,239,0.4); }
+
+    .epoque-sep {
+      height: 4px;
+      background: linear-gradient(to right, var(--rouge) 0%, var(--or) 50%, var(--turquoise) 100%);
+    }
+
+    /* ======================== */
+    /* SECTION PERSONNAGES      */
+    /* ======================== */
+    .personnages-section {
+      background: var(--nuit);
+      padding: 100px 60px;
+      overflow: hidden;
+    }
+
+    .personnages-section .section-title {
+      color: var(--blanc);
+    }
+
+    .personnages-section .section-desc {
+      color: rgba(248,245,239,0.6);
+      margin-bottom: 50px;
+    }
+
+    /* carousel */
+    .carousel-wrap {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 50px;
+    }
+
+    .carousel-fenetre {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .carousel-piste {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .perso-card {
+      min-width: 100%;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .perso-img-wrap {
+      position: relative;
+      overflow: hidden;
+      min-height: 360px;
+    }
+
+    .perso-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      filter: grayscale(30%);
+      transition: filter 0.4s;
+    }
+
+    .perso-card:hover .perso-img-wrap img {
+      filter: grayscale(0%);
+    }
+
+    .perso-epoque {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(193,18,31,0.9);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .perso-info {
+      padding: 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .perso-domaine {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rouge);
+    }
+
+    .perso-nom {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      color: var(--blanc);
+      line-height: 1.1;
+    }
+
+    .perso-desc {
+      font-size: 15px;
+      color: rgba(248,245,239,0.6);
+      line-height: 1.9;
+    }
+
+    .perso-citation {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-style: italic;
+      color: var(--or);
+      border-left: 2px solid var(--rouge);
+      padding-left: 16px;
+      line-height: 1.7;
+    }
+
+    /* boutons */
+    .carousel-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .carousel-btn:hover {
+      background: var(--rouge);
+      border-color: var(--rouge);
+    }
+
+    /* points de navigation */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .dot.actif {
+      background: var(--rouge);
+      transform: scale(1.3);
+    }
+
+    /* ======================== */
+    /* RESPONSIVE               */
+    /* ======================== */
+    @media (max-width: 900px) {
+      .epoque-layout,
+      .epoque-layout.inverse  { grid-template-columns: 1fr; }
+      .epoque-layout.inverse .epoque-lateral { order: 0; }
+      .epoque-lateral         { position: static; }
+      .histoire-hero          { padding: 140px 20px 60px; }
+      .epoque                 { padding: 60px 20px; }
+      .frise-section          { padding: 60px 20px; }
+      .personnages-section    { padding: 60px 20px; }
+      .perso-card             { grid-template-columns: 1fr; }
+      .perso-img-wrap         { min-height: 240px; }
+      .perso-info             { padding: 24px; }
+      .carousel-btn           { width: 36px; height: 36px; font-size: 14px; }
+      .perso-cle-header       { flex-direction: column; align-items: flex-start; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ============= -->
+<!--  NAVIGATION   -->
+<!-- ============= -->
+<nav>
+  <div class="logo">TU<span>N</span>ISIE</div>
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="histoire.html" style="color: var(--or);">Histoire</a></li>
+    <li><a href="villes.html">Villes</a></li>
+    <li><a href="culture.html">Culture</a></li>
+    <li><a href="tourisme.html">Tourisme</a></li>
+    <li><a href="nature.html">Nature</a></li>
+  </ul>
+</nav>
+
+<!-- ============= -->
+<!--  HERO         -->
+<!-- ============= -->
+<div class="histoire-hero">
+  <div class="histoire-hero-contenu fade-in visible">
+    <p class="section-label">Histoire · Civilisation · Mémoire</p>
+    <h1>La Tunisie à travers<br/><span>les âges</span></h1>
+    <p>
+      Pendant plus de trois millénaires, la Tunisie a été le carrefour de toutes les grandes civilisations méditerranéennes. Carthaginoise, romaine, vandale, byzantine, arabe, ottomane et française — chaque époque a laissé une empreinte indélébile sur ce territoire et sur son peuple.
+    </p>
+  </div>
+</div>
+
+
+<!-- ======================== -->
+<!--  FRISE CHRONOLOGIQUE     -->
+<!-- ======================== -->
+<div class="frise-section fade-in">
+  <p class="frise-titre">Frise chronologique</p>
+  <div class="frise">
+    <div class="frise-item">
+      <div class="frise-item-date">814 av. J.-C.</div>
+      <div class="frise-item-nom">Fondation de Carthage</div>
+    </div>
+    <div class="frise-item">
+      <div class="frise-item-date">264 av. J.-C.</div>
+      <div class="frise-item-nom">Guerres puniques</div>
+    </div>
+    <div class="frise-item">
+      <div class="frise-item-date">146 av. J.-C.</div>
+      <div class="frise-item-nom">Destruction de Carthage</div>
+    </div>
+    <div class="frise-item">
+      <div class="frise-item-date">27 av. J.-C.</div>
+      <div class="frise-item-nom">Province romaine d'Africa</div>
+    </div>
+    <div class="frise-item">
+      <div class="frise-item-date">670 ap. J.-C.</div>
+      <div class="frise-item-nom">Conquête arabe · Kairouan</div>
+    </div>
+    <div class="frise-item">
+      <div class="frise-item-date">1574</div>
+      <div class="frise-item-nom">Empire ottoman</div>
+    </div>
+    <div class="frise-item">
+      <div class="frise-item-date">1881</div>
+      <div class="frise-item-nom">Protectorat français</div>
+    </div>
+    <div class="frise-item">
+      <div class="frise-item-date">1956</div>
+      <div class="frise-item-nom">Indépendance</div>
+    </div>
+    <div class="frise-item">
+      <div class="frise-item-date">2011</div>
+      <div class="frise-item-nom">Révolution · Printemps arabe</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ======================== -->
+<!--  01 — CARTHAGE           -->
+<!-- ======================== -->
+<section class="epoque epoque-clair" id="carthage">
+  <div class="epoque-layout fade-in">
+
+    <div class="epoque-contenu">
+      <div class="epoque-header">
+        <div class="epoque-numero">01</div>
+        <p class="epoque-periode">814 av. J.-C. — 146 av. J.-C.</p>
+        <h2 class="epoque-titre">Carthage — L'empire de la Méditerranée</h2>
+        <p class="epoque-sous-titre">La cité punique qui défia Rome</p>
+      </div>
+
+      <div class="epoque-texte">
+        <p>
+          La Tunisie commence véritablement son histoire avec la fondation de Carthage, vers 814 avant J.-C., par la reine phénicienne Didon — ou Elissa — venue de Tyr, au Liban actuel. Selon la légende, elle négocia avec les populations locales un territoire "aussi grand que ce que peut couvrir une peau de bœuf", puis découpa la peau en fines lanières pour délimiter la colline de Byrsa, sur laquelle elle fit construire la ville.
+        </p>
+        <p>
+          En quelques siècles, Carthage devint l'une des cités les plus puissantes et les plus riches du monde antique. Maîtresse des routes commerciales maritimes en Méditerranée occidentale, elle contrôlait une grande partie du commerce de l'or, du cuivre, de l'étain et des textiles. À son apogée, la ville comptait plus de 700 000 habitants — une métropole gigantesque pour l'époque — avec ses ports monumentaux, ses temples, ses bibliothèques et ses quartiers résidentiels.
+        </p>
+        <p>
+          La civilisation punique, héritière de la culture phénicienne, était réputée pour ses marins intrépides, ses marchands habiles et son art délicat. Les Carthaginois inventèrent des techniques agricoles avancées et écrivirent des traités d'agronomie traduits plus tard en latin. Leur alphabet, dérivé du phénicien, est l'ancêtre direct de notre alphabet occidental.
+        </p>
+        <p>
+          La rivalité avec Rome aboutit aux trois Guerres Puniques, dont la plus célèbre est marquée par le général Hannibal Barca qui traversa les Alpes avec ses éléphants de guerre pour attaquer l'Italie par le nord — un exploit militaire resté légendaire. Finalement, en 146 avant J.-C., Rome rasa Carthage, massacra sa population et répandit du sel sur ses ruines pour que rien n'y pousse jamais.
+        </p>
+      </div>
+
+      <!-- personnage clé de l'époque carthage -->
+      <div class="perso-cle">
+        <div class="perso-cle-header">
+          <img src="images/personnages/hannibal.jpg" alt="Hannibal" class="perso-cle-img"/>
+          <div>
+            <p class="perso-cle-label">Personnage clé</p>
+            <h4 class="perso-cle-nom">Hannibal Barca</h4>
+            <p class="perso-cle-dates">247 — 183 av. J.-C.</p>
+          </div>
+        </div>
+        <p class="perso-cle-desc">
+          Général carthaginois considéré comme l'un des plus grands stratèges militaires de l'histoire, Hannibal traversa les Alpes avec 37 éléphants de guerre pour attaquer Rome par le nord. Sa victoire à Cannes en 216 av. J.-C. — où il encercla et anéantit une armée romaine de 80 000 hommes avec seulement 40 000 soldats — reste l'une des manœuvres tactiques les plus étudiées dans les académies militaires du monde entier.
+        </p>
+      </div>
+
+      <div class="dates-cles">
+        <p class="dates-cles-titre">Dates clés</p>
+        <div class="date-item">
+          <span class="date-annee">814 av. J.-C.</span>
+          <span class="date-event">Fondation de Carthage par la reine Didon venue de Phénicie</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">264 av. J.-C.</span>
+          <span class="date-event">Début de la première Guerre Punique contre Rome</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">218 av. J.-C.</span>
+          <span class="date-event">Hannibal traverse les Alpes avec 37 éléphants</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">146 av. J.-C.</span>
+          <span class="date-event">Destruction totale de Carthage par Rome — fin de l'empire punique</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="epoque-lateral">
+      <img src="images/histoire/carthage.jpg" alt="Ruines de Carthage" class="lateral-img"/>
+      <div class="lateral-carte">
+        <p class="lateral-carte-titre">Le saviez-vous ?</p>
+        <p>
+          Carthage était dotée de deux ports militaires pouvant accueillir jusqu'à 220 navires de guerre. Le port circulaire intérieur, réservé à la flotte militaire, était une prouesse d'ingénierie unique dans le monde antique.
+        </p>
+        <div class="lateral-citation">
+          <p>"Carthage doit être détruite."</p>
+          <span>Caton l'Ancien, sénateur romain — répété à chaque discours</span>
+        </div>
+      </div>
+      <div class="lateral-chiffres">
+        <div class="chiffre-item">
+          <div class="chiffre-val">700K</div>
+          <div class="chiffre-label">habitants au IIIe s.</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">700</div>
+          <div class="chiffre-label">ans de civilisation</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">3</div>
+          <div class="chiffre-label">guerres puniques</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">37</div>
+          <div class="chiffre-label">éléphants d'Hannibal</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="epoque-sep"></div>
+
+
+<!-- ======================== -->
+<!--  02 — ROME               -->
+<!-- ======================== -->
+<section class="epoque epoque-sable" id="rome">
+  <div class="epoque-layout inverse fade-in">
+
+    <div class="epoque-contenu">
+      <div class="epoque-header">
+        <div class="epoque-numero">02</div>
+        <p class="epoque-periode">146 av. J.-C. — 439 ap. J.-C.</p>
+        <h2 class="epoque-titre">L'Africa Romana — Grenier de l'Empire</h2>
+        <p class="epoque-sous-titre">Quand la Tunisie nourrissait Rome</p>
+      </div>
+
+      <div class="epoque-texte">
+        <p>
+          Après la destruction de Carthage, Rome rebâtit une nouvelle ville sur ses ruines et fit de la région la province d'Africa Proconsularis. Paradoxalement, sous domination romaine, la Tunisie connut l'une des périodes les plus prospères de son histoire. Les Romains développèrent massivement l'agriculture, construisant des milliers de kilomètres d'aqueducs pour irriguer les plaines fertiles.
+        </p>
+        <p>
+          La province d'Africa devint rapidement le grenier à blé de tout l'Empire romain. On estime qu'elle fournissait à elle seule un tiers des céréales consommées à Rome. Les oliveraies s'étendaient à perte de vue et l'huile d'olive tunisienne était exportée dans tout le bassin méditerranéen. Cette prospérité agricole permit l'émergence de grandes villes romaines qui rivalisaient en splendeur avec celles d'Italie.
+        </p>
+        <p>
+          Dougga, Thuburbo Majus, Bulla Regia, Sbeitla — ces villes romaines de Tunisie sont parmi les mieux conservées du monde. Les thermes d'Antonin à Carthage étaient les troisièmes plus grands bains romains après ceux de Rome et de Trajan. L'amphithéâtre d'El Jem, avec ses 35 000 places, est le troisième plus grand du monde et l'un des mieux préservés.
+        </p>
+        <p>
+          C'est aussi durant cette période que le christianisme s'implanta profondément en Afrique du Nord. Carthage devint un centre théologique majeur, donnant naissance à des figures comme Tertullien, Cyprien de Carthage et le célèbre Augustin d'Hippone — dont l'œuvre "La Cité de Dieu" marqua durablement la pensée occidentale.
+        </p>
+      </div>
+
+      <div class="dates-cles">
+        <p class="dates-cles-titre">Dates clés</p>
+        <div class="date-item">
+          <span class="date-annee">46 av. J.-C.</span>
+          <span class="date-event">Jules César ordonne la reconstruction de Carthage comme ville romaine</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">100 ap. J.-C.</span>
+          <span class="date-event">Apogée de la province — Carthage est la 2e ville de l'Empire occidental</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">238 ap. J.-C.</span>
+          <span class="date-event">Gordien Ier proclamé empereur romain à Thysdrus (El Jem)</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">439 ap. J.-C.</span>
+          <span class="date-event">Prise de Carthage par les Vandales — fin de la domination romaine</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="epoque-lateral">
+      <img src="images/histoire/rome.jpg" alt="Amphithéâtre d'El Jem" class="lateral-img"/>
+      <div class="lateral-carte">
+        <p class="lateral-carte-titre">L'amphithéâtre d'El Jem</p>
+        <p>
+          Construit au IIIe siècle, l'amphithéâtre d'El Jem peut accueillir 35 000 spectateurs. Classé au patrimoine mondial de l'UNESCO, il est aujourd'hui l'un des monuments les mieux conservés de l'Antiquité romaine — plus intact que le Colisée de Rome.
+        </p>
+      </div>
+      <div class="lateral-chiffres">
+        <div class="chiffre-item">
+          <div class="chiffre-val">1/3</div>
+          <div class="chiffre-label">du blé de Rome</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">35K</div>
+          <div class="chiffre-label">places à El Jem</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">132km</div>
+          <div class="chiffre-label">aqueduc de Zaghouan</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">600</div>
+          <div class="chiffre-label">ans de présence romaine</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="epoque-sep"></div>
+
+
+<!-- ======================== -->
+<!--  03 — CONQUÊTE ARABE     -->
+<!-- ======================== -->
+<section class="epoque epoque-sombre" id="islam">
+  <div class="epoque-layout fade-in">
+
+    <div class="epoque-contenu">
+      <div class="epoque-header">
+        <div class="epoque-numero">03</div>
+        <p class="epoque-periode">647 — 909 ap. J.-C.</p>
+        <h2 class="epoque-titre">La conquête arabe — Naissance de l'Ifriqiya</h2>
+        <p class="epoque-sous-titre">L'islam transforme l'Afrique du Nord</p>
+      </div>
+
+      <div class="epoque-texte">
+        <p>
+          En 647, les premières armées arabes pénétrèrent en Afrique du Nord. La conquête définitive de la région, rebaptisée "Ifriqiya", s'acheva en 698 avec la prise de Carthage. Cette transformation fut l'une des plus profondes que la Tunisie ait jamais connue : en quelques décennies, une région chrétienne et latinisée devenait arabe et musulmane.
+        </p>
+        <p>
+          En 670, le général Oqba Ibn Nafi fonda Kairouan, la première grande ville arabe d'Afrique du Nord. Il y construisit la Grande Mosquée qui, agrandie et embellie au fil des siècles, devint l'une des plus importantes du monde islamique. Kairouan fut pendant deux siècles la capitale politique et religieuse de tout le Maghreb.
+        </p>
+        <p>
+          La résistance à la conquête fut longue et acharnée. La figure la plus emblématique en est la Kahina — "la Prophétesse" en berbère — une reine guerrière berbère qui mena pendant plusieurs années une résistance farouche contre les armées arabes. Battue finalement vers 702, elle reste aujourd'hui un symbole de fierté berbère et féminine.
+        </p>
+        <p>
+          La période islamique vit l'émergence de grandes dynasties : les Aghlabides (800-909) firent de Kairouan un centre intellectuel et artistique rayonnant, et envoyèrent des armées conquérir la Sicile en 827 — une domination arabe qui dura jusqu'en 1072 et laissa des traces profondes dans la culture sicilienne.
+        </p>
+      </div>
+
+      <!-- personnage clé époque islamique -->
+      <div class="perso-cle">
+        <div class="perso-cle-header">
+          <img src="images/personnages/kahina.jpg" alt="La Kahina" class="perso-cle-img"/>
+          <div>
+            <p class="perso-cle-label">Personnage clé</p>
+            <h4 class="perso-cle-nom">La Kahina</h4>
+            <p class="perso-cle-dates">~ 640 — 702 ap. J.-C.</p>
+          </div>
+        </div>
+        <p class="perso-cle-desc">
+          Reine guerrière berbère dont le vrai nom était Dihya, la Kahina — "la Prophétesse" — mena pendant plusieurs années une résistance héroïque contre la conquête arabe. Cheffe militaire et spirituelle d'une coalition de tribus berbères, elle remporta plusieurs batailles importantes avant d'être finalement vaincue en 702. Figure de fierté pour les Berbères et les femmes du monde arabe, elle est aujourd'hui célébrée comme une héroïne nationale.
+        </p>
+      </div>
+
+      <div class="dates-cles">
+        <p class="dates-cles-titre">Dates clés</p>
+        <div class="date-item">
+          <span class="date-annee">647</span>
+          <span class="date-event">Première incursion arabe en Ifriqiya sous Omar Ibn al-Khattab</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">670</span>
+          <span class="date-event">Fondation de Kairouan par Oqba Ibn Nafi — première ville arabe du Maghreb</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">702</span>
+          <span class="date-event">Défaite de la Kahina — fin de la résistance berbère organisée</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">827</span>
+          <span class="date-event">Les Aghlabides conquièrent la Sicile depuis la Tunisie</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="epoque-lateral">
+      <img src="images/histoire/kairouan.jpg" alt="Grande Mosquée de Kairouan" class="lateral-img"/>
+      <div class="lateral-carte">
+        <p class="lateral-carte-titre">La Grande Mosquée de Kairouan</p>
+        <p>
+          Fondée en 670 par Oqba Ibn Nafi, la Grande Mosquée de Kairouan est l'une des plus anciennes mosquées du monde islamique. Sa salle de prière, avec ses 414 colonnes antiques récupérées de sites romains, est d'une beauté saisissante.
+        </p>
+        <div class="lateral-citation">
+          <p>"Kairouan est la mère des villes du Maghreb."</p>
+          <span>Ibn Khaldoun, historien tunisien, XIVe siècle</span>
+        </div>
+      </div>
+      <div class="lateral-chiffres">
+        <div class="chiffre-item">
+          <div class="chiffre-val">670</div>
+          <div class="chiffre-label">fondation de Kairouan</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">414</div>
+          <div class="chiffre-label">colonnes dans la mosquée</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">250</div>
+          <div class="chiffre-label">ans de domination en Sicile</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">4e</div>
+          <div class="chiffre-label">ville sainte de l'Islam</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="epoque-sep"></div>
+
+
+<!-- ======================== -->
+<!--  04 — EMPIRE OTTOMAN     -->
+<!-- ======================== -->
+<section class="epoque epoque-clair" id="ottoman">
+  <div class="epoque-layout inverse fade-in">
+
+    <div class="epoque-contenu">
+      <div class="epoque-header">
+        <div class="epoque-numero">04</div>
+        <p class="epoque-periode">1574 — 1881</p>
+        <h2 class="epoque-titre">L'ère ottomane — Les Beys de Tunis</h2>
+        <p class="epoque-sous-titre">Entre Istanbul et l'autonomie tunisienne</p>
+      </div>
+
+      <div class="epoque-texte">
+        <p>
+          En 1574, l'Empire Ottoman s'empara de la Tunisie, mettant fin à la présence espagnole et établissant une domination qui allait durer trois siècles. Contrairement à d'autres régions de l'Empire, la Tunisie conserva une large autonomie. Les gouverneurs ottomans, appelés Beys, devinrent progressivement indépendants de facto d'Istanbul, fondant la dynastie husseinite en 1705.
+        </p>
+        <p>
+          Cette période vit la montée en puissance de Tunis comme centre politique et culturel majeur. La médina de Tunis s'enrichit de palais, de mosquées et de medersas magnifiques. La ville accueillit une importante communauté d'Andalous, chassés d'Espagne lors de la Reconquista, qui apportèrent avec eux leur culture, leur musique et leur gastronomie.
+        </p>
+        <p>
+          Le XIXe siècle fut marqué par des réformes modernisatrices remarquables. En 1861, la Tunisie se dota de la première Constitution du monde arabe et de toute l'Afrique — la "Qanun al-Dawla" — qui établissait une monarchie constitutionnelle et proclamait l'égalité des droits entre toutes les religions.
+        </p>
+        <p>
+          Cependant, les difficultés financières et les pressions des puissances européennes fragilisèrent progressivement le pays. C'est dans ce contexte d'affaiblissement que la France trouva le prétexte pour imposer son protectorat en 1881.
+        </p>
+      </div>
+
+      <!-- personnage clé époque ottomane -->
+      <div class="perso-cle">
+        <div class="perso-cle-header">
+          <img src="images/personnages/ibn-khaldoun.jpg" alt="Ibn Khaldoun" class="perso-cle-img"/>
+          <div>
+            <p class="perso-cle-label">Personnage clé</p>
+            <h4 class="perso-cle-nom">Ibn Khaldoun</h4>
+            <p class="perso-cle-dates">1332 — 1406</p>
+          </div>
+        </div>
+        <p class="perso-cle-desc">
+          Né à Tunis en 1332, Ibn Khaldoun est considéré comme le père fondateur de la sociologie, de l'historiographie et de l'économie modernes — six siècles avant leurs inventeurs européens officiels. Sa Muqaddima analyse les cycles de montée et de déclin des civilisations avec une rigueur intellectuelle stupéfiante pour l'époque. Arnold Toynbee le qualifia de "génie le plus grand que l'histoire ait jamais produit".
+        </p>
+      </div>
+
+      <div class="dates-cles">
+        <p class="dates-cles-titre">Dates clés</p>
+        <div class="date-item">
+          <span class="date-annee">1574</span>
+          <span class="date-event">Prise de Tunis par l'Empire Ottoman — Sinan Pacha entre dans la ville</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">1705</span>
+          <span class="date-event">Hussein Ibn Ali fonde la dynastie husseinite — autonomie de facto</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">1861</span>
+          <span class="date-event">Première Constitution du monde arabe — monarchie constitutionnelle</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">1864</span>
+          <span class="date-event">Grande révolte populaire contre l'impôt — réprimée dans le sang</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="epoque-lateral">
+      <img src="images/histoire/medina.jpg" alt="Médina de Tunis" class="lateral-img"/>
+      <div class="lateral-carte">
+        <p class="lateral-carte-titre">La médina de Tunis</p>
+        <p>
+          Classée au patrimoine mondial de l'UNESCO depuis 1979, la médina de Tunis contient plus de 700 monuments historiques : palais, mosquées, medersas, fontaines et souks. Elle est l'une des médinas arabes les mieux préservées du monde.
+        </p>
+      </div>
+      <div class="lateral-chiffres">
+        <div class="chiffre-item">
+          <div class="chiffre-val">1861</div>
+          <div class="chiffre-label">1ère constitution arabe</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">700+</div>
+          <div class="chiffre-label">monuments dans la médina</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">300</div>
+          <div class="chiffre-label">ans de présence ottomane</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">1705</div>
+          <div class="chiffre-label">naissance des Husseinites</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="epoque-sep"></div>
+
+
+<!-- ======================== -->
+<!--  05 — PROTECTORAT        -->
+<!-- ======================== -->
+<section class="epoque epoque-sombre" id="protectorat">
+  <div class="epoque-layout fade-in">
+
+    <div class="epoque-contenu">
+      <div class="epoque-header">
+        <div class="epoque-numero">05</div>
+        <p class="epoque-periode">1881 — 1956</p>
+        <h2 class="epoque-titre">Le Protectorat français — La résistance tunisienne</h2>
+        <p class="epoque-sous-titre">75 ans de lutte pour la liberté</p>
+      </div>
+
+      <div class="epoque-texte">
+        <p>
+          Le 12 mai 1881, le bey de Tunis signa sous la contrainte le traité du Bardo, établissant le protectorat français sur la Tunisie. Contrairement à l'Algérie voisine, colonisée directement, la Tunisie conserva formellement ses institutions et son bey — mais la réalité du pouvoir était entièrement entre les mains françaises.
+        </p>
+        <p>
+          Les Français développèrent massivement les infrastructures : routes, chemins de fer, ports. Tunis devint une ville moderne dotée d'une ville européenne — la "Nouvelle Tunis" — construite à côté de la médina traditionnelle. Mais ces modernisations bénéficiaient avant tout aux colons, au détriment de la population tunisienne.
+        </p>
+        <p>
+          Face à cette domination, un mouvement nationaliste s'organisa progressivement. En 1934, le jeune avocat Habib Bourguiba fonda le Néo-Destour, parti moderne et populaire qui allait mener la Tunisie vers l'indépendance. Bourguiba parcourut le pays, mobilisa les masses, fut emprisonné à plusieurs reprises, mais ne cessa jamais son combat.
+        </p>
+        <p>
+          Le martyr Farhat Hached, fondateur de l'UGTT, fut assassiné en 1952 par l'organisation terroriste "La Main Rouge". Son assassinat choqua le monde entier et accéléra les négociations pour l'indépendance. Le 20 mars 1956, la Tunisie recouvrait enfin sa souveraineté.
+        </p>
+      </div>
+
+      <!-- personnage clé époque protectorat -->
+      <div class="perso-cle">
+        <div class="perso-cle-header">
+          <img src="images/personnages/farhat-hached.jpg" alt="Farhat Hached" class="perso-cle-img"/>
+          <div>
+            <p class="perso-cle-label">Personnage clé</p>
+            <h4 class="perso-cle-nom">Farhat Hached</h4>
+            <p class="perso-cle-dates">1914 — 1952</p>
+          </div>
+        </div>
+        <p class="perso-cle-desc">
+          Fondateur de l'UGTT en 1944, Farhat Hached fut le premier syndicaliste africain à siéger dans une instance internationale du travail. Il mena simultanément le combat pour les droits des travailleurs et pour l'indépendance tunisienne, refusant de séparer les deux causes. Assassiné le 5 décembre 1952 par l'organisation coloniale "La Main Rouge", il devint instantanément un martyr dont le sacrifice choqua le monde et accéléra la marche vers l'indépendance.
+        </p>
+      </div>
+
+      <div class="dates-cles">
+        <p class="dates-cles-titre">Dates clés</p>
+        <div class="date-item">
+          <span class="date-annee">1881</span>
+          <span class="date-event">Traité du Bardo — début du protectorat français</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">1934</span>
+          <span class="date-event">Bourguiba fonde le Néo-Destour à Ksar Hellal</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">1952</span>
+          <span class="date-event">Assassinat de Farhat Hached par "La Main Rouge"</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">20 mars 1956</span>
+          <span class="date-event">Indépendance de la Tunisie — Bourguiba devient Premier ministre</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="epoque-lateral">
+      <img src="images/histoire/independance.jpg" alt="Indépendance tunisienne" class="lateral-img"/>
+      <div class="lateral-carte">
+        <p class="lateral-carte-titre">Farhat Hached</p>
+        <p>
+          Fondateur de l'UGTT en 1944, Farhat Hached fut le premier syndicaliste africain à siéger au bureau de la Confédération Internationale des Syndicats Libres. Son assassinat le 5 décembre 1952 provoqua une onde de choc internationale qui força la France à négocier l'autonomie interne.
+        </p>
+        <div class="lateral-citation">
+          <p>"Un peuple qui ne se bat pas pour sa liberté ne mérite pas de vivre libre."</p>
+          <span>Farhat Hached</span>
+        </div>
+      </div>
+      <div class="lateral-chiffres">
+        <div class="chiffre-item">
+          <div class="chiffre-val">75</div>
+          <div class="chiffre-label">ans de protectorat</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">1956</div>
+          <div class="chiffre-label">année d'indépendance</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">1934</div>
+          <div class="chiffre-label">fondation Néo-Destour</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">20/03</div>
+          <div class="chiffre-label">fête nationale</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="epoque-sep"></div>
+
+
+<!-- ======================== -->
+<!--  06 — TUNISIE MODERNE    -->
+<!-- ======================== -->
+<section class="epoque epoque-sable" id="moderne">
+  <div class="epoque-layout inverse fade-in">
+
+    <div class="epoque-contenu">
+      <div class="epoque-header">
+        <div class="epoque-numero">06</div>
+        <p class="epoque-periode">1956 — Aujourd'hui</p>
+        <h2 class="epoque-titre">La Tunisie moderne — De Bourguiba à la Révolution</h2>
+        <p class="epoque-sous-titre">Une démocratie en construction</p>
+      </div>
+
+      <div class="epoque-texte">
+        <p>
+          L'indépendance acquise, Habib Bourguiba s'attela à construire un État moderne. Son bilan est considérable : il abolit la polygamie et accorda aux femmes des droits sans précédent dans le monde arabe — droit au divorce, droit à l'avortement, âge minimum du mariage. L'éducation devint gratuite et obligatoire. Le Code du Statut Personnel de 1956 reste aujourd'hui l'une des législations les plus progressistes du monde arabe.
+        </p>
+        <p>
+          Sur le plan économique, la Tunisie construisit progressivement une économie diversifiée, avec un tourisme florissant, une industrie manufacturière, et un secteur agricole productif. Le pays développa un système éducatif performant qui forma une classe moyenne instruite.
+        </p>
+        <p>
+          En 1987, Zine El Abidine Ben Ali prit le pouvoir par un coup d'État médical — déclarant Bourguiba inapte à gouverner. Son régime devint progressivement autoritaire, muselant la presse et emprisonnant les opposants.
+        </p>
+        <p>
+          Le 17 décembre 2010, Mohamed Bouazizi, un vendeur ambulant de Sidi Bouzid, s'immola par le feu. Cet acte déclencha un soulèvement populaire massif qui força Ben Ali à fuir le pays le 14 janvier 2011. En 2015, le Quartet du dialogue national tunisien reçut le Prix Nobel de la Paix pour son rôle dans la transition démocratique.
+        </p>
+      </div>
+
+      <!-- personnage clé époque moderne -->
+      <div class="perso-cle">
+        <div class="perso-cle-header">
+          <img src="images/personnages/chebbi.jpg" alt="Abou el Kacem Chebbi" class="perso-cle-img"/>
+          <div>
+            <p class="perso-cle-label">Personnage clé</p>
+            <h4 class="perso-cle-nom">Abou el Kacem Chebbi</h4>
+            <p class="perso-cle-dates">1909 — 1934</p>
+          </div>
+        </div>
+        <p class="perso-cle-desc">
+          Mort à seulement 25 ans d'une maladie cardiaque, Chebbi a laissé une œuvre poétique qui résonne encore aujourd'hui dans tout le monde arabe. Son vers "Si un jour le peuple aspire à vivre, le destin se doit de répondre" — inscrit dans l'hymne national tunisien — est devenu le cri de ralliement de la révolution de 2011 et du Printemps arabe tout entier.
+        </p>
+      </div>
+
+      <div class="dates-cles">
+        <p class="dates-cles-titre">Dates clés</p>
+        <div class="date-item">
+          <span class="date-annee">1956</span>
+          <span class="date-event">Code du Statut Personnel — abolition de la polygamie, droits des femmes</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">1987</span>
+          <span class="date-event">Ben Ali prend le pouvoir — coup d'État médical contre Bourguiba</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">17 déc. 2010</span>
+          <span class="date-event">Immolation de Mohamed Bouazizi — début de la révolution</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">14 jan. 2011</span>
+          <span class="date-event">Fuite de Ben Ali — victoire de la révolution tunisienne</span>
+        </div>
+        <div class="date-item">
+          <span class="date-annee">2015</span>
+          <span class="date-event">Prix Nobel de la Paix pour le Quartet du dialogue national</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="epoque-lateral">
+      <img src="images/histoire/revolution.jpg" alt="Révolution tunisienne 2011" class="lateral-img"/>
+      <div class="lateral-carte">
+        <p class="lateral-carte-titre">Le Prix Nobel de la Paix 2015</p>
+        <p>
+          Le Quartet du dialogue national, composé de l'UGTT, de l'UTICA, de la Ligue des droits de l'Homme et de l'Ordre des avocats, a reçu le Prix Nobel de la Paix en 2015 pour son rôle dans la transition démocratique tunisienne.
+        </p>
+        <div class="lateral-citation">
+          <p>"La révolution tunisienne est la seule réussite du Printemps arabe."</p>
+          <span>Observateurs internationaux, 2015</span>
+        </div>
+      </div>
+      <div class="lateral-chiffres">
+        <div class="chiffre-item">
+          <div class="chiffre-val">1956</div>
+          <div class="chiffre-label">droits des femmes</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">2011</div>
+          <div class="chiffre-label">révolution</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">2015</div>
+          <div class="chiffre-label">Nobel de la Paix</div>
+        </div>
+        <div class="chiffre-item">
+          <div class="chiffre-val">1er</div>
+          <div class="chiffre-label">Printemps arabe</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="epoque-sep"></div>
+
+
+<!-- ========================== -->
+<!--   SECTION PERSONNAGES      -->
+<!-- ========================== -->
+<section class="personnages-section" id="personnages">
+
+  <div class="fade-in">
+    <p class="section-label">Figures Historiques</p>
+    <h2 class="section-title">Ceux qui ont marqué<br/>la Tunisie</h2>
+    <p class="section-desc">
+      De l'Antiquité à nos jours, des hommes et des femmes ont façonné l'identité tunisienne par leur courage, leur intelligence et leur vision.
+    </p>
+  </div>
+
+  <div class="carousel-wrap fade-in">
+
+    <button class="carousel-btn gauche" onclick="slideCarousel(-1)">&#8592;</button>
+
+    <div class="carousel-fenetre">
+      <div class="carousel-piste" id="carousel-piste">
+
+        <!-- Ibn Khaldoun -->
+        <div class="perso-card">
+          <div class="perso-img-wrap">
+            <img src="images/personnages/ibn-khaldoun.jpg" alt="Ibn Khaldoun"/>
+            <div class="perso-epoque">1332 — 1406</div>
+          </div>
+          <div class="perso-info">
+            <p class="perso-domaine">Philosophie · Histoire · Sociologie</p>
+            <h3 class="perso-nom">Ibn Khaldoun</h3>
+            <p class="perso-desc">Né à Tunis en 1332, Ibn Khaldoun est considéré comme le père de la sociologie et de l'historiographie moderne. Son œuvre majeure, la Muqaddima, a révolutionné la façon d'analyser l'histoire et les sociétés humaines. Arnold Toynbee le qualifia de "génie le plus grand que l'histoire ait jamais produit" — six siècles avant que l'Europe ne découvre ces disciplines.</p>
+            <div class="perso-citation">"L'histoire est une science qui nous fait connaître la société humaine dans ses transformations."</div>
+          </div>
+        </div>
+
+        <!-- Abou el Kacem Chebbi -->
+        <div class="perso-card">
+          <div class="perso-img-wrap">
+            <img src="images/personnages/chebbi.jpg" alt="Abou el Kacem Chebbi"/>
+            <div class="perso-epoque">1909 — 1934</div>
+          </div>
+          <div class="perso-info">
+            <p class="perso-domaine">Poésie · Littérature</p>
+            <h3 class="perso-nom">Abou el Kacem Chebbi</h3>
+            <p class="perso-desc">Poète romantique mort à seulement 25 ans, Chebbi est la voix lyrique de toute la Tunisie. Son vers "Si un jour le peuple aspire à vivre, le destin se doit de répondre" est inscrit dans l'hymne national et devint le cri de ralliement de la révolution de 2011. Une vie fulgurante qui continue de résonner un siècle après.</p>
+            <div class="perso-citation">"إذا الشعب يوما أراد الحياة — فلا بد أن يستجيب القدر"</div>
+          </div>
+        </div>
+
+        <!-- Wahida Bechikh -->
+        <div class="perso-card">
+          <div class="perso-img-wrap">
+            <img src="images/personnages/wahida-bechikh.jpg" alt="Wahida Bechikh"/>
+            <div class="perso-epoque">1900 — 1968</div>
+          </div>
+          <div class="perso-info">
+            <p class="perso-domaine">Art · Musique · Théâtre</p>
+            <h3 class="perso-nom">Wahida Bechikh</h3>
+            <p class="perso-desc">Pionnière du théâtre et de la musique tunisienne, Wahida Bechikh brisa les tabous sociaux de son époque en montant sur scène à une époque où c'était impensable pour une femme. Première artiste féminine de la scène tunisienne moderne, elle ouvrit la voie à toutes les femmes artistes qui suivirent.</p>
+            <div class="perso-citation">"L'art est le seul langage universel qui traverse toutes les frontières et tous les préjugés."</div>
+          </div>
+        </div>
+
+        <!-- Tahar Haddad -->
+        <div class="perso-card">
+          <div class="perso-img-wrap">
+            <img src="images/personnages/tahar-haddad.jpg" alt="Tahar Haddad"/>
+            <div class="perso-epoque">1899 — 1935</div>
+          </div>
+          <div class="perso-info">
+            <p class="perso-domaine">Droit · Réforme sociale · Féminisme</p>
+            <h3 class="perso-nom">Tahar Haddad</h3>
+            <p class="perso-desc">Réformateur visionnaire, Tahar Haddad publia en 1930 "Notre femme dans la charia et la société" — un livre révolutionnaire défendant l'émancipation totale de la femme tunisienne. Rejeté par ses contemporains, il mourut à 36 ans dans l'isolement. Son œuvre est le fondement idéologique du Code du Statut Personnel de 1956.</p>
+            <div class="perso-citation">"La femme est la moitié de la société, et celui qui néglige la moitié néglige le tout."</div>
+          </div>
+        </div>
+
+        <!-- Farhat Hached -->
+        <div class="perso-card">
+          <div class="perso-img-wrap">
+            <img src="images/personnages/farhat-hached.jpg" alt="Farhat Hached"/>
+            <div class="perso-epoque">1914 — 1952</div>
+          </div>
+          <div class="perso-info">
+            <p class="perso-domaine">Syndicalisme · Résistance · Indépendance</p>
+            <h3 class="perso-nom">Farhat Hached</h3>
+            <p class="perso-desc">Fondateur de l'UGTT et martyr de l'indépendance tunisienne, Farhat Hached consacra sa courte vie à deux combats indissociables : les droits des travailleurs et la liberté de son pays. Assassiné en 1952, son sacrifice choqua le monde entier et précipita la marche vers l'indépendance obtenue quatre ans plus tard.</p>
+            <div class="perso-citation">"Un peuple qui ne se bat pas pour sa liberté ne mérite pas de vivre libre."</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <button class="carousel-btn droite" onclick="slideCarousel(1)">&#8594;</button>
+  </div>
+
+  <!-- les points de navigation -->
+  <div class="carousel-dots" id="carousel-dots">
+    <span class="dot actif" onclick="allerA(0)"></span>
+    <span class="dot" onclick="allerA(1)"></span>
+    <span class="dot" onclick="allerA(2)"></span>
+    <span class="dot" onclick="allerA(3)"></span>
+    <span class="dot" onclick="allerA(4)"></span>
+  </div>
+
+</section>
+
+
+<!-- barre drapeau -->
+<div class="flag-stripe"></div>
+
+
+<!-- ============= -->
+<!--    FOOTER     -->
+<!-- ============= -->
+<footer>
+  <div class="footer-logo">TU<span>N</span>ISIE</div>
+  <p>La Perle du Maghreb — Bienvenue en Tunisie</p>
+  <p style="margin-top: 20px; font-size: 11px; opacity: 0.4;">Site réalisé avec Amour · 2026</p>
+</footer>
+
+
+<script>
+
+  // ========================
+  // ANIMATIONS SCROLL
+  // ========================
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+
+  // ========================
+  // CAROUSEL PERSONNAGES
+  // ========================
+  let indexCarousel = 0;
+  const totalCartes = 5;
+
+  function slideCarousel(direction) {
+    indexCarousel += direction;
+    // boucle infinie
+    if (indexCarousel < 0) indexCarousel = totalCartes - 1;
+    if (indexCarousel >= totalCartes) indexCarousel = 0;
+    allerA(indexCarousel);
+  }
+
+  function allerA(index) {
+    indexCarousel = index;
+    // on déplace la piste
+    document.getElementById('carousel-piste').style.transform = `translateX(-${index * 100}%)`;
+    // on met à jour les points
+    document.querySelectorAll('.dot').forEach(function(dot, i) {
+      dot.classList.toggle('actif', i === index);
+    });
+  }
+
+  // navigation clavier (flèches gauche/droite)
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft')  slideCarousel(-1);
+    if (e.key === 'ArrowRight') slideCarousel(1);
+  });
+
+</script>
+
+</body>
+</html>
