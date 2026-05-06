@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nature de Tunisie — Parcs, Faune & Paysages</title>
+  <link rel="icon" type="image/png" href="images/favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ============= -->
+<!--  NAVIGATION   -->
+<!-- ============= -->
+<nav>
+  <div class="logo">TU<span>N</span>ISIE</div>
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="histoire.html">Histoire</a></li>
+    <li><a href="villes.html">Villes</a></li>
+    <li><a href="culture.html">Culture</a></li>
+    <li><a href="tourisme.html">Tourisme</a></li>
+    <li><a href="nature.html" style="color: var(--or);">Nature</a></li>
+  </ul>
+</nav>
+
+
+<!-- ============= -->
+<!--  HERO         -->
+<!-- ============= -->
+<div class="nature-hero">
+  <div class="nature-hero-contenu fade-in visible">
+    <p class="section-label">Parcs · Faune · Flore · Paysages</p>
+    <h1>Entre mer<br/>et <span>désert</span></h1>
+    <p>
+      En 163 000 km², la Tunisie concentre une diversité naturelle saisissante : forêts de chênes-lièges au nord, steppes arides au centre, dunes infinies au sud, et 1 300 km de côtes méditerranéennes. Un territoire de contrastes où chaque région offre un visage unique de la nature africaine et méditerranéenne.
+    </p>
+  </div>
+</div>
+
+
+<!-- navigation interne -->
+<div class="nav-interne">
+  <a href="#zones">Les 3 zones</a>
+  <a href="#parcs">Parcs nationaux</a>
+  <a href="#faune">Faune</a>
+  <a href="#flore">Flore</a>
+  <a href="#paysages">Paysages</a>
+  <a href="#activites">Activités</a>
+</div>
+
+
+<!-- ======================== -->
+<!--  LES 3 GRANDES ZONES     -->
+<!-- ======================== -->
+<section class="zones-section" id="zones">
+
+  <div class="zones-intro fade-in">
+    <div>
+      <p class="section-label">Géographie naturelle</p>
+      <h2 class="section-title">Trois visages<br/>d'un même pays</h2>
+    </div>
+    <p class="section-desc">
+      Du nord méditerranéen aux sables sahariens, la Tunisie traverse trois grandes zones naturelles qui se succèdent du nord au sud, offrant des écosystèmes radicalement différents sur un territoire relativement compact.
+    </p>
+  </div>
+
+  <div class="zones-grid fade-in">
+
+    <div class="zone-card zone-nord">
+      <div class="zone-card-img">
+        <img src="images/villes/jendouba.jpg" alt="Nord de la Tunisie"/>
+      </div>
+      <div class="zone-card-body">
+        <p class="zone-num">01</p>
+        <h3 class="zone-titre">Le Nord méditerranéen</h3>
+        <p class="zone-desc">
+          Collines boisées, vallées verdoyantes, rivières pérennes — le nord tunisien ressemble parfois à la Toscane. Des forêts de chênes-lièges et de pins s'étendent sur les Kroumiries. La Medjerda, seule vraie rivière permanente du pays, y coule entre des plaines céréalières fertiles. C'est ici que se concentre l'essentiel de la biodiversité tunisienne.
+        </p>
+        <div class="zone-chiffres">
+          <div class="zone-chiffre">
+            <span class="zone-chiffre-val">700 m</span>
+            <span class="zone-chiffre-label">altitude max Kroumirie</span>
+          </div>
+          <div class="zone-chiffre">
+            <span class="zone-chiffre-val">600 mm</span>
+            <span class="zone-chiffre-label">pluviométrie annuelle</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone-card zone-centre">
+      <div class="zone-card-img">
+        <img src="images/villes/kasserine.jpg" alt="Centre de la Tunisie"/>
+      </div>
+      <div class="zone-card-body">
+        <p class="zone-num">02</p>
+        <h3 class="zone-titre">Le Centre montagneux</h3>
+        <p class="zone-desc">
+          La dorsale tunisienne traverse le pays d'est en ouest avec ses reliefs calcaires et ses forêts de pins. Le Djebel Chambi, point culminant à 1 544 mètres, domine un parc national riche en espèces endémiques. Les chotts — ces lacs salés immenses — marquent la transition vers le sud. Un monde à part, moins fréquenté, d'une beauté sévère.
+        </p>
+        <div class="zone-chiffres">
+          <div class="zone-chiffre">
+            <span class="zone-chiffre-val">1 544 m</span>
+            <span class="zone-chiffre-label">Djebel Chambi</span>
+          </div>
+          <div class="zone-chiffre">
+            <span class="zone-chiffre-val">7 600 km²</span>
+            <span class="zone-chiffre-label">Chott el Jerid</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="zone-card zone-sud">
+      <div class="zone-card-img">
+        <img src="images/sahara.webp" alt="Sud de la Tunisie — Sahara"/>
+      </div>
+      <div class="zone-card-body">
+        <p class="zone-num">03</p>
+        <h3 class="zone-titre">Le Sud saharien</h3>
+        <p class="zone-desc">
+          Un tiers du pays est désert. Dunes de sable doré, hamadas rocailleuses, oasis verdoyantes et ksour perchés composent un paysage d'une beauté lunaire et absolue. La vie s'est adaptée à l'extrême : fennecs, gerboises, scorpions, palmiers-dattiers et plantes succulentes peuplent ce milieu en apparence hostile mais d'une richesse écologique méconnue.
+        </p>
+        <div class="zone-chiffres">
+          <div class="zone-chiffre">
+            <span class="zone-chiffre-val">&lt; 50 mm</span>
+            <span class="zone-chiffre-label">pluviométrie annuelle</span>
+          </div>
+          <div class="zone-chiffre">
+            <span class="zone-chiffre-val">50°C</span>
+            <span class="zone-chiffre-label">température max été</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  PARCS NATIONAUX         -->
+<!-- ======================== -->
+<section class="parcs-section" id="parcs">
+
+  <div class="parcs-header fade-in">
+    <div>
+      <p class="section-label">Parcs & Réserves</p>
+      <h2 class="section-title">17 parcs nationaux<br/>à protéger</h2>
+    </div>
+    <p class="section-desc">
+      La Tunisie compte 17 parcs nationaux couvrant plus de 600 000 hectares. Chacun protège un écosystème unique, des forêts humides du nord aux ergs sahariens du sud.
+    </p>
+  </div>
+
+  <div class="parcs-grid fade-in">
+
+    <div class="parc-card parc-featured">
+      <img src="images/nature/ichkeul.jpg" alt="Parc national de l'Ichkeul" class="parc-img"/>
+      <div class="parc-overlay">
+        <p class="parc-label">Parc national · UNESCO</p>
+        <h3 class="parc-nom">Lac Ichkeul</h3>
+        <p class="parc-region">Nord · Gouvernorat de Bizerte</p>
+        <p class="parc-desc">
+          Site Ramsar et patrimoine mondial de l'UNESCO, le lac Ichkeul est l'un des derniers lacs d'eau douce d'Afrique du Nord. Chaque hiver, il accueille des dizaines de milliers d'oiseaux migrateurs — flamants roses, canards, foulques, sarcelles — venus d'Europe et d'Afrique subsaharienne. Un spectacle ornithologique exceptionnel dans un paysage de roseaux et de marécages.
+        </p>
+        <div class="parc-stats">
+          <span>12 600 ha</span>
+          <span>·</span>
+          <span>300 espèces d'oiseaux</span>
+          <span>·</span>
+          <span>UNESCO 1980</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="parc-card">
+      <img src="images/villes/kasserine.jpg" alt="Djebel Chambi" class="parc-img"/>
+      <div class="parc-overlay parc-overlay-small">
+        <p class="parc-label">Parc national</p>
+        <h3 class="parc-nom">Djebel Chambi</h3>
+        <p class="parc-region">Centre · Kasserine</p>
+        <p class="parc-desc-short">Point culminant de Tunisie. Forêts de pins sylvestres, chênes verts et genévriers. Léopards (peut-être disparus), hyènes, gazelles et de nombreuses espèces endémiques.</p>
+      </div>
+    </div>
+
+    <div class="parc-card">
+      <img src="images/villes/jendouba.jpg" alt="Parc de la Feija" class="parc-img"/>
+      <div class="parc-overlay parc-overlay-small">
+        <p class="parc-label">Parc national</p>
+        <h3 class="parc-nom">La Feija</h3>
+        <p class="parc-region">Nord-Ouest · Jendouba</p>
+        <p class="parc-desc-short">Dernière forêt de chênes-lièges de Tunisie. Cerfs de Barbarie (réintroduits), sangliers, renards, mangoustes. Un refuge de biodiversité unique en Afrique du Nord.</p>
+      </div>
+    </div>
+
+    <div class="parc-card">
+      <img src="images/sahara2.webp" alt="Parc de Bou Hedma" class="parc-img"/>
+      <div class="parc-overlay parc-overlay-small">
+        <p class="parc-label">Réserve naturelle</p>
+        <h3 class="parc-nom">Bou Hedma</h3>
+        <p class="parc-region">Centre-Sud · Gafsa</p>
+        <p class="parc-desc-short">Steppe présaharienne avec les derniers acacias de Tunisie. Addax, mouflon à manchettes, gazelles dorcas et oryx scimitaire en programme de réintroduction.</p>
+      </div>
+    </div>
+
+    <div class="parc-card">
+      <img src="images/villes/bizerte.jpg" alt="Cap Bon" class="parc-img"/>
+      <div class="parc-overlay parc-overlay-small">
+        <p class="parc-label">Zone protégée</p>
+        <h3 class="parc-nom">Cap Bon</h3>
+        <p class="parc-region">Nord-Est · Nabeul</p>
+        <p class="parc-desc-short">Promontoire méditerranéen couvert d'oliviers millénaires et de vignes. Couloir de migration des oiseaux entre l'Europe et l'Afrique — des milliers de rapaces le traversent chaque automne.</p>
+      </div>
+    </div>
+
+    <div class="parc-card">
+      <img src="images/villes/gabes.jpg" alt="Oasis de Gabès" class="parc-img"/>
+      <div class="parc-overlay parc-overlay-small">
+        <p class="parc-label">Site naturel</p>
+        <h3 class="parc-nom">Oasis de Gabès</h3>
+        <p class="parc-region">Sud-Est · Gabès</p>
+        <p class="parc-desc-short">L'unique oasis maritime au monde. 300 000 palmiers au bord de la Méditerranée grâce à une nappe phréatique d'eau douce sous le littoral. Un écosystème fragile menacé par la pollution industrielle.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  FAUNE                   -->
+<!-- ======================== -->
+<section class="faune-section" id="faune">
+
+  <div class="faune-header fade-in">
+    <p class="section-label">Faune sauvage</p>
+    <h2 class="section-title faune-titre">Les animaux<br/>de Tunisie</h2>
+    <p class="section-desc faune-sous-titre">
+      Malgré sa petite taille, la Tunisie abrite une faune remarquablement diversifiée — des espèces méditerranéennes au nord aux espèces sahariennes au sud.
+    </p>
+  </div>
+
+  <div class="faune-grid fade-in">
+
+    <div class="faune-card">
+      <div class="faune-img-wrap">
+        <img src="images/nature/flamants.jpg" alt="Flamants roses"/>
+      </div>
+      <div class="faune-body">
+        <p class="faune-zone">Nord · Ichkeul</p>
+        <h3 class="faune-nom">Flamant rose</h3>
+        <p class="faune-desc">Des milliers de flamants roses hivernent au lac Ichkeul et sur les sebkhas côtières. Leur plumage rose vif contraste avec les eaux grises des lagunes — un spectacle inoubliable.</p>
+      </div>
+    </div>
+
+    <div class="faune-card">
+      <div class="faune-img-wrap">
+        <img src="images/nature/fennec.jpg" alt="Fennec"/>
+      </div>
+      <div class="faune-body">
+        <p class="faune-zone">Sud · Sahara</p>
+        <h3 class="faune-nom">Fennec</h3>
+        <p class="faune-desc">Le renard du désert aux immenses oreilles est l'emblème de la faune saharienne tunisienne. Nocturne et insaisissable, il se repère à ses empreintes dans le sable au lever du soleil.</p>
+      </div>
+    </div>
+
+    <div class="faune-card">
+      <div class="faune-img-wrap">
+        <img src="images/nature/gazelle.jpg" alt="Gazelle de Cuvier"/>
+      </div>
+      <div class="faune-body">
+        <p class="faune-zone">Centre · Steppes</p>
+        <h3 class="faune-nom">Gazelle de Cuvier</h3>
+        <p class="faune-desc">L'une des gazelles les plus rares au monde, en danger critique d'extinction. Des programmes de réintroduction dans les parcs nationaux tunisiens cherchent à sauver cette espèce endémique du Maghreb.</p>
+      </div>
+    </div>
+
+    <div class="faune-card">
+      <div class="faune-img-wrap">
+        <img src="images/nature/aigle.jpg" alt="Aigle de Bonelli"/>
+      </div>
+      <div class="faune-body">
+        <p class="faune-zone">Nord · Reliefs</p>
+        <h3 class="faune-nom">Aigle de Bonelli</h3>
+        <p class="faune-desc">Ce grand rapace méditerranéen niche dans les falaises du nord de la Tunisie. Son envergure de plus d'un mètre quatre-vingts en fait un des plus impressionnants prédateurs ailés du pays.</p>
+      </div>
+    </div>
+
+    <div class="faune-card">
+      <div class="faune-img-wrap">
+        <img src="images/nature/tortue.jpg" alt="Tortue de Hermann"/>
+      </div>
+      <div class="faune-body">
+        <p class="faune-zone">Nord · Forêts</p>
+        <h3 class="faune-nom">Tortue de Hermann</h3>
+        <p class="faune-desc">Protégée dans les parcs de la Feija et des Kroumiries, cette tortue terrestre menacée est l'une des seules espèces de tortues terrestres présentes en Afrique du Nord.</p>
+      </div>
+    </div>
+
+    <div class="faune-card">
+      <div class="faune-img-wrap">
+        <img src="images/nature/dromadaire.jpg" alt="Dromadaire"/>
+      </div>
+      <div class="faune-body">
+        <p class="faune-zone">Sud · Sahara</p>
+        <h3 class="faune-nom">Dromadaire</h3>
+        <p class="faune-desc">Symbole du désert tunisien, le dromadaire est depuis des millénaires le compagnon des nomades. Dans le sud, des chameaux semi-sauvages paissent encore librement dans les ergs et les hamadas.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================== */
+<!--  FLORE                   -->
+<!-- ======================== -->
+<section class="flore-section" id="flore">
+
+  <div class="fade-in">
+    <p class="section-label">Végétation</p>
+    <h2 class="section-title">La flore tunisienne</h2>
+    <p class="section-desc" style="margin-bottom: 50px;">
+      De l'olivier millénaire aux palmiers-dattiers du Sahara, en passant par les forêts de chênes-lièges du nord, la flore tunisienne est l'une des plus diversifiées du bassin méditerranéen.
+    </p>
+  </div>
+
+  <div class="flore-layout fade-in">
+
+    <div class="flore-item">
+      <div class="flore-icone">🌳</div>
+      <h3 class="flore-nom">Olivier</h3>
+      <p class="flore-region">Partout · 80 millions d'arbres</p>
+      <p class="flore-desc">La Tunisie est le 3e exportateur mondial d'huile d'olive. Certains oliviers ont plus de 2 000 ans. La région de Sfax abrite la plus grande oliveraie au monde avec des millions d'arbres s'étendant à perte de vue.</p>
+    </div>
+
+    <div class="flore-item">
+      <div class="flore-icone">🌴</div>
+      <h3 class="flore-nom">Palmier-dattier</h3>
+      <p class="flore-region">Sud · 3 millions d'arbres</p>
+      <p class="flore-desc">Le palmier est l'arbre-vie du désert. Les dattes tunisiennes — en particulier la variété Deglet Nour de Tozeur, "doigt de lumière" — sont parmi les plus réputées et les plus exportées du monde entier.</p>
+    </div>
+
+    <div class="flore-item">
+      <div class="flore-icone">🌿</div>
+      <h3 class="flore-nom">Chêne-liège</h3>
+      <p class="flore-region">Nord-Ouest · Kroumirie</p>
+      <p class="flore-desc">La forêt de Bellif dans les Kroumiries abrite les plus beaux chênes-lièges de Tunisie. Leur écorce est récoltée tous les 9 ans pour produire du liège. Ces forêts abritent une biodiversité exceptionnelle.</p>
+    </div>
+
+    <div class="flore-item">
+      <div class="flore-icone">🌸</div>
+      <h3 class="flore-nom">Jasmin de Tunisie</h3>
+      <p class="flore-region">Tunis · Cap Bon</p>
+      <p class="flore-desc">Le jasmin — "yasmine" en arabe — est le symbole floral de la Tunisie. Sa fleur blanche intensément parfumée envahit les jardins et les souks de mai à septembre. Son essence est utilisée dans la parfumerie mondiale.</p>
+    </div>
+
+    <div class="flore-item">
+      <div class="flore-icone">🌵</div>
+      <h3 class="flore-nom">Figuier de Barbarie</h3>
+      <p class="flore-region">Centre · Zones arides</p>
+      <p class="flore-desc">Introduit d'Amérique au XVIe siècle par les Espagnols, le cactus est devenu un élément emblématique du paysage tunisien. Ses fruits sucrés (figues de Barbarie) sont cueillis à l'automne et vendus sur les bords des routes.</p>
+    </div>
+
+    <div class="flore-item">
+      <div class="flore-icone">🌾</div>
+      <h3 class="flore-nom">Alfa</h3>
+      <p class="flore-region">Centre · Steppes</p>
+      <p class="flore-desc">Cette graminée des steppes arides couvre des millions d'hectares au centre de la Tunisie. Plante pionnière résistante à la sécheresse, elle protège les sols de l'érosion et était autrefois exportée pour la fabrication du papier.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  PAYSAGES EMBLEMATIQUES  -->
+<!-- ======================== -->
+<section class="paysages-section" id="paysages">
+
+  <div class="paysages-header fade-in">
+    <p class="section-label">Sites naturels</p>
+    <h2 class="section-title">Les paysages<br/>emblématiques</h2>
+  </div>
+
+  <div class="paysages-mosaic fade-in">
+
+    <div class="paysage-item paysage-large">
+      <img src="images/nature/chott.jpg" alt="Chott el Jerid"/>
+      <div class="paysage-legende">
+        <h3 class="paysage-nom">Chott el Jerid</h3>
+        <p class="paysage-desc">Le plus grand lac salé d'Afrique du Nord — 7 600 km² d'étendue blanche et cristalline. En été, les miroirs d'eau créent des mirages spectaculaires. En hiver, une mince couche d'eau rose rosée se forme sous l'effet des bactéries halophiles.</p>
+      </div>
+    </div>
+
+    <div class="paysage-item">
+      <img src="images/villes/douz.webp" alt="Dunes de sable"/>
+      <div class="paysage-legende">
+        <h3 class="paysage-nom">Erg Oriental</h3>
+        <p class="paysage-desc">Les grandes dunes de sable qui s'étendent au-delà de Douz font partie du Grand Erg Oriental saharien. Certaines atteignent 30 mètres de hauteur.</p>
+      </div>
+    </div>
+
+    <div class="paysage-item">
+      <img src="images/nature/ichkeul.jpg" alt="Lac Ichkeul"/>
+      <div class="paysage-legende">
+        <h3 class="paysage-nom">Lac Ichkeul</h3>
+        <p class="paysage-desc">Entre mer et collines, ce lac d'eau douce unique accueille chaque hiver des dizaines de milliers d'oiseaux migrateurs.</p>
+      </div>
+    </div>
+
+    <div class="paysage-item">
+      <img src="images/sahara2.webp" alt="Oasis dans le désert"/>
+      <div class="paysage-legende">
+        <h3 class="paysage-nom">Oasis de Ksar Ghilane</h3>
+        <p class="paysage-desc">Au cœur du Sahara, une source d'eau chaude alimente une oasis de palmiers entourée de dunes — l'image parfaite du désert.</p>
+      </div>
+    </div>
+
+    <div class="paysage-item">
+      <img src="images/villes/zaghouan.jpg" alt="Djebel Zaghouan"/>
+      <div class="paysage-legende">
+        <h3 class="paysage-nom">Djebel Zaghouan</h3>
+        <p class="paysage-desc">Ce massif calcaire culmine à 1 295 m et offre des randonnées dans un paysage de falaises, de forêts et de sources naturelles.</p>
+      </div>
+    </div>
+
+    <div class="paysage-item paysage-large">
+      <img src="images/villes/kasserine.jpg" alt="Forêts de Kasserine"/>
+      <div class="paysage-legende">
+        <h3 class="paysage-nom">Parc du Djebel Chambi</h3>
+        <p class="paysage-desc">À 1 544 mètres, le toit de la Tunisie est couvert d'une forêt de pins sylvestres unique en Afrique du Nord. En hiver, il neige parfois au sommet — un spectacle rarissime sous ces latitudes méditerranéennes.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  ACTIVITÉS EN NATURE     -->
+<!-- ======================== -->
+<section class="activites-nature-section" id="activites">
+
+  <div class="fade-in">
+    <p class="section-label">Plein air</p>
+    <h2 class="section-title">Activités dans<br/>la nature</h2>
+    <p class="section-desc" style="margin-bottom: 50px;">
+      La diversité des paysages tunisiens offre une palette d'activités de plein air pour tous les profils, du randonneur contemplatif au plongeur explorateur.
+    </p>
+  </div>
+
+  <div class="activites-nature-grid fade-in">
+
+    <div class="activite-nature-card">
+      <div class="activite-nature-icone">🥾</div>
+      <h3 class="activite-nature-titre">Randonnée</h3>
+      <ul class="activite-nature-liste">
+        <li>Sentiers du Djebel Chambi (1 544 m)</li>
+        <li>Gorges de Selja près de Metlaoui</li>
+        <li>Circuits dans les Kroumiries</li>
+        <li>Tour du Djebel Zaghouan</li>
+        <li>Trekking dans les ksour berbères</li>
+      </ul>
+    </div>
+
+    <div class="activite-nature-card">
+      <div class="activite-nature-icone">🐪</div>
+      <h3 class="activite-nature-titre">Désert & Sahara</h3>
+      <ul class="activite-nature-liste">
+        <li>Randonnée chamelière au départ de Douz</li>
+        <li>Bivouac sous les étoiles dans l'erg</li>
+        <li>4x4 sur les dunes de Ksar Ghilane</li>
+        <li>Traversée du Chott el Jerid</li>
+        <li>Sandboard sur les grandes dunes</li>
+      </ul>
+    </div>
+
+    <div class="activite-nature-card">
+      <div class="activite-nature-icone">🤿</div>
+      <h3 class="activite-nature-titre">Mer & Plongée</h3>
+      <ul class="activite-nature-liste">
+        <li>Plongée sur l'épave de Mahdia (Ier s. av. J.-C.)</li>
+        <li>Snorkeling aux îles Kerkennah</li>
+        <li>Observation des poulpes et dauphins</li>
+        <li>Surf et kitesurf à Djerba</li>
+        <li>Pêche traditionnelle en barque</li>
+      </ul>
+    </div>
+
+    <div class="activite-nature-card">
+      <div class="activite-nature-icone">🦅</div>
+      <h3 class="activite-nature-titre">Ornithologie</h3>
+      <ul class="activite-nature-liste">
+        <li>Migration des rapaces au Cap Bon</li>
+        <li>Flamants roses du lac Ichkeul</li>
+        <li>Oiseaux nicheurs de la Feija</li>
+        <li>Cigognes de Kairouan (mars — août)</li>
+        <li>Outardes et gangas dans les steppes</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- barre drapeau -->
+<div class="flag-stripe"></div>
+
+<footer>
+  <div class="footer-logo">TU<span>N</span>ISIE</div>
+  <p>La Perle du Maghreb — Bienvenue en Tunisie</p>
+  <p style="margin-top: 20px; font-size: 11px; opacity: 0.4;">Site réalisé avec Amour · 2026</p>
+</footer>
+
+
+<script>
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-interne a');
+
+  window.addEventListener('scroll', function() {
+    let current = '';
+    sections.forEach(function(section) {
+      if (window.scrollY >= section.offsetTop - 150) current = section.getAttribute('id');
+    });
+    navLinks.forEach(function(link) {
+      link.style.color = '';
+      link.style.borderBottomColor = '';
+      if (link.getAttribute('href') === '#' + current) {
+        link.style.color = 'var(--rouge)';
+        link.style.borderBottomColor = 'var(--rouge)';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

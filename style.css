@@ -911,6 +911,2174 @@ footer p {
   height: 100%;
   object-fit: cover; /* l'image se recadre sans se déformer */
 }
+/* fin des styles de base */
+
+
+/* ======================== */
+/*   HERO CULTURE           */
+/* ======================== */
+.culture-hero {
+  background: var(--nuit);
+  padding: 160px 60px 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.culture-hero::before {
+  content: 'ثقافة';
+  position: absolute;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 260px;
+  color: rgba(255,255,255,0.02);
+  right: -20px;
+  bottom: -40px;
+  line-height: 1;
+}
+
+.culture-hero-contenu {
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+}
+
+.culture-hero-contenu h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 6vw, 72px);
+  color: var(--blanc);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.culture-hero-contenu h1 span {
+  color: var(--rouge);
+  font-style: italic;
+}
+
+.culture-hero-contenu p {
+  font-size: 17px;
+  color: rgba(248,245,239,0.6);
+  line-height: 1.8;
+  max-width: 560px;
+}
+
+
+/* ======================== */
+/*   HERO TOURISME          */
+/* ======================== */
+.tourisme-hero {
+  background: var(--nuit);
+  padding: 160px 60px 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tourisme-hero::before {
+  content: 'سفر';
+  position: absolute;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 300px;
+  color: rgba(255,255,255,0.02);
+  right: -20px;
+  bottom: -40px;
+  line-height: 1;
+}
+
+.tourisme-hero-contenu {
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+}
+
+.tourisme-hero-contenu h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 6vw, 72px);
+  color: var(--blanc);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.tourisme-hero-contenu h1 span {
+  color: var(--rouge);
+  font-style: italic;
+}
+
+.tourisme-hero-desc {
+  font-size: 17px;
+  color: rgba(248,245,239,0.6);
+  line-height: 1.8;
+  max-width: 560px;
+  margin-bottom: 40px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 10px;
+}
+
+.hero-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-stat-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: var(--or);
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(248,245,239,0.4);
+}
+
+
+/* ======================== */
+/*   HERO VILLES            */
+/* ======================== */
+.villes-hero {
+  background: var(--nuit);
+  padding: 160px 60px 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.villes-hero::before {
+  content: 'مدن';
+  position: absolute;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 300px;
+  color: rgba(255,255,255,0.02);
+  right: -20px;
+  bottom: -40px;
+  line-height: 1;
+}
+
+.villes-hero-contenu {
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+}
+
+.villes-hero-contenu h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 6vw, 72px);
+  color: var(--blanc);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.villes-hero-contenu h1 span {
+  color: var(--rouge);
+  font-style: italic;
+}
+
+.villes-hero-contenu p {
+  font-size: 17px;
+  color: rgba(248,245,239,0.6);
+  line-height: 1.8;
+  max-width: 560px;
+}
+
+
+/* ======================== */
+/*   NAVIGATION INTERNE     */
+/* ======================== */
+.nav-interne,
+.nav-tourisme {
+  position: sticky;
+  top: 56px;
+  z-index: 100;
+  background: white;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding: 0 60px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+
+.nav-interne a,
+.nav-tourisme a {
+  text-decoration: none;
+  color: #555;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 18px 20px;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-interne a:hover,
+.nav-tourisme a:hover {
+  color: var(--rouge);
+  border-bottom-color: var(--rouge);
+}
+
+
+/* ======================== */
+/*   IDENTITE               */
+/* ======================== */
+.identite-section {
+  background: var(--blanc);
+  padding: 100px 60px;
+}
+
+.identite-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.identite-texte p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.9;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.identite-pilliers {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pillier {
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+
+.pillier:first-child {
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+
+.pillier-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  color: rgba(193,18,31,0.08);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.pillier-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--nuit);
+  margin-bottom: 8px;
+}
+
+.pillier-desc {
+  font-size: 14px;
+  color: #777;
+  line-height: 1.7;
+}
+
+
+/* ======================== */
+/*   MUSIQUE                */
+/* ======================== */
+.musique-section {
+  background: var(--nuit);
+  padding: 100px 60px;
+}
+
+.musique-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.musique-titre {
+  color: var(--blanc) !important;
+}
+
+.musique-texte p {
+  font-size: 16px;
+  color: rgba(248,245,239,0.6);
+  line-height: 1.9;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.genres-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 30px;
+}
+
+.genre-item {
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.genre-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--or);
+}
+
+.genre-desc {
+  font-size: 14px;
+  color: rgba(248,245,239,0.5);
+  line-height: 1.6;
+}
+
+.instruments-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.instrument {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 24px;
+}
+
+.instrument-emoji {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.instrument-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  color: var(--blanc);
+  margin-bottom: 8px;
+}
+
+.instrument-desc {
+  font-size: 12px;
+  color: rgba(248,245,239,0.45);
+  line-height: 1.6;
+}
+
+
+/* ======================== */
+/*   ARTISANAT              */
+/* ======================== */
+.artisanat-section {
+  background: var(--sable);
+  padding: 100px 60px;
+}
+
+.artisanat-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 60px;
+}
+
+.artisanat-intro p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.artisanat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.artisanat-card {
+  background: white;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.artisanat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+.artisanat-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.artisanat-body {
+  padding: 20px;
+}
+
+.artisanat-origine {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rouge);
+  margin-bottom: 8px;
+}
+
+.artisanat-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--nuit);
+  margin-bottom: 10px;
+}
+
+.artisanat-desc {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.7;
+}
+
+
+/* ======================== */
+/*   CUISINE (page culture) */
+/* ======================== */
+.cuisine-culture-section {
+  background: var(--blanc);
+  padding: 100px 60px;
+}
+
+.cuisine-culture-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.cuisine-culture-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.cuisine-culture-intro > div p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.9;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.epices-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.epice-card {
+  background: var(--sable);
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.epice-emoji {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.epice-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--nuit);
+  margin-bottom: 8px;
+}
+
+.epice-desc {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.plats-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.plat-detail {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 30px;
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  align-items: start;
+}
+
+.plat-detail-img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+.plat-detail-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--nuit);
+  margin-bottom: 4px;
+}
+
+.plat-detail-arabe {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 18px;
+  color: rgba(0,0,0,0.2);
+  margin-bottom: 10px;
+  direction: rtl;
+}
+
+.plat-detail-desc {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.8;
+}
+
+
+/* ======================== */
+/*   TRADITIONS             */
+/* ======================== */
+.traditions-section {
+  background: var(--sable);
+  padding: 100px 60px;
+}
+
+.traditions-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.traditions-titre {
+  color: var(--nuit);
+}
+
+.traditions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.tradition-card {
+  background: white;
+  padding: 30px;
+}
+
+.tradition-icone {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.tradition-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--nuit);
+  margin-bottom: 12px;
+}
+
+.tradition-texte {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.8;
+}
+
+
+/* ======================== */
+/*   FETES                  */
+/* ======================== */
+.fetes-section {
+  background: var(--nuit);
+  padding: 100px 60px;
+}
+
+.fetes-titre {
+  color: var(--blanc) !important;
+}
+
+.fetes-sous-titre {
+  color: rgba(248,245,239,0.5) !important;
+  margin-bottom: 0 !important;
+}
+
+.fetes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.05);
+  margin-top: 50px;
+}
+
+.fete-card {
+  background: var(--nuit);
+  padding: 28px;
+  border-top: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.fete-card:hover {
+  border-top-color: var(--rouge);
+}
+
+.fete-mois {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rouge);
+  margin-bottom: 12px;
+}
+
+.fete-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--blanc);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.fete-desc {
+  font-size: 13px;
+  color: rgba(248,245,239,0.45);
+  line-height: 1.7;
+}
+
+
+/* ======================== */
+/*   LANGUE                 */
+/* ======================== */
+.langue-section {
+  background: var(--blanc);
+  padding: 100px 60px;
+}
+
+.langue-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.langue-texte p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.9;
+  margin-bottom: 16px;
+  margin-top: 20px;
+}
+
+.mots-tunisiens {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.mot-ligne {
+  display: grid;
+  grid-template-columns: 120px 60px 1fr;
+  gap: 16px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  align-items: center;
+}
+
+.mot-ligne:last-child { border-bottom: none; }
+
+.mot-tunisien {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--rouge);
+}
+
+.mot-arabe {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 18px;
+  color: rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+.mot-traduction {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+}
+
+
+/* ======================== */
+/*   VILLES TOURISME        */
+/* ======================== */
+.villes-tourisme {
+  background: var(--blanc);
+  padding: 100px 60px;
+}
+
+.villes-tourisme-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.villes-tourisme-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+}
+
+.villes-tourisme-intro > p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.8;
+  margin-top: 20px;
+}
+
+.villes-principales-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 300px 300px;
+  gap: 16px;
+}
+
+.ville-principale-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.ville-principale-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+
+.ville-principale-card:hover img {
+  transform: scale(1.04);
+}
+
+.vp-tunis { grid-row: 1 / 3; }
+
+.ville-principale-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,10,30,0.8) 0%, transparent 60%);
+}
+
+.ville-principale-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 24px;
+}
+
+.ville-principale-tag {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 4px;
+}
+
+.ville-principale-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.vp-tunis .ville-principale-nom { font-size: 36px; }
+
+.ville-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ville-highlight {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.8);
+  padding: 4px 10px;
+}
+
+.villes-descriptions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.ville-desc-bloc h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--nuit);
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.ville-desc-bloc p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 14px;
+}
+
+.ville-infos-pratiques {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 20px;
+  border: 1px solid rgba(0,0,0,0.07);
+}
+
+.info-ligne {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  align-items: baseline;
+}
+
+.info-ligne:last-child { border-bottom: none; }
+
+.info-ligne-label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+.info-ligne-val {
+  font-size: 13px;
+  color: var(--nuit);
+  line-height: 1.4;
+}
+
+
+/* ======================== */
+/*   SITES TOURISTIQUES     */
+/* ======================== */
+.sites-section {
+  background: var(--nuit);
+  padding: 100px 60px;
+}
+
+.sites-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.sites-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.site-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.site-card:hover { transform: translateY(-4px); }
+
+.site-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.85);
+  transition: filter 0.3s;
+}
+
+.site-card:hover .site-card-img { filter: brightness(1); }
+
+.site-card-body { padding: 24px; }
+
+.site-card-type {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rouge);
+  margin-bottom: 8px;
+}
+
+.site-card-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--blanc);
+  margin-bottom: 12px;
+}
+
+.site-card-desc {
+  font-size: 13px;
+  color: rgba(248,245,239,0.5);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.site-infos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+.site-info {
+  background: rgba(26,26,46,0.95);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.site-info-label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(248,245,239,0.35);
+}
+
+.site-info-val {
+  font-size: 13px;
+  color: var(--blanc);
+}
+
+
+/* ======================== */
+/*   ACTIVITES              */
+/* ======================== */
+.activites-section {
+  background: var(--sable);
+  padding: 100px 60px;
+}
+
+.activites-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.activites-big {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.activite-big {
+  padding-top: 20px;
+  border-top: 2px solid var(--rouge);
+}
+
+.activite-big-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  color: rgba(193,18,31,0.08);
+  line-height: 1;
+  margin-bottom: -10px;
+}
+
+.activite-big-icone {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.activite-big-titre {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--nuit);
+  margin-bottom: 14px;
+}
+
+.activite-big-desc {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.sous-activites {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sous-activite {
+  font-size: 13px;
+  color: #666;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.6);
+  border-left: 2px solid var(--rouge);
+  line-height: 1.4;
+}
+
+
+/* ======================== */
+/*   CONSEILS PRATIQUES     */
+/* ======================== */
+.conseils-section {
+  background: var(--blanc);
+  padding: 100px 60px;
+}
+
+.conseils-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.conseils-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.conseil-card {
+  padding: 28px;
+  background: var(--sable);
+  transition: transform 0.3s;
+}
+
+.conseil-card:hover { transform: translateY(-3px); }
+
+.conseil-icone {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.conseil-titre {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--nuit);
+  margin-bottom: 12px;
+}
+
+.conseil-texte {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.8;
+}
+
+
+/* ======================== */
+/*   SAISONS                */
+/* ======================== */
+.saisons-section {
+  background: var(--nuit);
+  padding: 100px 60px;
+}
+
+.saisons-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.saisons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+}
+
+.saison-item {
+  background: var(--nuit);
+  padding: 36px 28px;
+}
+
+.saison-item.recommandee {
+  background: rgba(193,18,31,0.08);
+}
+
+.saison-badge {
+  display: inline-block;
+  background: var(--rouge);
+  color: white;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  margin-bottom: 16px;
+}
+
+.saison-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--blanc);
+  margin-bottom: 4px;
+}
+
+.saison-mois {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: rgba(248,245,239,0.4);
+  margin-bottom: 12px;
+}
+
+.saison-temp {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: var(--or);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.saison-desc {
+  font-size: 13px;
+  color: rgba(248,245,239,0.5);
+  line-height: 1.7;
+}
+
+
+/* ======================== */
+/*   BUDGET                 */
+/* ======================== */
+.budget-section {
+  background: var(--blanc);
+  padding: 100px 60px;
+}
+
+.budget-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.budget-texte p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 16px;
+  margin-top: 20px;
+}
+
+.budget-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.budget-ligne {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  align-items: center;
+}
+
+.budget-ligne:last-child { border-bottom: none; }
+
+.budget-categorie {
+  font-size: 14px;
+  color: var(--nuit);
+}
+
+.budget-fourchette {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  color: var(--rouge);
+  white-space: nowrap;
+}
+
+.budget-note {
+  font-size: 12px;
+  color: #aaa;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.budget-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--nuit);
+  padding: 20px;
+  margin-top: 16px;
+}
+
+.budget-total-label {
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(248,245,239,0.5);
+}
+
+.budget-total-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--or);
+}
+
+
+/* ======================== */
+/*   PAGE VILLES            */
+/* ======================== */
+.filtres-section {
+  background: white;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding: 0 60px;
+  position: sticky;
+  top: 56px;
+  z-index: 100;
+}
+
+.filtres-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 0;
+  overflow-x: auto;
+}
+
+.filtre-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  white-space: nowrap;
+  margin-right: 8px;
+}
+
+.filtre-btn {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.15);
+  color: #555;
+  padding: 8px 18px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.filtre-btn:hover,
+.filtre-btn.actif {
+  background: var(--rouge);
+  border-color: var(--rouge);
+  color: white;
+}
+
+.villes-section {
+  background: var(--blanc);
+  padding: 80px 60px;
+}
+
+.villes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.ville-fiche {
+  background: white;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.ville-fiche:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+.ville-fiche.capitale {
+  border-top: 3px solid var(--rouge);
+}
+
+.ville-fiche-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+
+.ville-fiche:hover .ville-fiche-img {
+  transform: scale(1.04);
+}
+
+.ville-fiche-body { padding: 16px; }
+
+.ville-fiche-region {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rouge);
+  margin-bottom: 6px;
+}
+
+.ville-fiche-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--nuit);
+  margin-bottom: 8px;
+}
+
+.ville-fiche-desc {
+  font-size: 12px;
+  color: #777;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.ville-fiche-stats {
+  display: flex;
+  gap: 16px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding-top: 12px;
+}
+
+.ville-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ville-stat-val {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--nuit);
+}
+
+.ville-stat-label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+.ville-fiche.cachee { display: none; }
+
+#map-villes {
+  width: 100%;
+  height: 480px;
+}
+
+
+/* ======================== */
+/*   POPUP DETAIL VILLE     */
+/* ======================== */
+.detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.detail-overlay.actif {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.detail-box {
+  background: white;
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s;
+}
+
+.detail-overlay.actif .detail-box {
+  transform: translateY(0);
+}
+
+.detail-fermer {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  background: rgba(0,0,0,0.4);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-fermer:hover { background: rgba(0,0,0,0.7); }
+
+.detail-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.detail-contenu { padding: 28px; }
+
+.detail-region {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--rouge);
+  margin-bottom: 6px;
+}
+
+.detail-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: var(--nuit);
+  margin-bottom: 4px;
+}
+
+.detail-arabe {
+  font-family: 'Tajawal', sans-serif;
+  font-size: 22px;
+  color: rgba(0,0,0,0.2);
+  margin-bottom: 12px;
+  direction: rtl;
+}
+
+.detail-desc {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.detail-infos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 16px 0;
+  margin-bottom: 20px;
+}
+
+.detail-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-info-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+}
+
+.detail-info-val {
+  font-size: 13px;
+  color: var(--nuit);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.detail-voir-titre {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rouge);
+  margin-bottom: 10px;
+}
+
+.detail-voir-liste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.detail-voir-tag {
+  font-size: 12px;
+  color: var(--nuit);
+  padding: 5px 12px;
+  background: var(--sable);
+}
+
+.detail-anecdote {
+  background: rgba(193,18,31,0.04);
+  border-left: 3px solid var(--rouge);
+  padding: 16px 20px;
+}
+
+.detail-anecdote-titre {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rouge);
+  margin-bottom: 8px;
+}
+
+.detail-anecdote p {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+
+/* ======================== */
+/*   RESPONSIVE (pages)     */
+/* ======================== */
+@media (max-width: 768px) {
+  .identite-layout,
+  .musique-layout,
+  .artisanat-intro,
+  .cuisine-culture-intro,
+  .langue-layout,
+  .villes-tourisme-intro,
+  .budget-layout { grid-template-columns: 1fr; }
+
+  .artisanat-grid,
+  .traditions-grid { grid-template-columns: 1fr; }
+
+  .epices-grid { grid-template-columns: 1fr 1fr; }
+
+  .plat-detail { grid-template-columns: 1fr; }
+  .plat-detail-img { height: 180px; }
+
+  .fetes-grid { grid-template-columns: 1fr 1fr; }
+
+  .mot-ligne { grid-template-columns: 100px 1fr; }
+  .mot-arabe { display: none; }
+
+  .instruments-grid { grid-template-columns: 1fr; }
+
+  .villes-principales-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .vp-tunis { grid-row: auto; }
+
+  .villes-descriptions,
+  .sites-grid,
+  .activites-big { grid-template-columns: 1fr; }
+
+  .conseils-grid { grid-template-columns: 1fr 1fr; }
+
+  .saisons-grid { grid-template-columns: 1fr 1fr; }
+
+  .villes-grid { grid-template-columns: 1fr 1fr; }
+
+  .filtres-section { padding: 0 20px; }
+
+  .nav-interne,
+  .nav-tourisme { padding: 0 20px; }
+
+  .culture-hero,
+  .tourisme-hero,
+  .villes-hero { padding: 140px 20px 60px; }
+
+  .identite-section,
+  .musique-section,
+  .artisanat-section,
+  .cuisine-culture-section,
+  .traditions-section,
+  .fetes-section,
+  .langue-section,
+  .villes-tourisme,
+  .sites-section,
+  .activites-section,
+  .conseils-section,
+  .saisons-section,
+  .budget-section,
+  .villes-section { padding: 60px 20px; }
+}
+
+/* ======================== */
+/*   PAGE NATURE            */
+/* ======================== */
+
+.nature-hero {
+  background: #1a2e1a;
+  padding: 160px 60px 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nature-hero::before {
+  content: 'طبيعة';
+  position: absolute;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 280px;
+  color: rgba(255,255,255,0.025);
+  right: -20px;
+  bottom: -40px;
+  line-height: 1;
+}
+
+.nature-hero-contenu {
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+}
+
+.nature-hero-contenu h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 6vw, 72px);
+  color: var(--blanc);
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.nature-hero-contenu h1 span {
+  color: #6dbf6d;
+  font-style: italic;
+}
+
+.nature-hero-contenu p {
+  font-size: 17px;
+  color: rgba(248,245,239,0.6);
+  line-height: 1.8;
+  max-width: 560px;
+}
+
+
+/* ======================== */
+/*   LES 3 ZONES            */
+/* ======================== */
+.zones-section {
+  background: var(--blanc);
+  padding: 100px 60px;
+}
+
+.zones-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 60px;
+}
+
+.zones-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.zone-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.zone-card-img {
+  height: 300px;
+  overflow: hidden;
+}
+
+.zone-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s;
+  filter: brightness(0.75);
+}
+
+.zone-card:hover .zone-card-img img {
+  transform: scale(1.04);
+}
+
+.zone-card-body {
+  padding: 32px;
+  background: white;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.zone-nord .zone-card-body   { border-bottom-color: var(--turquoise); }
+.zone-centre .zone-card-body { border-bottom-color: var(--sable-fonce); }
+.zone-sud .zone-card-body    { border-bottom-color: var(--or); }
+
+.zone-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  color: rgba(0,0,0,0.06);
+  line-height: 1;
+  margin-bottom: -8px;
+}
+
+.zone-titre {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: var(--nuit);
+  margin-bottom: 14px;
+}
+
+.zone-desc {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.zone-chiffres {
+  display: flex;
+  gap: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+
+.zone-chiffre {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.zone-chiffre-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--rouge);
+}
+
+.zone-chiffre-label {
+  font-size: 11px;
+  color: #aaa;
+  letter-spacing: 1px;
+}
+
+
+/* ======================== */
+/*   PARCS NATIONAUX        */
+/* ======================== */
+.parcs-section {
+  background: #1a2e1a;
+  padding: 100px 60px;
+}
+
+.parcs-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 50px;
+}
+
+.parcs-header .section-title { color: var(--blanc); }
+.parcs-header .section-desc  { color: rgba(248,245,239,0.55); }
+
+.parcs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+
+.parc-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.parc-card.parc-featured {
+  grid-column: 1 / 3;
+}
+
+.parc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 280px;
+  filter: brightness(0.55);
+  transition: filter 0.4s, transform 0.4s;
+}
+
+.parc-card:hover .parc-img {
+  filter: brightness(0.7);
+  transform: scale(1.03);
+}
+
+.parc-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 36px;
+}
+
+.parc-overlay-small {
+  padding: 24px;
+}
+
+.parc-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #6dbf6d;
+  margin-bottom: 8px;
+}
+
+.parc-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: white;
+  margin-bottom: 4px;
+  line-height: 1.1;
+}
+
+.parc-overlay-small .parc-nom { font-size: 20px; }
+
+.parc-region {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 12px;
+}
+
+.parc-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+  max-width: 500px;
+}
+
+.parc-desc-short {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+}
+
+.parc-stats {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 16px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 1px;
+}
+
+
+/* ======================== */
+/*   FAUNE                  */
+/* ======================== */
+.faune-section {
+  background: var(--nuit);
+  padding: 100px 60px;
+}
+
+.faune-header {
+  margin-bottom: 50px;
+}
+
+.faune-titre  { color: var(--blanc) !important; }
+.faune-sous-titre { color: rgba(248,245,239,0.55) !important; }
+
+.faune-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.faune-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.faune-card:hover { transform: translateY(-4px); }
+
+.faune-img-wrap {
+  height: 180px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.05);
+}
+
+.faune-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(20%);
+  transition: filter 0.4s, transform 0.4s;
+}
+
+.faune-card:hover .faune-img-wrap img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.faune-body { padding: 20px; }
+
+.faune-zone {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6dbf6d;
+  margin-bottom: 6px;
+}
+
+.faune-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--blanc);
+  margin-bottom: 10px;
+}
+
+.faune-desc {
+  font-size: 13px;
+  color: rgba(248,245,239,0.5);
+  line-height: 1.7;
+}
+
+
+/* ======================== */
+/*   FLORE                  */
+/* ======================== */
+.flore-section {
+  background: var(--sable);
+  padding: 100px 60px;
+}
+
+.flore-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.flore-item {
+  padding: 30px;
+  background: white;
+  border-top: 3px solid transparent;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.flore-item:hover {
+  border-top-color: #6dbf6d;
+  transform: translateY(-3px);
+}
+
+.flore-icone {
+  font-size: 36px;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.flore-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--nuit);
+  margin-bottom: 4px;
+}
+
+.flore-region {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rouge);
+  margin-bottom: 12px;
+}
+
+.flore-desc {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.8;
+}
+
+
+/* ======================== */
+/*   PAYSAGES MOSAIQUE      */
+/* ======================== */
+.paysages-section {
+  background: var(--blanc);
+  padding: 100px 60px 0;
+}
+
+.paysages-header {
+  margin-bottom: 40px;
+}
+
+.paysages-mosaic {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 340px 340px;
+  gap: 8px;
+}
+
+.paysage-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.paysage-item.paysage-large {
+  grid-column: span 2;
+}
+
+.paysage-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s;
+  filter: brightness(0.65);
+}
+
+.paysage-item:hover img {
+  transform: scale(1.04);
+}
+
+.paysage-legende {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.paysage-nom {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: white;
+  margin-bottom: 6px;
+}
+
+.paysage-item.paysage-large .paysage-nom { font-size: 26px; }
+
+.paysage-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+
+/* ======================== */
+/*   ACTIVITES NATURE       */
+/* ======================== */
+.activites-nature-section {
+  background: var(--blanc);
+  padding: 100px 60px;
+}
+
+.activites-nature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.activite-nature-card {
+  background: var(--nuit);
+  padding: 30px;
+  border-top: 3px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.activite-nature-card:hover {
+  border-top-color: #6dbf6d;
+}
+
+.activite-nature-icone {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.activite-nature-titre {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: var(--blanc);
+  margin-bottom: 16px;
+}
+
+.activite-nature-liste {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.activite-nature-liste li {
+  font-size: 13px;
+  color: rgba(248,245,239,0.55);
+  line-height: 1.4;
+  padding-left: 14px;
+  position: relative;
+}
+
+.activite-nature-liste li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: #6dbf6d;
+  font-size: 10px;
+  top: 2px;
+}
+
+
+/* ======================== */
+/*   RESPONSIVE NATURE      */
+/* ======================== */
+@media (max-width: 768px) {
+  .nature-hero { padding: 140px 20px 60px; }
+
+  .zones-intro  { grid-template-columns: 1fr; }
+  .zones-grid   { grid-template-columns: 1fr; }
+
+  .parcs-header { grid-template-columns: 1fr; }
+  .parcs-grid   {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .parc-card.parc-featured { grid-column: auto; }
+
+  .faune-grid   { grid-template-columns: 1fr; }
+  .flore-layout { grid-template-columns: 1fr; }
+
+  .paysages-mosaic {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .paysage-item        { height: 260px; }
+  .paysage-item.paysage-large { grid-column: auto; }
+
+  .activites-nature-grid { grid-template-columns: 1fr 1fr; }
+
+  .zones-section, .parcs-section, .faune-section,
+  .flore-section, .paysages-section,
+  .activites-nature-section { padding: 60px 20px; }
+}
+
 /* fin du fichier css - bonne lecture ! */
 
 
@@ -1695,9 +3863,7 @@ footer p {
   .rubrique-contenu { padding: 50px 20px; }
 }
 
-<style>
-
-    /* ======================== */
+/* ======================== */
     /* HERO                     */
     /* ======================== */
     .histoire-hero {
@@ -2262,6 +4428,9 @@ footer p {
       gap: 10px;
       margin-top: 30px;
     }
+    .carousel-carousel{
+      gap: 20px
+    }
 
     .dot {
       width: 8px;
@@ -2296,4 +4465,4 @@ footer p {
       .perso-cle-header       { flex-direction: column; align-items: flex-start; }
     }
 
-  </style>
+
